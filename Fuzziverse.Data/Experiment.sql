@@ -1,0 +1,4 @@
+﻿CREATE TABLE dbo.Experiment
+(
+	Id INT NOT NULL PRIMARY KEY IDENTITY
+)

@@ -61,6 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Experiment.cs" />
+    <Compile Include="Genome.cs" />
+    <Compile Include="Organism.cs" />
+    <Compile Include="OrganismState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
