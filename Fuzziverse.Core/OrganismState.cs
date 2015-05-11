@@ -11,6 +11,6 @@ namespace Fuzziverse.Core
     public long Id { get; set; }
     public int X { get; set; }
     public int Y { get; set; }
-    public float Energy { get; set; }
+    public decimal Energy { get; set; }
   }
 }

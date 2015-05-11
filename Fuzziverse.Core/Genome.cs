@@ -8,6 +8,10 @@ namespace Fuzziverse.Core
 {
   public class Genome
   {
-    public float Strength { get; set; }
+    public decimal Strength { get; set; }
+    public decimal Defense { get; set; }
+    public decimal Red { get; set; }
+    public decimal Green { get; set; }
+    public decimal Blue { get; set; }
   }
 }
