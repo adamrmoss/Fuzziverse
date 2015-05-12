@@ -1,0 +1,8 @@
+﻿CREATE TABLE dbo.OrganismState
+(
+	Id BIGINT NOT NULL PRIMARY KEY IDENTITY, 
+    OrganismId BIGINT NOT NULL, 
+    X INT NOT NULL,
+    Y INT NOT NULL, 
+    Energy DECIMAL(2, 2) NOT NULL
+)
