@@ -2,6 +2,7 @@
 (
 	Id BIGINT NOT NULL PRIMARY KEY IDENTITY, 
     CurrentStateId BIGINT NOT NULL, 
-    Strength DECIMAL(2, 2) NOT NULL,
-    Defense DECIMAL(2, 2) NOT NULL
+    Red DECIMAL(2, 2) NOT NULL,
+    Green DECIMAL(2, 2) NOT NULL,
+    Blue DECIMAL(2, 2) NOT NULL,
 )

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fuzziverse.Core
 {
-  public class Genome
+  public class Brain
   {
   }
 }
