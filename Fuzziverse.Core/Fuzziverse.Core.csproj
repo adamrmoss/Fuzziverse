@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Experiment.cs" />
     <Compile Include="Brain.cs" />
+    <Compile Include="Neuron.cs" />
     <Compile Include="Organism.cs" />
     <Compile Include="OrganismState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
