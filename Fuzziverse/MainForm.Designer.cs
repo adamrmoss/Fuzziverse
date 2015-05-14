@@ -29,8 +29,8 @@
       this.tabControl = new System.Windows.Forms.TabControl();
       this.serverTabPage = new System.Windows.Forms.TabPage();
       this.databaseGroupBox = new System.Windows.Forms.GroupBox();
-      this.instanceNameTextBox = new System.Windows.Forms.TextBox();
-      this.instanceNameLabel = new System.Windows.Forms.Label();
+      this.sqlInstanceTextBox = new System.Windows.Forms.TextBox();
+      this.sqlInstanceLabel = new System.Windows.Forms.Label();
       this.simulationTabPage = new System.Windows.Forms.TabPage();
       this.tabControl.SuspendLayout();
       this.serverTabPage.SuspendLayout();
@@ -60,8 +60,8 @@
       // 
       // databaseGroupBox
       // 
-      this.databaseGroupBox.Controls.Add(this.instanceNameTextBox);
-      this.databaseGroupBox.Controls.Add(this.instanceNameLabel);
+      this.databaseGroupBox.Controls.Add(this.sqlInstanceTextBox);
+      this.databaseGroupBox.Controls.Add(this.sqlInstanceLabel);
       this.databaseGroupBox.Location = new System.Drawing.Point(20, 15);
       this.databaseGroupBox.Name = "databaseGroupBox";
       this.databaseGroupBox.Size = new System.Drawing.Size(811, 51);
@@ -69,21 +69,21 @@
       this.databaseGroupBox.TabStop = false;
       this.databaseGroupBox.Text = "Database Settings";
       // 
-      // instanceNameTextBox
+      // sqlInstanceTextBox
       // 
-      this.instanceNameTextBox.Location = new System.Drawing.Point(96, 20);
-      this.instanceNameTextBox.Name = "instanceNameTextBox";
-      this.instanceNameTextBox.Size = new System.Drawing.Size(697, 20);
-      this.instanceNameTextBox.TabIndex = 1;
+      this.sqlInstanceTextBox.Location = new System.Drawing.Point(96, 20);
+      this.sqlInstanceTextBox.Name = "sqlInstanceTextBox";
+      this.sqlInstanceTextBox.Size = new System.Drawing.Size(697, 20);
+      this.sqlInstanceTextBox.TabIndex = 1;
       // 
-      // instanceNameLabel
+      // sqlInstanceLabel
       // 
-      this.instanceNameLabel.AutoSize = true;
-      this.instanceNameLabel.Location = new System.Drawing.Point(7, 20);
-      this.instanceNameLabel.Name = "instanceNameLabel";
-      this.instanceNameLabel.Size = new System.Drawing.Size(82, 13);
-      this.instanceNameLabel.TabIndex = 0;
-      this.instanceNameLabel.Text = "Instance Name:";
+      this.sqlInstanceLabel.AutoSize = true;
+      this.sqlInstanceLabel.Location = new System.Drawing.Point(16, 20);
+      this.sqlInstanceLabel.Name = "sqlInstanceLabel";
+      this.sqlInstanceLabel.Size = new System.Drawing.Size(75, 13);
+      this.sqlInstanceLabel.TabIndex = 0;
+      this.sqlInstanceLabel.Text = "SQL Instance:";
       // 
       // simulationTabPage
       // 
@@ -118,8 +118,8 @@
     private System.Windows.Forms.TabPage serverTabPage;
     private System.Windows.Forms.TabPage simulationTabPage;
     private System.Windows.Forms.GroupBox databaseGroupBox;
-    private System.Windows.Forms.TextBox instanceNameTextBox;
-    private System.Windows.Forms.Label instanceNameLabel;
+    private System.Windows.Forms.TextBox sqlInstanceTextBox;
+    private System.Windows.Forms.Label sqlInstanceLabel;
   }
 }
 

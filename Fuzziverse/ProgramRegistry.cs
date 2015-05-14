@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Fuzziverse.Server;
+using Fuzziverse.Simulation;
 using StructureMap.Configuration.DSL;
 using StructureMap.Pipeline;
 
@@ -22,17 +24,8 @@ namespace Fuzziverse
       this.For<MainForm>()
           .Singleton();
 
-      this.For<TabControl>()
-          .Use(ctx => (TabControl) ctx.GetInstance<MainForm>().Controls["tabControl"])
-          .Named("mainTabControl");
-
-      this.For<TabPage>()
-          .Use(ctx => ctx.GetInstance<TabControl>("mainTabControl").TabPages["serverTabPage"])
-          .Named("serverTabPage");
-
-      this.For<TabPage>()
-          .Use(ctx => ctx.GetInstance<TabControl>("mainTabControl").TabPages["simulationTabPage"])
-          .Named("simulationTabPage");
+      this.For<IManageServerSettings>()
+          .Use(ctx => ctx.GetInstance<MainForm>());
     }
 
     private void ConfigureControllers()
@@ -41,12 +34,10 @@ namespace Fuzziverse
           .Singleton();
 
       this.ForConcreteType<ServerController>().Configure
-          .Singleton()
-          .Ctor<TabPage>("serverTabPage").Is(x => x.GetInstance<TabPage>("serverTabPage"));
+          .Singleton();
 
       this.ForConcreteType<SimulationController>().Configure
-          .Singleton()
-          .Ctor<TabPage>("simulationTabPage").Is(x => x.GetInstance<TabPage>("simulationTabPage"));
+          .Singleton();
     }
   }
 }
