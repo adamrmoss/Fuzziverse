@@ -62,5 +62,7 @@
     <Build Include="Experiment.sql" />
     <Build Include="OrganismState.sql" />
     <Build Include="Organism.sql" />
+    <Build Include="Brain.sql" />
+    <Build Include="Neuron.sql" />
   </ItemGroup>
 </Project>
