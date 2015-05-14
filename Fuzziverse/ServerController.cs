@@ -16,12 +16,12 @@ namespace Fuzziverse
     {
       this.serverTabPage = serverTabPage;
 
-      this.instanceNameTextBox = (TextBox) this.serverTabPage.Controls["instanceNameTextBox"];
+      this.instanceNameTextBox = (TextBox) this.serverTabPage.Controls["databaseGroupBox"].Controls["instanceNameTextBox"];
     }
 
     public void Initialize()
     {
-      //this.instanceNameTextBox.Text = (string) Properties.Settings.Default["SqlInstance"];
+      this.instanceNameTextBox.Text = Properties.Settings.Default.SqlInstance;
     }
   }
 }
