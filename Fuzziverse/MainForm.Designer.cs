@@ -28,10 +28,10 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
       this.tabControl = new System.Windows.Forms.TabControl();
       this.serverTabPage = new System.Windows.Forms.TabPage();
-      this.visualizationTabPage = new System.Windows.Forms.TabPage();
       this.databaseGroupBox = new System.Windows.Forms.GroupBox();
-      this.instanceNameLabel = new System.Windows.Forms.Label();
       this.instanceNameTextBox = new System.Windows.Forms.TextBox();
+      this.instanceNameLabel = new System.Windows.Forms.Label();
+      this.simulationTabPage = new System.Windows.Forms.TabPage();
       this.tabControl.SuspendLayout();
       this.serverTabPage.SuspendLayout();
       this.databaseGroupBox.SuspendLayout();
@@ -40,7 +40,7 @@
       // tabControl
       // 
       this.tabControl.Controls.Add(this.serverTabPage);
-      this.tabControl.Controls.Add(this.visualizationTabPage);
+      this.tabControl.Controls.Add(this.simulationTabPage);
       this.tabControl.Location = new System.Drawing.Point(12, 12);
       this.tabControl.Name = "tabControl";
       this.tabControl.SelectedIndex = 0;
@@ -58,16 +58,6 @@
       this.serverTabPage.Text = "Server";
       this.serverTabPage.UseVisualStyleBackColor = true;
       // 
-      // visualizationTabPage
-      // 
-      this.visualizationTabPage.Location = new System.Drawing.Point(4, 22);
-      this.visualizationTabPage.Name = "visualizationTabPage";
-      this.visualizationTabPage.Padding = new System.Windows.Forms.Padding(3);
-      this.visualizationTabPage.Size = new System.Drawing.Size(849, 725);
-      this.visualizationTabPage.TabIndex = 1;
-      this.visualizationTabPage.Text = "Visualization";
-      this.visualizationTabPage.UseVisualStyleBackColor = true;
-      // 
       // databaseGroupBox
       // 
       this.databaseGroupBox.Controls.Add(this.instanceNameTextBox);
@@ -79,6 +69,13 @@
       this.databaseGroupBox.TabStop = false;
       this.databaseGroupBox.Text = "Database Settings";
       // 
+      // instanceNameTextBox
+      // 
+      this.instanceNameTextBox.Location = new System.Drawing.Point(96, 20);
+      this.instanceNameTextBox.Name = "instanceNameTextBox";
+      this.instanceNameTextBox.Size = new System.Drawing.Size(697, 20);
+      this.instanceNameTextBox.TabIndex = 1;
+      // 
       // instanceNameLabel
       // 
       this.instanceNameLabel.AutoSize = true;
@@ -88,12 +85,15 @@
       this.instanceNameLabel.TabIndex = 0;
       this.instanceNameLabel.Text = "Instance Name:";
       // 
-      // instanceNameTextBox
+      // simulationTabPage
       // 
-      this.instanceNameTextBox.Location = new System.Drawing.Point(96, 20);
-      this.instanceNameTextBox.Name = "instanceNameTextBox";
-      this.instanceNameTextBox.Size = new System.Drawing.Size(697, 20);
-      this.instanceNameTextBox.TabIndex = 1;
+      this.simulationTabPage.Location = new System.Drawing.Point(4, 22);
+      this.simulationTabPage.Name = "simulationTabPage";
+      this.simulationTabPage.Padding = new System.Windows.Forms.Padding(3);
+      this.simulationTabPage.Size = new System.Drawing.Size(849, 725);
+      this.simulationTabPage.TabIndex = 1;
+      this.simulationTabPage.Text = "Simulation";
+      this.simulationTabPage.UseVisualStyleBackColor = true;
       // 
       // MainForm
       // 
@@ -116,7 +116,7 @@
 
     private System.Windows.Forms.TabControl tabControl;
     private System.Windows.Forms.TabPage serverTabPage;
-    private System.Windows.Forms.TabPage visualizationTabPage;
+    private System.Windows.Forms.TabPage simulationTabPage;
     private System.Windows.Forms.GroupBox databaseGroupBox;
     private System.Windows.Forms.TextBox instanceNameTextBox;
     private System.Windows.Forms.Label instanceNameLabel;

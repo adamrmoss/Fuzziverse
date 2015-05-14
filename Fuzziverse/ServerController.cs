@@ -9,5 +9,19 @@ namespace Fuzziverse
 {
   public class ServerController
   {
+    private readonly TabPage serverTabPage;
+    private readonly TextBox instanceNameTextBox;
+
+    public ServerController(TabPage serverTabPage)
+    {
+      this.serverTabPage = serverTabPage;
+
+      this.instanceNameTextBox = (TextBox) this.serverTabPage.Controls["instanceNameTextBox"];
+    }
+
+    public void Initialize()
+    {
+      //this.instanceNameTextBox.Text = (string) Properties.Settings.Default["SqlInstance"];
+    }
   }
 }
