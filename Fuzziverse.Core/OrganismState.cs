@@ -16,7 +16,7 @@ namespace Fuzziverse.Core
     public decimal Health { get; set; }
     public decimal Damage { get; set; }
 
-    public decimal Intensity { get; set; }
+    public decimal Metabolism { get; set; }
     public decimal Aggressiveness { get; set; }
 
     public decimal MoveEast { get; set; }

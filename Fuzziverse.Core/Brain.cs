@@ -10,7 +10,7 @@ namespace Fuzziverse.Core
   {
     public long Id { get; set; }
 
-    public long IntensityNeuronId { get; set; }
+    public long MetabolismNeuronId { get; set; }
     public long AggressivenessNeuronId { get; set; }
 
     public long MoveEastNeuronId { get; set; }

@@ -14,7 +14,7 @@ namespace Fuzziverse.Core
     public decimal HealthFactor { get; set; }
     public decimal DamageFactor { get; set; }
 
-    public decimal IntensityFactor { get; set; }
+    public decimal MetabolismFactor { get; set; }
     public decimal AggressivenessFactor { get; set; }
 
     public decimal MoveEastFactor { get; set; }
