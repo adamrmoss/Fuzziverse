@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using StructureMap.Configuration.DSL;
+using StructureMap.Pipeline;
 
 namespace Fuzziverse
 {
@@ -40,10 +41,12 @@ namespace Fuzziverse
           .Singleton();
 
       this.ForConcreteType<ServerController>().Configure
-          .Singleton();
+          .Singleton()
+          .Ctor<TabPage>("serverTabPage").Is(x => x.GetInstance<TabPage>("serverTabPage"));
 
       this.ForConcreteType<SimulationController>().Configure
-          .Singleton();
+          .Singleton()
+          .Ctor<TabPage>("simulationTabPage").Is(x => x.GetInstance<TabPage>("simulationTabPage"));
     }
   }
 }
