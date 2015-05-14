@@ -75,10 +75,6 @@
       <Project>{5b3b5f7e-97d3-4958-8a64-a9f83bbaf835}</Project>
       <Name>Fuzziverse.Tasks</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Fuzziverse.Web\Fuzziverse.Web.csproj">
-      <Project>{35cbf4f3-f85c-43c2-952d-d69481afea9a}</Project>
-      <Name>Fuzziverse.Web</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Fuzziverse\Fuzziverse.csproj">
       <Project>{e204fed8-c364-4b7c-8fda-8ec08c64019d}</Project>
       <Name>Fuzziverse</Name>

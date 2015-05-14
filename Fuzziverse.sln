@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuzziverse.Core", "Fuzziver
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuzziverse.Tests", "Fuzziverse.Tests\Fuzziverse.Tests.csproj", "{8BE8751E-FB06-40BE-9085-AB842C2045BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuzziverse.Web", "Fuzziverse.Web\Fuzziverse.Web.csproj", "{35CBF4F3-F85C-43C2-952D-D69481AFEA9A}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuzziverse", "Fuzziverse\Fuzziverse.csproj", "{E204FED8-C364-4B7C-8FDA-8EC08C64019D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuzziverse.Tasks", "Fuzziverse.Tasks\Fuzziverse.Tasks.csproj", "{5B3B5F7E-97D3-4958-8A64-A9F83BBAF835}"
@@ -29,10 +27,6 @@ Global
 		{8BE8751E-FB06-40BE-9085-AB842C2045BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8BE8751E-FB06-40BE-9085-AB842C2045BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8BE8751E-FB06-40BE-9085-AB842C2045BA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35CBF4F3-F85C-43C2-952D-D69481AFEA9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35CBF4F3-F85C-43C2-952D-D69481AFEA9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35CBF4F3-F85C-43C2-952D-D69481AFEA9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35CBF4F3-F85C-43C2-952D-D69481AFEA9A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E204FED8-C364-4B7C-8FDA-8EC08C64019D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E204FED8-C364-4B7C-8FDA-8EC08C64019D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E204FED8-C364-4B7C-8FDA-8EC08C64019D}.Release|Any CPU.ActiveCfg = Release|Any CPU
