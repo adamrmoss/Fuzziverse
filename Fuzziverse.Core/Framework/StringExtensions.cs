@@ -1,7 +1,8 @@
 ﻿using System;
 using JetBrains.Annotations;
 
-namespace Fuzziverse.Core
+// ReSharper disable once CheckNamespace
+namespace System
 {
   public static class StringExtensions
   {

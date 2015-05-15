@@ -1,4 +1,4 @@
-﻿namespace Fuzziverse.Core
+﻿namespace Fuzziverse.Core.Organisms
 {
   public class Organism
   {

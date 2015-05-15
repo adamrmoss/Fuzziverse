@@ -1,6 +1,7 @@
 ﻿using System;
 
-namespace Fuzziverse.Core
+// ReSharper disable once CheckNamespace
+namespace System
 {
   public static class DateTimeExtensions
   {

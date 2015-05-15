@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fuzziverse.Core
+namespace Fuzziverse.Core.Experiments
 {
   public class Experiment
   {
