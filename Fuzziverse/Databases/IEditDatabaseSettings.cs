@@ -19,8 +19,12 @@ namespace Fuzziverse.Databases
     void DisableConnectSqlButton();
     void AddConnectSqlClickedHandler(EventHandler handler);
 
+    void SetAutoconnectCheckBox();
+    void ClearAutoconnectCheckBox();
+    bool GetAutoconnectCheckBoxValue();
+
     void EnableAutoconnectCheckBox();
     void DisableAutoconnectCheckBox();
-    void AddAutoconnectCheckBoxClickedHandler(EventHandler handler);
+    void AddAutoconnectCheckBoxCheckedChangedHandler(EventHandler handler);
   }
 }

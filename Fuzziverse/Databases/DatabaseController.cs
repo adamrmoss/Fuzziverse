@@ -18,8 +18,14 @@ namespace Fuzziverse.Databases
       this.databaseSettingsEditor.AddSqlInstanceTextBoxChangedHandler(this.OnSqlInstanceTextBoxValueChanged);
       this.databaseSettingsEditor.AddSaveSqlInstanceClickedHandler(this.OnSaveSqlInstanceButtonClicked);
       this.databaseSettingsEditor.AddConnectSqlClickedHandler(this.OnConnectSqlButtonClicked);
+      this.databaseSettingsEditor.AddAutoconnectCheckBoxCheckedChangedHandler(this.OnAutoconnectCheckBoxCheckedChanged);
 
       this.databaseSettingsEditor.SetSqlInstanceTextBoxValue(Settings.Default.SqlInstance);
+      if (Settings.Default.Autoconnect) {
+        this.databaseSettingsEditor.SetAutoconnectCheckBox();
+      } else {
+        this.databaseSettingsEditor.ClearAutoconnectCheckBox();
+      }
     }
 
     public void OnSqlInstanceTextBoxValueChanged(object sender, EventArgs eventArgs)
@@ -63,6 +69,12 @@ namespace Fuzziverse.Databases
     {
       this.databaseIsConnected = true;
       this.EnableOrDisableComponents();
+    }
+
+    public void OnAutoconnectCheckBoxCheckedChanged(object sender, EventArgs eventArgs)
+    {
+      Settings.Default.Autoconnect = this.databaseSettingsEditor.GetAutoconnectCheckBoxValue();
+      Settings.Default.Save();
     }
   }
 }

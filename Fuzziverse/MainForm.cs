@@ -66,6 +66,21 @@ namespace Fuzziverse
       this.connectSqlButton.Click += handler;
     }
 
+    public void SetAutoconnectCheckBox()
+    {
+      this.autoconnectCheckBox.Checked = true;
+    }
+
+    public void ClearAutoconnectCheckBox()
+    {
+      this.autoconnectCheckBox.Checked = false;
+    }
+
+    public bool GetAutoconnectCheckBoxValue()
+    {
+      return this.autoconnectCheckBox.Checked;
+    }
+
     public void EnableAutoconnectCheckBox()
     {
       this.autoconnectCheckBox.Enabled = true;
@@ -76,9 +91,9 @@ namespace Fuzziverse
       this.autoconnectCheckBox.Enabled = false;
     }
 
-    public void AddAutoconnectCheckBoxClickedHandler(EventHandler handler)
+    public void AddAutoconnectCheckBoxCheckedChangedHandler(EventHandler handler)
     {
-      this.autoconnectCheckBox.Click += handler;
+      this.autoconnectCheckBox.CheckedChanged += handler;
     }
   }
 }

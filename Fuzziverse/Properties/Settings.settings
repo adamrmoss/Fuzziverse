@@ -5,5 +5,8 @@
     <Setting Name="SqlInstance" Type="System.String" Scope="User">
       <Value Profile="(Default)">localhost\SQL2014</Value>
     </Setting>
+    <Setting Name="Autoconnect" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

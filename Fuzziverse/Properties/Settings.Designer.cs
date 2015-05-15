@@ -34,5 +34,17 @@ namespace Fuzziverse.Properties {
                 this["SqlInstance"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool Autoconnect {
+            get {
+                return ((bool)(this["Autoconnect"]));
+            }
+            set {
+                this["Autoconnect"] = value;
+            }
+        }
     }
 }
