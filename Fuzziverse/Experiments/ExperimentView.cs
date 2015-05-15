@@ -39,13 +39,21 @@ namespace Fuzziverse.Experiments
       this.experimentsTreeView.BeginUpdate();
       this.experimentsTreeView.Nodes.Clear();
 
-      foreach (var experiment in experiments) {
-        var key = experiment.Id.ToString(CultureInfo.InvariantCulture);
-        var text = "({0}) - {1}".FormatWith(experiment.Id, experiment.Created.ToShortDateString());
+      var experimentsByDate = experiments.GroupBy(e => e.Created.Date);
 
-        var treeNode = this.experimentsTreeView.Nodes.Add(key, text);
+      foreach (var cohort in experimentsByDate) {
+        var dateNode = this.experimentsTreeView.Nodes.Add(cohort.Key.ToShortDateString());
+
+        foreach (var experiment in cohort) {
+          var key = experiment.Id.ToString(CultureInfo.InvariantCulture);
+
+          var experimentNode = dateNode.Nodes.Add(key, "Experiment #{0}".FormatWith(key));
+        }
       }
+
       this.experimentsTreeView.EndUpdate();
+
+      this.experimentsTreeView.Nodes[0].Expand();
     }
   }
 }
