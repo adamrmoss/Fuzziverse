@@ -1,5 +1,4 @@
-﻿CREATE TABLE dbo.Organism
-(
+﻿CREATE TABLE dbo.Organism (
 	Id BIGINT NOT NULL PRIMARY KEY IDENTITY,
     CurrentStateId BIGINT NOT NULL,
     Red DECIMAL(2, 2) NOT NULL,

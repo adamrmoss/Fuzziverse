@@ -67,5 +67,6 @@
     <Build Include="Brain.sql" />
     <Build Include="Neuron.sql" />
     <Build Include="Ping.sql" />
+    <Build Include="ExperimentTick.sql" />
   </ItemGroup>
 </Project>
