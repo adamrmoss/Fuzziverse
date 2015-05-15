@@ -1,6 +1,4 @@
-﻿using System.Windows.Forms;
-
-namespace Fuzziverse.Simulation
+﻿namespace Fuzziverse.Simulations
 {
   public class SimulationController
   {

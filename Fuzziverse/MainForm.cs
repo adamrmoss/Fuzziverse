@@ -1,34 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Fuzziverse.Server;
+using Fuzziverse.Databases;
 
 namespace Fuzziverse
 {
-  public partial class MainForm : Form, IEditServerSettings
+  public partial class MainForm : Form, IEditDatabaseSettings
   {
     public MainForm()
     {
       InitializeComponent();
     }
 
-    public void SetSqlInstance(string sqlInstance)
+    public void SetSqlInstanceTextBoxValue(string sqlInstance)
     {
       this.sqlInstanceTextBox.Text = sqlInstance;
     }
 
-    public string GetSqlInstance()
+    public string GetSqlInstanceTextBoxValue()
     {
       return this.sqlInstanceTextBox.Text;
     }
 
-    public void AddSqlInstanceChangedHandler(EventHandler handler)
+    public void EnableSqlInstanceTextBox()
+    {
+      this.sqlInstanceTextBox.Enabled = true;
+    }
+
+    public void DisableSqlInstanceTextBox()
+    {
+      this.sqlInstanceTextBox.Enabled = false;
+    }
+
+    public void AddSqlInstanceTextBoxChangedHandler(EventHandler handler)
     {
       this.sqlInstanceTextBox.TextChanged += handler;
     }
@@ -46,6 +49,36 @@ namespace Fuzziverse
     public void AddSaveSqlInstanceClickedHandler(EventHandler handler)
     {
       this.saveSqlInstanceButton.Click += handler;
+    }
+
+    public void EnableConnectSqlButton()
+    {
+      this.connectSqlButton.Enabled = true;
+    }
+
+    public void DisableConnectSqlButton()
+    {
+      this.connectSqlButton.Enabled = false;
+    }
+
+    public void AddConnectSqlClickedHandler(EventHandler handler)
+    {
+      this.connectSqlButton.Click += handler;
+    }
+
+    public void EnableAutoconnectCheckBox()
+    {
+      this.autoconnectCheckBox.Enabled = true;
+    }
+
+    public void DisableAutoconnectCheckBox()
+    {
+      this.autoconnectCheckBox.Enabled = false;
+    }
+
+    public void AddAutoconnectCheckBoxClickedHandler(EventHandler handler)
+    {
+      this.autoconnectCheckBox.Click += handler;
     }
   }
 }

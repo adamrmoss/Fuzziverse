@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Fuzziverse.Server;
-using Fuzziverse.Simulation;
+﻿using System.Windows.Forms;
+using Fuzziverse.Databases;
+using Fuzziverse.Simulations;
 using StructureMap;
 
 namespace Fuzziverse
@@ -12,13 +8,13 @@ namespace Fuzziverse
   public class ProgramController
   {
     private readonly MainForm mainForm;
-    private readonly ServerController serverController;
+    private readonly DatabaseController databaseController;
     private readonly SimulationController simulationController;
 
-    public ProgramController(MainForm mainForm, ServerController serverController, SimulationController simulationController)
+    public ProgramController(MainForm mainForm, DatabaseController databaseController, SimulationController simulationController)
     {
       this.mainForm = mainForm;
-      this.serverController = serverController;
+      this.databaseController = databaseController;
       this.simulationController = simulationController;
     }
 
@@ -29,7 +25,7 @@ namespace Fuzziverse
 
     public void Initialize()
     {
-      this.serverController.Initialize();
+      this.databaseController.Initialize();
       this.simulationController.Initialize();
     }
 

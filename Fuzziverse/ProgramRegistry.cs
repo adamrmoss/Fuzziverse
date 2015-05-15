@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using Fuzziverse.Server;
-using Fuzziverse.Simulation;
+﻿using Fuzziverse.Databases;
+using Fuzziverse.Simulations;
 using StructureMap.Configuration.DSL;
-using StructureMap.Pipeline;
 
 namespace Fuzziverse
 {
@@ -24,7 +17,7 @@ namespace Fuzziverse
       this.For<MainForm>()
           .Singleton();
 
-      this.For<IEditServerSettings>()
+      this.For<IEditDatabaseSettings>()
           .Use(ctx => ctx.GetInstance<MainForm>());
     }
 
@@ -33,7 +26,7 @@ namespace Fuzziverse
       this.For<ProgramController>()
           .Singleton();
 
-      this.For<ServerController>()
+      this.For<DatabaseController>()
           .Singleton();
 
       this.For<SimulationController>()
