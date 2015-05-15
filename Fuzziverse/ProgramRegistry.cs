@@ -21,7 +21,7 @@ namespace Fuzziverse
       this.For<IEditDatabaseSettings>()
           .Use(ctx => ctx.GetInstance<ProgramView>().DatabaseView);
 
-      this.For<INavigateExperiments>()
+      this.For<IControlExperiments>()
           .Use(ctx => ctx.GetInstance<ProgramView>().ExperimentView);
         
     }

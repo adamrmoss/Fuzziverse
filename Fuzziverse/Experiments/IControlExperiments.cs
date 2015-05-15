@@ -8,11 +8,14 @@ using Fuzziverse.Core.Experiments;
 
 namespace Fuzziverse.Experiments
 {
-  public interface INavigateExperiments
+  public interface IControlExperiments
   {
     void DisableTreeView();
     void EnableTreeView();
     void FocusTreeView();
     void PopulateTreeView(IEnumerable<Experiment> experiments);
+
+    void DisablePlayStopButtons();
+    void EnablePlayStopButtons();
   }
 }

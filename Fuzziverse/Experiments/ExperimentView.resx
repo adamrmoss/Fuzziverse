@@ -117,4 +117,24 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="stopRadioButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABuSURBVFhH7c6xCcBADARB1/b91/OpHAmE2Oht1mAUTLLB
+        cVdEfAqjCaMJowmjCaMJowlj2nvHG/puhTHR2Im+W2FMObDWOjIH5sAcmANzYA7858BTfbfCmGjsRN+t
+        MJowmjCaMJowmjCaMHriugEjT3fG8gR5ewAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <data name="playRadioButton.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAELSURBVFhHxZTLDYNADAUpISVF1EI/aYCyuNMF180SYcl6
+        GRJ2kWxLc5nDe17nM5RSUkEZCcpIUEaCUtm27VV5DDeHslEqtbxU1srzyOoaykapHAsY3degbJSKLLDT
+        dQ3KRqlY8TRNZVkWv0jTNSgbpWKF4zh+mOfZL3H5GpSNUrEyW2Cn5xqUjVKxEr+A0XINykapWAEtsHP1
+        GpSNUrFgKvf8uwZlo1QslEqVX9egbJSKhVHhGXQNyv4ShAVR0RlpC6R+BGlfwtSfYdofUepfccur/VA2
+        SsXKel7th7JRKq7QuPxqP5SNUpHyplf7oWyUylHc9Wo/lI1SufNqP5SNMhKUkaCMBGUcZXgD+1qesHQ6
+        FOgAAAAASUVORK5CYII=
+</value>
+  </data>
 </root>

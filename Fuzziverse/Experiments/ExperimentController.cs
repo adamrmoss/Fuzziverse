@@ -12,10 +12,10 @@ namespace Fuzziverse.Experiments
 {
   public class ExperimentController
   {
-    private readonly INavigateExperiments experimentNavigator;
+    private readonly IControlExperiments experimentNavigator;
     private readonly DatabaseController databaseController;
 
-    public ExperimentController(INavigateExperiments experimentNavigator, DatabaseController databaseController)
+    public ExperimentController(IControlExperiments experimentNavigator, DatabaseController databaseController)
     {
       this.experimentNavigator = experimentNavigator;
       this.databaseController = databaseController;
@@ -53,6 +53,8 @@ namespace Fuzziverse.Experiments
       } else {
         this.experimentNavigator.DisableTreeView();
       }
+
+      this.experimentNavigator.DisablePlayStopButtons();
     }
   }
 }

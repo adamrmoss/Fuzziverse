@@ -7,7 +7,7 @@ using Fuzziverse.Core.Experiments;
 
 namespace Fuzziverse.Experiments
 {
-  public partial class ExperimentView : UserControl, INavigateExperiments
+  public partial class ExperimentView : UserControl, IControlExperiments
   {
     public ExperimentView()
     {
@@ -49,6 +49,18 @@ namespace Fuzziverse.Experiments
       this.experimentsTreeView.EndUpdate();
 
       this.experimentsTreeView.Nodes[0].Expand();
+    }
+
+    public void DisablePlayStopButtons()
+    {
+      this.playRadioButton.Enabled = false;
+      this.stopRadioButton.Enabled = false;
+    }
+
+    public void EnablePlayStopButtons()
+    {
+      this.playRadioButton.Enabled = true;
+      this.stopRadioButton.Enabled = true;
     }
   }
 }
