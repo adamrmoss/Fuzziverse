@@ -30,6 +30,10 @@ namespace Fuzziverse.Databases
     {
       this.SubscribeToUserInput();
       this.LoadSettings();
+      var autoconnect = this.databaseSettingsEditor.GetAutoconnectCheckBoxValue();
+      if (autoconnect) {
+        this.PingDatabase();
+      }
     }
 
     private void SubscribeToUserInput()
@@ -64,11 +68,16 @@ namespace Fuzziverse.Databases
 
     public void OnConnectSqlButtonClicked(object sender, EventArgs eventArgs)
     {
+      this.PingDatabase();
+    }
+
+    private void PingDatabase()
+    {
       this.DatabaseHasBeenPinged = true;
       this.EnableOrDisableComponents();
 
       try {
-        var connectionString = GetConnectionString();
+        var connectionString = this.GetConnectionString();
         using (var sqlConnection = new SqlConnection(connectionString)) {
           sqlConnection.Open();
           sqlConnection.Ping();
@@ -78,7 +87,7 @@ namespace Fuzziverse.Databases
           this.DatabasePinged();
         }
       } catch (Exception e) {
-        MessageBox.Show(e.Message);
+        MessageBox.Show(e.Message, "Ping SQL Server Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
         this.DatabaseHasBeenPinged = false;
         this.EnableOrDisableComponents();
       }
@@ -96,17 +105,14 @@ namespace Fuzziverse.Databases
         this.databaseSettingsEditor.DisableSqlInstanceTextBox();
         this.databaseSettingsEditor.DisableSaveSqlInstanceButton();
         this.databaseSettingsEditor.DisableConnectSqlButton();
-        this.databaseSettingsEditor.DisableAutoconnectCheckBox();
         return;
       }
 
       this.databaseSettingsEditor.EnableSqlInstanceTextBox();
       if (this.databaseSettingsEditor.GetSqlInstanceTextBoxValue() != Settings.Default.SqlInstance) {
         this.databaseSettingsEditor.EnableSaveSqlInstanceButton();
-        this.databaseSettingsEditor.DisableAutoconnectCheckBox();
       } else {
         this.databaseSettingsEditor.DisableSaveSqlInstanceButton();
-        this.databaseSettingsEditor.EnableAutoconnectCheckBox();
       }
 
       if (this.databaseSettingsEditor.GetSqlInstanceTextBoxValue() != "") {

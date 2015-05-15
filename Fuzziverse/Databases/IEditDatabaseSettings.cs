@@ -22,9 +22,6 @@ namespace Fuzziverse.Databases
     void SetAutoconnectCheckBox();
     void ClearAutoconnectCheckBox();
     bool GetAutoconnectCheckBoxValue();
-
-    void EnableAutoconnectCheckBox();
-    void DisableAutoconnectCheckBox();
     void AddAutoconnectCheckBoxCheckedChangedHandler(EventHandler handler);
   }
 }

@@ -87,16 +87,6 @@ namespace Fuzziverse.Databases
       return this.autoconnectCheckBox.Checked;
     }
 
-    public void EnableAutoconnectCheckBox()
-    {
-      this.autoconnectCheckBox.Enabled = true;
-    }
-
-    public void DisableAutoconnectCheckBox()
-    {
-      this.autoconnectCheckBox.Enabled = false;
-    }
-
     public void AddAutoconnectCheckBoxCheckedChangedHandler(EventHandler handler)
     {
       this.autoconnectCheckBox.CheckedChanged += handler;
