@@ -16,13 +16,23 @@ namespace Fuzziverse.Server
     public void Initialize()
     {
       this.serverSettingsManager.SetSqlInstance(Settings.Default.SqlInstance);
+
       this.serverSettingsManager.AddSqlInstanceChangedHandler(this.OnSqlInstanceChanged);
-      this.serverSettingsManager.DisableSqlInstanceSave();
+      this.serverSettingsManager.AddSaveSqlInstanceClickedHandler(this.OnSaveSqlInstanceButtonClicked);
+
+      this.serverSettingsManager.DisableSaveSqlInstanceButton();
     }
 
     public void OnSqlInstanceChanged(object sender, EventArgs eventArgs)
     {
-      this.serverSettingsManager.EnableSqlInstanceSave();
+      this.serverSettingsManager.EnableSaveSqlInstanceButton();
+    }
+
+    public void OnSaveSqlInstanceButtonClicked(object sender, EventArgs eventArgs)
+    {
+      Settings.Default.SqlInstance = this.serverSettingsManager.GetSqlInstance();
+      Settings.Default.Save();
+      this.serverSettingsManager.DisableSaveSqlInstanceButton();
     }
   }
 }

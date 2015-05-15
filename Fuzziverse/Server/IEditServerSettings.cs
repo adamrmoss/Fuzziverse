@@ -10,8 +10,12 @@ namespace Fuzziverse.Server
   {
     void SetSqlInstance(string sqlInstance);
     string GetSqlInstance();
-    void EnableSqlInstanceSave();
-    void DisableSqlInstanceSave();
+
     void AddSqlInstanceChangedHandler(EventHandler handler);
+
+    void EnableSaveSqlInstanceButton();
+    void DisableSaveSqlInstanceButton();
+
+    void AddSaveSqlInstanceClickedHandler(EventHandler handler);
   }
 }

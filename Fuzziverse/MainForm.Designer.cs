@@ -32,7 +32,7 @@
       this.sqlInstanceTextBox = new System.Windows.Forms.TextBox();
       this.sqlInstanceLabel = new System.Windows.Forms.Label();
       this.simulationTabPage = new System.Windows.Forms.TabPage();
-      this.sqlInstanceSaveButton = new System.Windows.Forms.Button();
+      this.saveSqlInstanceButton = new System.Windows.Forms.Button();
       this.tabControl.SuspendLayout();
       this.serverTabPage.SuspendLayout();
       this.databaseGroupBox.SuspendLayout();
@@ -61,7 +61,7 @@
       // 
       // databaseGroupBox
       // 
-      this.databaseGroupBox.Controls.Add(this.sqlInstanceSaveButton);
+      this.databaseGroupBox.Controls.Add(this.saveSqlInstanceButton);
       this.databaseGroupBox.Controls.Add(this.sqlInstanceTextBox);
       this.databaseGroupBox.Controls.Add(this.sqlInstanceLabel);
       this.databaseGroupBox.Location = new System.Drawing.Point(20, 15);
@@ -97,14 +97,14 @@
       this.simulationTabPage.Text = "Simulation";
       this.simulationTabPage.UseVisualStyleBackColor = true;
       // 
-      // sqlInstanceSaveButton
+      // saveSqlInstanceButton
       // 
-      this.sqlInstanceSaveButton.Location = new System.Drawing.Point(728, 16);
-      this.sqlInstanceSaveButton.Name = "sqlInstanceSaveButton";
-      this.sqlInstanceSaveButton.Size = new System.Drawing.Size(75, 23);
-      this.sqlInstanceSaveButton.TabIndex = 2;
-      this.sqlInstanceSaveButton.Text = "Save";
-      this.sqlInstanceSaveButton.UseVisualStyleBackColor = true;
+      this.saveSqlInstanceButton.Location = new System.Drawing.Point(728, 16);
+      this.saveSqlInstanceButton.Name = "saveSqlInstanceButton";
+      this.saveSqlInstanceButton.Size = new System.Drawing.Size(75, 23);
+      this.saveSqlInstanceButton.TabIndex = 2;
+      this.saveSqlInstanceButton.Text = "Save";
+      this.saveSqlInstanceButton.UseVisualStyleBackColor = true;
       // 
       // MainForm
       // 
@@ -131,7 +131,7 @@
     private System.Windows.Forms.GroupBox databaseGroupBox;
     private System.Windows.Forms.TextBox sqlInstanceTextBox;
     private System.Windows.Forms.Label sqlInstanceLabel;
-    private System.Windows.Forms.Button sqlInstanceSaveButton;
+    private System.Windows.Forms.Button saveSqlInstanceButton;
   }
 }
 

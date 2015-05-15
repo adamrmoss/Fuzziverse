@@ -28,19 +28,24 @@ namespace Fuzziverse
       return this.sqlInstanceTextBox.Text;
     }
 
-    public void EnableSqlInstanceSave()
-    {
-      this.sqlInstanceSaveButton.Enabled = true;
-    }
-
-    public void DisableSqlInstanceSave()
-    {
-      this.sqlInstanceSaveButton.Enabled = false;
-    }
-
     public void AddSqlInstanceChangedHandler(EventHandler handler)
     {
       this.sqlInstanceTextBox.TextChanged += handler;
+    }
+
+    public void EnableSaveSqlInstanceButton()
+    {
+      this.saveSqlInstanceButton.Enabled = true;
+    }
+
+    public void DisableSaveSqlInstanceButton()
+    {
+      this.saveSqlInstanceButton.Enabled = false;
+    }
+
+    public void AddSaveSqlInstanceClickedHandler(EventHandler handler)
+    {
+      this.saveSqlInstanceButton.Click += handler;
     }
   }
 }
