@@ -1,13 +1,14 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Fuzziverse.Properties;
 
 namespace Fuzziverse.Server
 {
   public class ServerController
   {
-    private readonly IManageServerSettings serverSettingsManager;
+    private readonly IEditServerSettings serverSettingsManager;
 
-    public ServerController(IManageServerSettings serverSettingsManager)
+    public ServerController(IEditServerSettings serverSettingsManager)
     {
       this.serverSettingsManager = serverSettingsManager;
     }
@@ -15,6 +16,13 @@ namespace Fuzziverse.Server
     public void Initialize()
     {
       this.serverSettingsManager.SetSqlInstance(Settings.Default.SqlInstance);
+      this.serverSettingsManager.AddSqlInstanceChangedHandler(this.OnSqlInstanceChanged);
+      this.serverSettingsManager.DisableSqlInstanceSave();
+    }
+
+    public void OnSqlInstanceChanged(object sender, EventArgs eventArgs)
+    {
+      this.serverSettingsManager.EnableSqlInstanceSave();
     }
   }
 }

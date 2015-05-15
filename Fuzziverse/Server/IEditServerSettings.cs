@@ -6,8 +6,12 @@ using System.Threading.Tasks;
 
 namespace Fuzziverse.Server
 {
-  public interface IManageServerSettings
+  public interface IEditServerSettings
   {
     void SetSqlInstance(string sqlInstance);
+    string GetSqlInstance();
+    void EnableSqlInstanceSave();
+    void DisableSqlInstanceSave();
+    void AddSqlInstanceChangedHandler(EventHandler handler);
   }
 }

@@ -24,19 +24,19 @@ namespace Fuzziverse
       this.For<MainForm>()
           .Singleton();
 
-      this.For<IManageServerSettings>()
+      this.For<IEditServerSettings>()
           .Use(ctx => ctx.GetInstance<MainForm>());
     }
 
     private void ConfigureControllers()
     {
-      this.ForConcreteType<ProgramController>().Configure
+      this.For<ProgramController>()
           .Singleton();
 
-      this.ForConcreteType<ServerController>().Configure
+      this.For<ServerController>()
           .Singleton();
 
-      this.ForConcreteType<SimulationController>().Configure
+      this.For<SimulationController>()
           .Singleton();
     }
   }
