@@ -33,7 +33,7 @@ namespace Fuzziverse
     {
       InitializeWinForms();
 
-      var container = new Container(exp => exp.AddRegistry<ProgramRegistry>());
+      var container = new Container(cfg => cfg.AddRegistry<ProgramRegistry>());
       var programController = container.GetInstance<ProgramController>();
 
       programController.Initialize();

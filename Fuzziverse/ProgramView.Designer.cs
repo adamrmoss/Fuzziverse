@@ -28,6 +28,7 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgramView));
       this.tabControl = new System.Windows.Forms.TabControl();
       this.serverTabPage = new System.Windows.Forms.TabPage();
+      this.experimentView = new Fuzziverse.Experiments.ExperimentView();
       this.databaseView = new Fuzziverse.Databases.DatabaseView();
       this.simulationTabPage = new System.Windows.Forms.TabPage();
       this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -49,6 +50,7 @@
       // 
       // serverTabPage
       // 
+      this.serverTabPage.Controls.Add(this.experimentView);
       this.serverTabPage.Controls.Add(this.databaseView);
       this.serverTabPage.Location = new System.Drawing.Point(4, 22);
       this.serverTabPage.Name = "serverTabPage";
@@ -57,6 +59,13 @@
       this.serverTabPage.TabIndex = 0;
       this.serverTabPage.Text = "Server";
       this.serverTabPage.UseVisualStyleBackColor = true;
+      // 
+      // experimentView
+      // 
+      this.experimentView.Location = new System.Drawing.Point(8, 64);
+      this.experimentView.Name = "experimentView";
+      this.experimentView.Size = new System.Drawing.Size(1048, 536);
+      this.experimentView.TabIndex = 1;
       // 
       // databaseView
       // 
@@ -85,7 +94,7 @@
       this.pictureBox1.TabIndex = 0;
       this.pictureBox1.TabStop = false;
       // 
-      // MainForm
+      // ProgramView
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -109,6 +118,7 @@
     private System.Windows.Forms.TabPage simulationTabPage;
     private System.Windows.Forms.PictureBox pictureBox1;
     private Databases.DatabaseView databaseView;
+    private Experiments.ExperimentView experimentView;
   }
 }
 

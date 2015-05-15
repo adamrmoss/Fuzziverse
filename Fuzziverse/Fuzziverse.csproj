@@ -72,6 +72,13 @@
     <Compile Include="Databases\DatabaseView.Designer.cs">
       <DependentUpon>DatabaseView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Experiments\ExperimentController.cs" />
+    <Compile Include="Experiments\ExperimentView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Experiments\ExperimentView.Designer.cs">
+      <DependentUpon>ExperimentView.cs</DependentUpon>
+    </Compile>
     <Compile Include="ProgramView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +93,9 @@
     <Compile Include="Simulations\SimulationController.cs" />
     <EmbeddedResource Include="Databases\DatabaseView.resx">
       <DependentUpon>DatabaseView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Experiments\ExperimentView.resx">
+      <DependentUpon>ExperimentView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ProgramView.resx">
       <DependentUpon>ProgramView.cs</DependentUpon>
