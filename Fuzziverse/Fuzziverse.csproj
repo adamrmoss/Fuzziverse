@@ -73,6 +73,7 @@
       <DependentUpon>DatabaseView.cs</DependentUpon>
     </Compile>
     <Compile Include="Experiments\ExperimentController.cs" />
+    <Compile Include="Experiments\ExperimentDao.cs" />
     <Compile Include="Experiments\ExperimentView.cs">
       <SubType>UserControl</SubType>
     </Compile>

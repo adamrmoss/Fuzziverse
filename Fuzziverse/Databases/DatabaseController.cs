@@ -1,4 +1,5 @@
 ﻿using System;
+using Fuzziverse.Core;
 using Fuzziverse.Properties;
 
 namespace Fuzziverse.Databases
@@ -13,6 +14,12 @@ namespace Fuzziverse.Databases
     public DatabaseController(IEditDatabaseSettings databaseSettingsEditor)
     {
       this.databaseSettingsEditor = databaseSettingsEditor;
+    }
+
+    public string GetConnectionString()
+    {
+      var sqlInstance = this.databaseSettingsEditor.GetSqlInstanceTextBoxValue();
+      return sqlInstance == "" ? null : connectionStringPattern.FormatWith(sqlInstance);
     }
 
     public void Initialize()
