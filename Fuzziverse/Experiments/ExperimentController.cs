@@ -12,10 +12,10 @@ namespace Fuzziverse.Experiments
 {
   public class ExperimentController
   {
-    private readonly IControlExperiments experimentNavigator;
+    private readonly IViewExperiments experimentNavigator;
     private readonly DatabaseController databaseController;
 
-    public ExperimentController(IControlExperiments experimentNavigator, DatabaseController databaseController)
+    public ExperimentController(IViewExperiments experimentNavigator, DatabaseController databaseController)
     {
       this.experimentNavigator = experimentNavigator;
       this.databaseController = databaseController;

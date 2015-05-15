@@ -10,12 +10,12 @@ namespace Fuzziverse.Databases
   {
     private const string connectionStringPattern = "Data Source={0};Initial Catalog=Fuzziverse;Integrated Security=True";
 
-    private readonly IEditDatabaseSettings databaseSettingsEditor;
+    private readonly IViewDatabases databaseSettingsEditor;
     public bool DatabaseHasBeenPinged { get; private set; }
 
     public event Action DatabasePinged;
 
-    public DatabaseController(IEditDatabaseSettings databaseSettingsEditor)
+    public DatabaseController(IViewDatabases databaseSettingsEditor)
     {
       this.databaseSettingsEditor = databaseSettingsEditor;
     }

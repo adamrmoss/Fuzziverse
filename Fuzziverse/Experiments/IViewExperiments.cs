@@ -8,7 +8,7 @@ using Fuzziverse.Core.Experiments;
 
 namespace Fuzziverse.Experiments
 {
-  public interface IControlExperiments
+  public interface IViewExperiments
   {
     void DisableTreeView();
     void EnableTreeView();

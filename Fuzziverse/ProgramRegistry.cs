@@ -18,10 +18,10 @@ namespace Fuzziverse
       this.For<ProgramView>()
           .Singleton();
 
-      this.For<IEditDatabaseSettings>()
+      this.For<IViewDatabases>()
           .Use(ctx => ctx.GetInstance<ProgramView>().DatabaseView);
 
-      this.For<IControlExperiments>()
+      this.For<IViewExperiments>()
           .Use(ctx => ctx.GetInstance<ProgramView>().ExperimentView);
         
     }

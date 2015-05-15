@@ -7,7 +7,7 @@ using Fuzziverse.Core.Experiments;
 
 namespace Fuzziverse.Experiments
 {
-  public partial class ExperimentView : UserControl, IControlExperiments
+  public partial class ExperimentView : UserControl, IViewExperiments
   {
     public ExperimentView()
     {

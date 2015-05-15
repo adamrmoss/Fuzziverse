@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Fuzziverse.Databases
 {
-  public partial class DatabaseView : UserControl, IEditDatabaseSettings
+  public partial class DatabaseView : UserControl, IViewDatabases
   {
     public DatabaseView()
     {

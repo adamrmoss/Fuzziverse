@@ -81,7 +81,7 @@
     <Compile Include="Experiments\ExperimentView.Designer.cs">
       <DependentUpon>ExperimentView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Experiments\IControlExperiments.cs" />
+    <Compile Include="Experiments\IViewExperiments.cs" />
     <Compile Include="ProgramView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -91,7 +91,7 @@
     <Compile Include="ProgramController.cs" />
     <Compile Include="ProgramRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Databases\IEditDatabaseSettings.cs" />
+    <Compile Include="Databases\IViewDatabases.cs" />
     <Compile Include="Databases\DatabaseController.cs" />
     <Compile Include="Simulations\SimulationController.cs" />
     <EmbeddedResource Include="Databases\DatabaseView.resx">

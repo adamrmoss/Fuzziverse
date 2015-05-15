@@ -2,7 +2,7 @@
 
 namespace Fuzziverse.Databases
 {
-  public interface IEditDatabaseSettings
+  public interface IViewDatabases
   {
     void SetSqlInstanceTextBoxValue(string sqlInstance);
     string GetSqlInstanceTextBoxValue();
