@@ -5,6 +5,8 @@ namespace Fuzziverse.Databases
 {
   public class DatabaseController
   {
+    private const string connectionStringPattern = "Data Source={0};Initial Catalog=Fuzziverse;Integrated Security=True";
+
     private readonly IEditDatabaseSettings databaseSettingsEditor;
     private bool databaseIsConnected;
 
@@ -15,11 +17,20 @@ namespace Fuzziverse.Databases
 
     public void Initialize()
     {
+      this.SubscribeToUserInput();
+      this.LoadSettings();
+    }
+
+    private void SubscribeToUserInput()
+    {
       this.databaseSettingsEditor.AddSqlInstanceTextBoxChangedHandler(this.OnSqlInstanceTextBoxValueChanged);
       this.databaseSettingsEditor.AddSaveSqlInstanceClickedHandler(this.OnSaveSqlInstanceButtonClicked);
       this.databaseSettingsEditor.AddConnectSqlClickedHandler(this.OnConnectSqlButtonClicked);
       this.databaseSettingsEditor.AddAutoconnectCheckBoxCheckedChangedHandler(this.OnAutoconnectCheckBoxCheckedChanged);
+    }
 
+    private void LoadSettings()
+    {
       this.databaseSettingsEditor.SetSqlInstanceTextBoxValue(Settings.Default.SqlInstance);
       if (Settings.Default.Autoconnect) {
         this.databaseSettingsEditor.SetAutoconnectCheckBox();
@@ -31,6 +42,25 @@ namespace Fuzziverse.Databases
     public void OnSqlInstanceTextBoxValueChanged(object sender, EventArgs eventArgs)
     {
       this.EnableOrDisableComponents();
+    }
+
+    public void OnSaveSqlInstanceButtonClicked(object sender, EventArgs eventArgs)
+    {
+      Settings.Default.SqlInstance = this.databaseSettingsEditor.GetSqlInstanceTextBoxValue();
+      Settings.Default.Save();
+      this.EnableOrDisableComponents();
+    }
+
+    public void OnConnectSqlButtonClicked(object sender, EventArgs eventArgs)
+    {
+      this.databaseIsConnected = true;
+      this.EnableOrDisableComponents();
+    }
+
+    public void OnAutoconnectCheckBoxCheckedChanged(object sender, EventArgs eventArgs)
+    {
+      Settings.Default.Autoconnect = this.databaseSettingsEditor.GetAutoconnectCheckBoxValue();
+      Settings.Default.Save();
     }
 
     private void EnableOrDisableComponents()
@@ -56,25 +86,6 @@ namespace Fuzziverse.Databases
       } else {
         this.databaseSettingsEditor.DisableConnectSqlButton();
       }
-    }
-
-    public void OnSaveSqlInstanceButtonClicked(object sender, EventArgs eventArgs)
-    {
-      Settings.Default.SqlInstance = this.databaseSettingsEditor.GetSqlInstanceTextBoxValue();
-      Settings.Default.Save();
-      this.EnableOrDisableComponents();
-    }
-
-    public void OnConnectSqlButtonClicked(object sender, EventArgs eventArgs)
-    {
-      this.databaseIsConnected = true;
-      this.EnableOrDisableComponents();
-    }
-
-    public void OnAutoconnectCheckBoxCheckedChanged(object sender, EventArgs eventArgs)
-    {
-      Settings.Default.Autoconnect = this.databaseSettingsEditor.GetAutoconnectCheckBoxValue();
-      Settings.Default.Save();
     }
   }
 }
