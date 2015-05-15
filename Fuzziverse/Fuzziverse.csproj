@@ -66,6 +66,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Databases\DatabaseView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Databases\DatabaseView.Designer.cs">
+      <DependentUpon>DatabaseView.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -78,6 +84,9 @@
     <Compile Include="Databases\IEditDatabaseSettings.cs" />
     <Compile Include="Databases\DatabaseController.cs" />
     <Compile Include="Simulations\SimulationController.cs" />
+    <EmbeddedResource Include="Databases\DatabaseView.resx">
+      <DependentUpon>DatabaseView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

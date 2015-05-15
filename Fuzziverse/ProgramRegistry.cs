@@ -18,7 +18,7 @@ namespace Fuzziverse
           .Singleton();
 
       this.For<IEditDatabaseSettings>()
-          .Use(ctx => ctx.GetInstance<MainForm>());
+          .Use(ctx => ctx.GetInstance<MainForm>().DatabaseView);
     }
 
     private void ConfigureControllers()
