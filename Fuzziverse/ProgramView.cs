@@ -4,9 +4,9 @@ using Fuzziverse.Databases;
 
 namespace Fuzziverse
 {
-  public partial class MainForm : Form
+  public partial class ProgramView : Form
   {
-    public MainForm()
+    public ProgramView()
     {
       InitializeComponent();
     }

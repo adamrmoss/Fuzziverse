@@ -1,6 +1,6 @@
 ﻿namespace Fuzziverse
 {
-  partial class MainForm
+  partial class ProgramView
   {
     /// <summary>
     /// Required designer variable.
@@ -25,7 +25,7 @@
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
+      System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgramView));
       this.tabControl = new System.Windows.Forms.TabControl();
       this.serverTabPage = new System.Windows.Forms.TabPage();
       this.databaseView = new Fuzziverse.Databases.DatabaseView();
@@ -92,7 +92,7 @@
       this.ClientSize = new System.Drawing.Size(1094, 659);
       this.Controls.Add(this.tabControl);
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-      this.Name = "MainForm";
+      this.Name = "ProgramView";
       this.Text = "Fuzziverse";
       this.tabControl.ResumeLayout(false);
       this.serverTabPage.ResumeLayout(false);

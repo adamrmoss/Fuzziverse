@@ -14,11 +14,11 @@ namespace Fuzziverse
 
     private void ConfigureWinForms()
     {
-      this.For<MainForm>()
+      this.For<ProgramView>()
           .Singleton();
 
       this.For<IEditDatabaseSettings>()
-          .Use(ctx => ctx.GetInstance<MainForm>().DatabaseView);
+          .Use(ctx => ctx.GetInstance<ProgramView>().DatabaseView);
     }
 
     private void ConfigureControllers()

@@ -7,20 +7,20 @@ namespace Fuzziverse
 {
   public class ProgramController
   {
-    private readonly MainForm mainForm;
+    private readonly ProgramView programView;
     private readonly DatabaseController databaseController;
     private readonly SimulationController simulationController;
 
-    public ProgramController(MainForm mainForm, DatabaseController databaseController, SimulationController simulationController)
+    public ProgramController(ProgramView programView, DatabaseController databaseController, SimulationController simulationController)
     {
-      this.mainForm = mainForm;
+      this.programView = programView;
       this.databaseController = databaseController;
       this.simulationController = simulationController;
     }
 
     public void StartApplication()
     {
-      Application.Run(this.mainForm);
+      Application.Run(this.programView);
     }
 
     public void Initialize()
