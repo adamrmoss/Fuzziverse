@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data.SqlClient;
 using Fuzziverse.Core;
+using Fuzziverse.Experiments;
 using Fuzziverse.Properties;
 
 namespace Fuzziverse.Databases
@@ -62,6 +64,12 @@ namespace Fuzziverse.Databases
     {
       this.databaseIsConnected = true;
       this.EnableOrDisableComponents();
+
+      var connectionString = GetConnectionString();
+      using (var sqlConnection = new SqlConnection(connectionString)) {
+        sqlConnection.Open();
+        var allExperiments = sqlConnection.GetAllExperiments();
+      }
     }
 
     public void OnAutoconnectCheckBoxCheckedChanged(object sender, EventArgs eventArgs)

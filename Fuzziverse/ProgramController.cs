@@ -1,5 +1,6 @@
 ﻿using System.Windows.Forms;
 using Fuzziverse.Databases;
+using Fuzziverse.Experiments;
 using Fuzziverse.Simulations;
 using StructureMap;
 
@@ -9,12 +10,17 @@ namespace Fuzziverse
   {
     private readonly ProgramView programView;
     private readonly DatabaseController databaseController;
+    private readonly ExperimentController experimentController;
     private readonly SimulationController simulationController;
 
-    public ProgramController(ProgramView programView, DatabaseController databaseController, SimulationController simulationController)
+    public ProgramController(ProgramView programView,
+                             DatabaseController databaseController,
+                             ExperimentController experimentController,
+                             SimulationController simulationController)
     {
       this.programView = programView;
       this.databaseController = databaseController;
+      this.experimentController = experimentController;
       this.simulationController = simulationController;
     }
 

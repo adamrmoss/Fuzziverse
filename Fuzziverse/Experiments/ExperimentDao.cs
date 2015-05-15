@@ -10,7 +10,7 @@ namespace Fuzziverse.Experiments
 {
   public static class ExperimentDao
   {
-    private const string GetAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiments ORDER BY Created DESC";
+    private const string GetAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
 
     public static List<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
     {
