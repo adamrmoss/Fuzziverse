@@ -66,6 +66,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Databases\DatabaseDao.cs" />
     <Compile Include="Databases\DatabaseView.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -80,6 +81,7 @@
     <Compile Include="Experiments\ExperimentView.Designer.cs">
       <DependentUpon>ExperimentView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Experiments\INavigateExperiments.cs" />
     <Compile Include="ProgramView.cs">
       <SubType>Form</SubType>
     </Compile>

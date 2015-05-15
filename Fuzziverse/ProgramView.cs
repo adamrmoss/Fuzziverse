@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using Fuzziverse.Databases;
+using Fuzziverse.Experiments;
 
 namespace Fuzziverse
 {
@@ -12,5 +13,6 @@ namespace Fuzziverse
     }
 
     public DatabaseView DatabaseView { get { return this.databaseView; } }
+    public ExperimentView ExperimentView { get { return this.experimentView; } }
   }
 }

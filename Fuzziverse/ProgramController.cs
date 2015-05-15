@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using Fuzziverse.Databases;
 using Fuzziverse.Experiments;
 using Fuzziverse.Simulations;
@@ -26,15 +27,18 @@ namespace Fuzziverse
 
     public void StartApplication()
     {
+      this.Initialize();
       Application.Run(this.programView);
     }
 
     public void Initialize()
     {
       this.databaseController.Initialize();
+      this.experimentController.Initialize();
       this.simulationController.Initialize();
     }
 
+    [STAThread]
     internal static void Main()
     {
       InitializeWinForms();
@@ -42,7 +46,6 @@ namespace Fuzziverse
       var container = new Container(cfg => cfg.AddRegistry<ProgramRegistry>());
       var programController = container.GetInstance<ProgramController>();
 
-      programController.Initialize();
       programController.StartApplication();
     }
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
+using System.Windows.Forms;
 using Fuzziverse.Core;
-using Fuzziverse.Experiments;
 using Fuzziverse.Properties;
 
 namespace Fuzziverse.Databases
@@ -65,10 +65,18 @@ namespace Fuzziverse.Databases
       this.databaseIsConnected = true;
       this.EnableOrDisableComponents();
 
-      var connectionString = GetConnectionString();
-      using (var sqlConnection = new SqlConnection(connectionString)) {
-        sqlConnection.Open();
-        var allExperiments = sqlConnection.GetAllExperiments();
+      try {
+        var connectionString = GetConnectionString();
+        using (var sqlConnection = new SqlConnection(connectionString)) {
+          sqlConnection.Open();
+          sqlConnection.Ping();
+        }
+
+        this.databaseIsConnected = true;
+      } catch (Exception e) {
+        MessageBox.Show(e.Message);
+        this.databaseIsConnected = false;
+        this.EnableOrDisableComponents();
       }
     }
 
@@ -88,6 +96,7 @@ namespace Fuzziverse.Databases
         return;
       }
 
+      this.databaseSettingsEditor.EnableSqlInstanceTextBox();
       if (this.databaseSettingsEditor.GetSqlInstanceTextBoxValue() != Settings.Default.SqlInstance) {
         this.databaseSettingsEditor.EnableSaveSqlInstanceButton();
         this.databaseSettingsEditor.DisableAutoconnectCheckBox();

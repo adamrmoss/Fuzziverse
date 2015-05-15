@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace Fuzziverse.Experiments
 {
-  public partial class ExperimentView : UserControl
+  public partial class ExperimentView : UserControl, INavigateExperiments
   {
     public ExperimentView()
     {
       InitializeComponent();
+    }
+
+    public void DisableTreeView()
+    {
+      this.experimentsTreeView.Enabled = false;
+    }
+
+    public void EnableTreeView()
+    {
+      this.experimentsTreeView.Enabled = true;
     }
   }
 }
