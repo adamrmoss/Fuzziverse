@@ -33,9 +33,15 @@ namespace Fuzziverse
 
     public void Initialize()
     {
+      this.databaseController.DatabasePinged += this.OnDatabasePing;
       this.databaseController.Initialize();
       this.experimentController.Initialize();
       this.simulationController.Initialize();
+    }
+
+    private void OnDatabasePing()
+    {
+      this.experimentController.LoadExperiments();
     }
 
     [STAThread]

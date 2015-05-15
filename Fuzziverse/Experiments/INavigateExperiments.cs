@@ -10,5 +10,6 @@ namespace Fuzziverse.Experiments
   {
     void DisableTreeView();
     void EnableTreeView();
+    void FocusTreeView();
   }
 }

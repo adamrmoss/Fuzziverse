@@ -11,7 +11,9 @@ namespace Fuzziverse.Databases
     private const string connectionStringPattern = "Data Source={0};Initial Catalog=Fuzziverse;Integrated Security=True";
 
     private readonly IEditDatabaseSettings databaseSettingsEditor;
-    private bool databaseIsConnected;
+    public bool DatabaseHasBeenPinged { get; private set; }
+
+    public event Action DatabasePinged;
 
     public DatabaseController(IEditDatabaseSettings databaseSettingsEditor)
     {
@@ -62,7 +64,7 @@ namespace Fuzziverse.Databases
 
     public void OnConnectSqlButtonClicked(object sender, EventArgs eventArgs)
     {
-      this.databaseIsConnected = true;
+      this.DatabaseHasBeenPinged = true;
       this.EnableOrDisableComponents();
 
       try {
@@ -72,10 +74,12 @@ namespace Fuzziverse.Databases
           sqlConnection.Ping();
         }
 
-        this.databaseIsConnected = true;
+        if (this.DatabasePinged != null) {
+          this.DatabasePinged();
+        }
       } catch (Exception e) {
         MessageBox.Show(e.Message);
-        this.databaseIsConnected = false;
+        this.DatabaseHasBeenPinged = false;
         this.EnableOrDisableComponents();
       }
     }
@@ -88,7 +92,7 @@ namespace Fuzziverse.Databases
 
     private void EnableOrDisableComponents()
     {
-      if (this.databaseIsConnected) {
+      if (this.DatabaseHasBeenPinged) {
         this.databaseSettingsEditor.DisableSqlInstanceTextBox();
         this.databaseSettingsEditor.DisableSaveSqlInstanceButton();
         this.databaseSettingsEditor.DisableConnectSqlButton();

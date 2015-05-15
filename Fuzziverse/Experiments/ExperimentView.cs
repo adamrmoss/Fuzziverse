@@ -26,5 +26,10 @@ namespace Fuzziverse.Experiments
     {
       this.experimentsTreeView.Enabled = true;
     }
+
+    public void FocusTreeView()
+    {
+      this.experimentsTreeView.Focus();
+    }
   }
 }

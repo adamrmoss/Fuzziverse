@@ -23,13 +23,18 @@ namespace Fuzziverse.Experiments
       this.EnableOrDisableComponents();
     }
 
+    public void LoadExperiments()
+    {
+      this.EnableOrDisableComponents();
+      this.experimentNavigator.FocusTreeView();
+    }
+
     private void EnableOrDisableComponents()
     {
-      var connectionString = this.databaseController.GetConnectionString();
-      if (connectionString == null) {
-        this.experimentNavigator.DisableTreeView();
-      } else {
+      if (this.databaseController.DatabaseHasBeenPinged) {
         this.experimentNavigator.EnableTreeView();
+      } else {
+        this.experimentNavigator.DisableTreeView();
       }
     }
   }
