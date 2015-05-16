@@ -61,6 +61,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AlienTime\AlienDateTime.cs" />
     <Compile Include="Framework\DateTimeExtensions.cs" />
     <Compile Include="Experiments\Experiment.cs" />
     <Compile Include="Organisms\Brain.cs" />
