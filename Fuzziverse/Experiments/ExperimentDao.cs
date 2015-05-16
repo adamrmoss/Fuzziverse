@@ -9,6 +9,7 @@ namespace Fuzziverse.Experiments
   public static class ExperimentDao
   {
     private const string getAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
+    private const string getExperimentDaysQuery = "SELECT [Day] FROM dbo.GetExperimentDays(@ExperimentId) ORDER BY [Day] DESC";
 
     public static IEnumerable<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
     {
@@ -20,5 +21,13 @@ namespace Fuzziverse.Experiments
       });
     }
 
+    public static IEnumerable<int> GetExperimentDays(this SqlConnection sqlConnection, long experimentId)
+    {
+      var sqlCommand = new SqlCommand(getExperimentDaysQuery, sqlConnection);
+      var sqlParameter = sqlCommand.Parameters.Add("@ExperimentId", SqlDbType.BigInt);
+      sqlParameter.SqlValue = experimentId;
+
+      return sqlCommand.ReadResults(reader => reader.GetInt32(0));
+    }
   }
 }

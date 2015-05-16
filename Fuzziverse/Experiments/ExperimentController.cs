@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Fuzziverse.Core;
 using Fuzziverse.Core.Experiments;
 using Fuzziverse.Databases;
 
@@ -24,6 +21,7 @@ namespace Fuzziverse.Experiments
 
     public void Initialize()
     {
+      this.experimentNavigator.AddTreeViewSelectionChangingHandler(this.OnTreeViewSelectedChanging);
       this.experimentNavigator.AddTreeViewSelectionChangedHandler(this.OnTreeViewSelectedChanged);
       this.EnableOrDisableComponents();
     }
@@ -48,10 +46,27 @@ namespace Fuzziverse.Experiments
       }
     }
 
+    private void OnTreeViewSelectedChanging(object sender, TreeViewCancelEventArgs treeViewCancelEventArgs)
+    {
+      treeViewCancelEventArgs.Node.Nodes.Clear();
+    }
+
     private void OnTreeViewSelectedChanged(object sender, TreeViewEventArgs treeViewEventArgs)
     {
+      treeViewEventArgs.Node.Nodes.Clear();
       var experimentId = long.Parse(treeViewEventArgs.Node.Name);
-      //MessageBox.Show(experimentId);
+
+      var connectionString = this.databaseController.GetConnectionString();
+      int[] days;
+      using (var sqlConnection = new SqlConnection(connectionString)) {
+        sqlConnection.Open();
+
+        days = sqlConnection.GetExperimentDays(experimentId).ToArray();
+      }
+      foreach (var day in days) {
+        var dayNode = treeViewEventArgs.Node.Nodes.Add(day.ToString(CultureInfo.InvariantCulture));
+      }
+      treeViewEventArgs.Node.Expand();
     }
 
     private void EnableOrDisableComponents()

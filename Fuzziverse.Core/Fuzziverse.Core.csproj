@@ -62,10 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlienTime\AlienDateTime.cs" />
+    <Compile Include="AlienTime\AlienTimeSpan.cs" />
     <Compile Include="Framework\DateTimeExtensions.cs" />
     <Compile Include="Experiments\Experiment.cs" />
     <Compile Include="Organisms\Brain.cs" />
-    <Compile Include="Experiments\ExperimentTick.cs" />
+    <Compile Include="Experiments\ExperimentTurn.cs" />
     <Compile Include="Framework\JetBrains.Annotations.cs" />
     <Compile Include="Organisms\Neuron.cs" />
     <Compile Include="Organisms\Organism.cs" />
