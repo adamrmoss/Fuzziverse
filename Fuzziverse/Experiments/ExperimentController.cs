@@ -21,8 +21,8 @@ namespace Fuzziverse.Experiments
 
     public void Initialize()
     {
-      this.experimentNavigator.AddTreeViewSelectionChangingHandler(this.OnTreeViewSelectedChanging);
-      this.experimentNavigator.AddTreeViewSelectionChangedHandler(this.OnTreeViewSelectedChanged);
+      this.experimentNavigator.AddExperimentSelectionChangingHandler(this.OnTreeViewSelectedChanging);
+      this.experimentNavigator.AddExperimentSelectionChangedHandler(this.OnTreeViewSelectedChanged);
       this.EnableOrDisableComponents();
     }
 
@@ -31,9 +31,9 @@ namespace Fuzziverse.Experiments
       this.EnableOrDisableComponents();
 
       var allExperiments = this.GetExperimentsFromDatabase();
-      this.experimentNavigator.PopulateTreeView(allExperiments);
+      this.experimentNavigator.PopulateExperimentTreeView(allExperiments);
 
-      this.experimentNavigator.FocusTreeView();
+      this.experimentNavigator.FocusExperimentTreeView();
     }
 
     private IEnumerable<Experiment> GetExperimentsFromDatabase()
@@ -48,33 +48,28 @@ namespace Fuzziverse.Experiments
 
     private void OnTreeViewSelectedChanging(object sender, TreeViewCancelEventArgs treeViewCancelEventArgs)
     {
-      treeViewCancelEventArgs.Node.Nodes.Clear();
     }
 
     private void OnTreeViewSelectedChanged(object sender, TreeViewEventArgs treeViewEventArgs)
     {
-      treeViewEventArgs.Node.Nodes.Clear();
       var experimentId = long.Parse(treeViewEventArgs.Node.Name);
 
       var connectionString = this.databaseController.GetConnectionString();
-      int[] days;
+      Dictionary<int, List<int>> daysToPhases;
       using (var sqlConnection = new SqlConnection(connectionString)) {
         sqlConnection.Open();
 
-        days = sqlConnection.GetExperimentDays(experimentId).ToArray();
+        daysToPhases = sqlConnection.GetExperimentPhases(experimentId);
       }
-      foreach (var day in days) {
-        var dayNode = treeViewEventArgs.Node.Nodes.Add(day.ToString(CultureInfo.InvariantCulture));
-      }
-      treeViewEventArgs.Node.Expand();
+      this.experimentNavigator.PopulatePhaseTreeView(daysToPhases);
     }
 
     private void EnableOrDisableComponents()
     {
       if (this.databaseController.DatabaseHasBeenPinged) {
-        this.experimentNavigator.EnableTreeView();
+        this.experimentNavigator.EnableExperimentTreeView();
       } else {
-        this.experimentNavigator.DisableTreeView();
+        this.experimentNavigator.DisableExperimentTreeView();
       }
 
       this.experimentNavigator.DisablePlayStopButtons();

@@ -29,42 +29,27 @@
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExperimentView));
       this.experimentsGroupBox = new System.Windows.Forms.GroupBox();
-      this.experimentsTreeView = new System.Windows.Forms.TreeView();
-      this.playRadioButton = new System.Windows.Forms.RadioButton();
       this.stopRadioButton = new System.Windows.Forms.RadioButton();
+      this.playRadioButton = new System.Windows.Forms.RadioButton();
+      this.experimentsTreeView = new System.Windows.Forms.TreeView();
+      this.phasesTreeView = new System.Windows.Forms.TreeView();
+      this.newExperimentButton = new System.Windows.Forms.Button();
       this.experimentsGroupBox.SuspendLayout();
       this.SuspendLayout();
       // 
       // experimentsGroupBox
       // 
+      this.experimentsGroupBox.Controls.Add(this.newExperimentButton);
+      this.experimentsGroupBox.Controls.Add(this.phasesTreeView);
       this.experimentsGroupBox.Controls.Add(this.stopRadioButton);
       this.experimentsGroupBox.Controls.Add(this.playRadioButton);
       this.experimentsGroupBox.Controls.Add(this.experimentsTreeView);
       this.experimentsGroupBox.Location = new System.Drawing.Point(10, 9);
       this.experimentsGroupBox.Name = "experimentsGroupBox";
       this.experimentsGroupBox.Size = new System.Drawing.Size(1028, 527);
-      this.experimentsGroupBox.TabIndex = 2;
+      this.experimentsGroupBox.TabIndex = 0;
       this.experimentsGroupBox.TabStop = false;
       this.experimentsGroupBox.Text = "Experiments";
-      // 
-      // experimentsTreeView
-      // 
-      this.experimentsTreeView.Location = new System.Drawing.Point(16, 24);
-      this.experimentsTreeView.Name = "experimentsTreeView";
-      this.experimentsTreeView.Size = new System.Drawing.Size(840, 488);
-      this.experimentsTreeView.TabIndex = 0;
-      // 
-      // playRadioButton
-      // 
-      this.playRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
-      this.playRadioButton.AutoSize = true;
-      this.playRadioButton.Image = ((System.Drawing.Image)(resources.GetObject("playRadioButton.Image")));
-      this.playRadioButton.Location = new System.Drawing.Point(868, 24);
-      this.playRadioButton.Name = "playRadioButton";
-      this.playRadioButton.Padding = new System.Windows.Forms.Padding(16, 8, 16, 8);
-      this.playRadioButton.Size = new System.Drawing.Size(70, 54);
-      this.playRadioButton.TabIndex = 3;
-      this.playRadioButton.UseVisualStyleBackColor = true;
       // 
       // stopRadioButton
       // 
@@ -72,13 +57,49 @@
       this.stopRadioButton.AutoSize = true;
       this.stopRadioButton.Checked = true;
       this.stopRadioButton.Image = ((System.Drawing.Image)(resources.GetObject("stopRadioButton.Image")));
-      this.stopRadioButton.Location = new System.Drawing.Point(948, 24);
+      this.stopRadioButton.Location = new System.Drawing.Point(520, 24);
       this.stopRadioButton.Name = "stopRadioButton";
       this.stopRadioButton.Padding = new System.Windows.Forms.Padding(16, 8, 16, 8);
       this.stopRadioButton.Size = new System.Drawing.Size(70, 54);
       this.stopRadioButton.TabIndex = 4;
       this.stopRadioButton.TabStop = true;
       this.stopRadioButton.UseVisualStyleBackColor = true;
+      // 
+      // playRadioButton
+      // 
+      this.playRadioButton.Appearance = System.Windows.Forms.Appearance.Button;
+      this.playRadioButton.AutoSize = true;
+      this.playRadioButton.Image = ((System.Drawing.Image)(resources.GetObject("playRadioButton.Image")));
+      this.playRadioButton.Location = new System.Drawing.Point(440, 24);
+      this.playRadioButton.Name = "playRadioButton";
+      this.playRadioButton.Padding = new System.Windows.Forms.Padding(16, 8, 16, 8);
+      this.playRadioButton.Size = new System.Drawing.Size(70, 54);
+      this.playRadioButton.TabIndex = 3;
+      this.playRadioButton.UseVisualStyleBackColor = true;
+      // 
+      // experimentsTreeView
+      // 
+      this.experimentsTreeView.Location = new System.Drawing.Point(16, 24);
+      this.experimentsTreeView.Name = "experimentsTreeView";
+      this.experimentsTreeView.Size = new System.Drawing.Size(408, 456);
+      this.experimentsTreeView.TabIndex = 1;
+      // 
+      // phasesTreeView
+      // 
+      this.phasesTreeView.Location = new System.Drawing.Point(608, 24);
+      this.phasesTreeView.Name = "phasesTreeView";
+      this.phasesTreeView.ShowPlusMinus = false;
+      this.phasesTreeView.Size = new System.Drawing.Size(408, 488);
+      this.phasesTreeView.TabIndex = 5;
+      // 
+      // newExperimentButton
+      // 
+      this.newExperimentButton.Location = new System.Drawing.Point(328, 489);
+      this.newExperimentButton.Name = "newExperimentButton";
+      this.newExperimentButton.Size = new System.Drawing.Size(96, 24);
+      this.newExperimentButton.TabIndex = 2;
+      this.newExperimentButton.Text = "New Experiment";
+      this.newExperimentButton.UseVisualStyleBackColor = true;
       // 
       // ExperimentView
       // 
@@ -99,5 +120,7 @@
     private System.Windows.Forms.TreeView experimentsTreeView;
     private System.Windows.Forms.RadioButton stopRadioButton;
     private System.Windows.Forms.RadioButton playRadioButton;
+    private System.Windows.Forms.Button newExperimentButton;
+    private System.Windows.Forms.TreeView phasesTreeView;
   }
 }

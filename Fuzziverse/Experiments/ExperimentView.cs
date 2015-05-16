@@ -14,22 +14,22 @@ namespace Fuzziverse.Experiments
       InitializeComponent();
     }
 
-    public void DisableTreeView()
+    public void DisableExperimentTreeView()
     {
       this.experimentsTreeView.Enabled = false;
     }
 
-    public void EnableTreeView()
+    public void EnableExperimentTreeView()
     {
       this.experimentsTreeView.Enabled = true;
     }
 
-    public void FocusTreeView()
+    public void FocusExperimentTreeView()
     {
       this.experimentsTreeView.Focus();
     }
 
-    public void PopulateTreeView(IEnumerable<Experiment> experiments)
+    public void PopulateExperimentTreeView(IEnumerable<Experiment> experiments)
     {
       this.experimentsTreeView.BeginUpdate();
       this.experimentsTreeView.Nodes.Clear();
@@ -65,14 +65,58 @@ namespace Fuzziverse.Experiments
       }
     }
 
-    public void AddTreeViewSelectionChangingHandler(TreeViewCancelEventHandler handler)
+    public void AddExperimentSelectionChangingHandler(TreeViewCancelEventHandler handler)
     {
       this.experimentsTreeView.BeforeSelect += handler;
     }
 
-    public void AddTreeViewSelectionChangedHandler(TreeViewEventHandler handler)
+    public void AddExperimentSelectionChangedHandler(TreeViewEventHandler handler)
     {
       this.experimentsTreeView.AfterSelect += handler;
+    }
+
+    public void DisablePhaseTreeView()
+    {
+      this.phasesTreeView.Enabled = false;
+    }
+
+    public void EnablePhaseTreeView()
+    {
+      this.phasesTreeView.Enabled = true;
+    }
+
+    public void FocusPhaseTreeView()
+    {
+      this.phasesTreeView.Focus();
+    }
+
+    public void PopulatePhaseTreeView(Dictionary<int, List<int>> daysToPhases)
+    {
+      this.phasesTreeView.BeginUpdate();
+      this.phasesTreeView.Nodes.Clear();
+
+      foreach (var kvp in daysToPhases.OrderByDescending(kvp => kvp.Key)) {
+        var day = kvp.Key.ToString(CultureInfo.InvariantCulture);
+        var dayNode = this.phasesTreeView.Nodes.Add(day, "Day #{0}".FormatWith(day));
+
+        foreach (var phase in kvp.Value.Select(phase => phase.ToString(CultureInfo.InvariantCulture))) {
+          var phaseNode = dayNode.Nodes.Add(phase, "Phase #{0}".FormatWith(phase));
+        }
+      }
+
+      this.phasesTreeView.EndUpdate();
+      this.phasesTreeView.ExpandAll();
+      this.phasesTreeView.Focus();
+    }
+
+    public void AddPhaseSelectionChangingHandler(TreeViewCancelEventHandler handler)
+    {
+      this.phasesTreeView.BeforeSelect += handler;
+    }
+
+    public void AddPhaseSelectionChangedHandler(TreeViewEventHandler handler)
+    {
+      this.phasesTreeView.AfterSelect += handler;
     }
 
     public void DisablePlayStopButtons()

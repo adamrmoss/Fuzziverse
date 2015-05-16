@@ -68,6 +68,6 @@
     <Build Include="Neuron.sql" />
     <Build Include="Ping.sql" />
     <Build Include="ExperimentTurn.sql" />
-    <Build Include="GetExperimentDays.sql" />
+    <Build Include="GetExperimentPhases.sql" />
   </ItemGroup>
 </Project>

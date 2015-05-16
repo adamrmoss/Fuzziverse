@@ -3,6 +3,7 @@
   ExperimentId BIGINT NOT NULL,
   SimulationTime BIGINT NOT NULL,
   [Day] INT NOT NULL,
+  Phase INT NOT NULL,
   SunX INT NOT NULL,
   SunY INT NOT NULL,
   SunRadius INT NOT NULL,

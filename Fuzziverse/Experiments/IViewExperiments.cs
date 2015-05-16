@@ -11,13 +11,20 @@ namespace Fuzziverse.Experiments
 {
   public interface IViewExperiments
   {
-    void DisableTreeView();
-    void EnableTreeView();
-    void FocusTreeView();
-    void PopulateTreeView(IEnumerable<Experiment> experiments);
+    void DisableExperimentTreeView();
+    void EnableExperimentTreeView();
+    void FocusExperimentTreeView();
+    void PopulateExperimentTreeView(IEnumerable<Experiment> experiments);
     long? GetSelectedExperimentId();
-    void AddTreeViewSelectionChangingHandler(TreeViewCancelEventHandler handler);
-    void AddTreeViewSelectionChangedHandler(TreeViewEventHandler handler);
+    void AddExperimentSelectionChangingHandler(TreeViewCancelEventHandler handler);
+    void AddExperimentSelectionChangedHandler(TreeViewEventHandler handler);
+
+    void DisablePhaseTreeView();
+    void EnablePhaseTreeView();
+    void FocusPhaseTreeView();
+    void PopulatePhaseTreeView(Dictionary<int, List<int>> daysToPhases);
+    void AddPhaseSelectionChangingHandler(TreeViewCancelEventHandler handler);
+    void AddPhaseSelectionChangedHandler(TreeViewEventHandler handler);
 
     void DisablePlayStopButtons();
     void EnablePlayStopButtons();
