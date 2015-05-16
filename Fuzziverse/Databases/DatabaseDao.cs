@@ -1,4 +1,5 @@
 ﻿using System.Data.SqlClient;
+using System.Linq;
 
 namespace Fuzziverse.Databases
 {
@@ -10,13 +11,7 @@ namespace Fuzziverse.Databases
     {
       var sqlCommand = new SqlCommand(PingQuery, sqlConnection);
 
-      using (var reader = sqlCommand.ExecuteReader()) {
-        while (reader.HasRows && reader.Read()) {
-          return reader.GetBoolean(0);
-        }
-
-        return false;
-      }
+      return sqlCommand.ReadResults(reader => (bool?) reader.GetBoolean(0)).SingleOrDefault() == true;
     }
   }
 }

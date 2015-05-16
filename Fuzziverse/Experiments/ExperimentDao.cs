@@ -1,33 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Fuzziverse.Core;
 using Fuzziverse.Core.Experiments;
+using Fuzziverse.Databases;
 
 namespace Fuzziverse.Experiments
 {
   public static class ExperimentDao
   {
-    private const string GetAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
+    private const string getAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
+    private const string getExperimentDaysQuery = "SELECT [Day] FROM dbo.GetExperimentDays(@ExperimentId) ORDER BY Created DESC";
 
-    public static List<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
+    public static IEnumerable<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
     {
-      var sqlCommand = new SqlCommand(GetAllExperimentsQuery, sqlConnection);
+      var sqlCommand = new SqlCommand(getAllExperimentsQuery, sqlConnection);
 
-      var experiments = new List<Experiment>();
-      using (var reader = sqlCommand.ExecuteReader()) {
-        if (reader.HasRows)
-          while (reader.Read()) {
-            experiments.Add(new Experiment {
-              Id = reader.GetInt64(0),
-              Created = reader.GetDateTime(1),
-            });
-          }
-      }
-      return experiments;
-    } 
+      return sqlCommand.ReadResults(reader => new Experiment {
+        Id = reader.GetInt64(0),
+        Created = reader.GetDateTime(1),
+      });
+    }
+
+    public static IEnumerable<int> GetExperimentDays(this SqlConnection sqlConnection, long experimentId)
+    {
+      var sqlCommand = new SqlCommand(getExperimentDaysQuery, sqlConnection);
+      var sqlParameter = sqlCommand.Parameters.Add("@ExperimentId", SqlDbType.BigInt);
+      sqlParameter.SqlValue = experimentId;
+
+      return sqlCommand.ReadResults(reader => reader.GetInt32(0));
+    }
   }
 }
