@@ -9,7 +9,7 @@ using NUnit.Framework;
 namespace Fuzziverse.Tests.AlienTime
 {
   [TestFixture]
-  public class WhenICompareAlienTime : AssertionHelper
+  public class WhenICompareAlienTimes : AssertionHelper
   {
     [Test]
     public void WhenThereIsAPositiveDifference()

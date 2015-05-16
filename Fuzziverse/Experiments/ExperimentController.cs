@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using Fuzziverse.Core;
 using Fuzziverse.Core.Experiments;
 using Fuzziverse.Databases;
@@ -23,6 +24,7 @@ namespace Fuzziverse.Experiments
 
     public void Initialize()
     {
+      this.experimentNavigator.AddTreeViewSelectionChangedHandler(this.OnTreeViewSelectedChanged);
       this.EnableOrDisableComponents();
     }
 
@@ -36,7 +38,7 @@ namespace Fuzziverse.Experiments
       this.experimentNavigator.FocusTreeView();
     }
 
-    private List<Experiment> GetExperimentsFromDatabase()
+    private IEnumerable<Experiment> GetExperimentsFromDatabase()
     {
       var connectionString = this.databaseController.GetConnectionString();
       using (var sqlConnection = new SqlConnection(connectionString)) {
@@ -44,6 +46,12 @@ namespace Fuzziverse.Experiments
 
         return sqlConnection.GetAllExperiments();
       }
+    }
+
+    private void OnTreeViewSelectedChanged(object sender, TreeViewEventArgs treeViewEventArgs)
+    {
+      var experimentId = long.Parse(treeViewEventArgs.Node.Name);
+      //MessageBox.Show(experimentId);
     }
 
     private void EnableOrDisableComponents()

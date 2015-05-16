@@ -51,6 +51,25 @@ namespace Fuzziverse.Experiments
       this.experimentsTreeView.Nodes[0].Expand();
     }
 
+    public long? GetSelectedExperimentId()
+    {
+      var selectedNode = this.experimentsTreeView.SelectedNode;
+      if (selectedNode == null)
+        return null;
+
+      long experimentId;
+      if (long.TryParse(selectedNode.Name, out experimentId)) {
+        return experimentId;
+      } else {
+        return null;
+      }
+    }
+
+    public void AddTreeViewSelectionChangedHandler(TreeViewEventHandler handler)
+    {
+      this.experimentsTreeView.AfterSelect += handler;
+    }
+
     public void DisablePlayStopButtons()
     {
       this.playRadioButton.Enabled = false;
