@@ -27,7 +27,7 @@ namespace Fuzziverse.Tests.AlienTime
       };
 
       var alienTimeSpan = alienTime1 - alienTime2;
-      Expect(alienTimeSpan.Turns, this.EqualTo(98));
+      Expect(alienTimeSpan.Turns, this.EqualTo(162));
     }
 
     [Test]
@@ -42,11 +42,11 @@ namespace Fuzziverse.Tests.AlienTime
       var alienTime2 = new AlienDateTime {
         Day = 1,
         Phase = 0,
-        Turn = 5,
+        Turn = 0,
       };
 
       var alienTimeSpan = alienTime1 - alienTime2;
-      Expect(alienTimeSpan.Turns, this.EqualTo(-414));
+      Expect(alienTimeSpan.Turns, this.EqualTo(-857));
     }
   }
 }

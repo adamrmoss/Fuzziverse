@@ -4,7 +4,7 @@ namespace Fuzziverse.Core.AlienTime
 {
   public struct AlienDateTime
   {
-    public const int TurnsPerPhase = 64;
+    public const int TurnsPerPhase = 128;
     public const int PhasesPerDay = 8;
 
     public uint Turn { get; set; }
