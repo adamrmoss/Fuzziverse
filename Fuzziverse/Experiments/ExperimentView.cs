@@ -65,6 +65,11 @@ namespace Fuzziverse.Experiments
       }
     }
 
+    public void AddTreeViewSelectionChangingHandler(TreeViewCancelEventHandler handler)
+    {
+      this.experimentsTreeView.BeforeSelect += handler;
+    }
+
     public void AddTreeViewSelectionChangedHandler(TreeViewEventHandler handler)
     {
       this.experimentsTreeView.AfterSelect += handler;
