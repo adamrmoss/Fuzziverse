@@ -73,6 +73,7 @@
     <Compile Include="Databases\DatabaseView.Designer.cs">
       <DependentUpon>DatabaseView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Databases\SqlCommandExtensions.cs" />
     <Compile Include="Experiments\ExperimentController.cs" />
     <Compile Include="Experiments\ExperimentDao.cs" />
     <Compile Include="Experiments\ExperimentSummary.cs" />
