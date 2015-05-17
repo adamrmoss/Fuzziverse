@@ -19,6 +19,10 @@ namespace Fuzziverse.Experiments
     void AddExperimentSelectionChangingHandler(TreeViewCancelEventHandler handler);
     void AddExperimentSelectionChangedHandler(TreeViewEventHandler handler);
 
+    void DisableNewExperimentButton();
+    void EnableNewExperimentButton();
+    void AddNewExperimentButtonClickedHandler(EventHandler handler);
+
     void DisablePhasesTreeView();
     void EnablePhasesTreeView();
     void FocusPhasesTreeView();

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Globalization;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace Fuzziverse.Experiments
     {
       this.experimentNavigator.AddExperimentSelectionChangingHandler(this.OnTreeViewSelectedChanging);
       this.experimentNavigator.AddExperimentSelectionChangedHandler(this.OnTreeViewSelectedChanged);
+      this.experimentNavigator.AddNewExperimentButtonClickedHandler(this.OnNewSimulationButtonClicked);
+
       this.EnableOrDisableComponents();
     }
 
@@ -64,12 +67,25 @@ namespace Fuzziverse.Experiments
       this.experimentNavigator.PopulatePhasesTreeView(daysToPhases);
     }
 
+    private void OnNewSimulationButtonClicked(object sender, EventArgs eventArgs)
+    {
+      var connectionString = this.databaseController.GetConnectionString();
+      using (var sqlConnection = new SqlConnection(connectionString)) {
+        sqlConnection.Open();
+
+        var experiment = sqlConnection.CreateExperiment();
+      }
+      this.LoadExperiments();
+    }
+
     private void EnableOrDisableComponents()
     {
       if (this.databaseController.DatabaseHasBeenPinged) {
         this.experimentNavigator.EnableExperimentTreeView();
+        this.experimentNavigator.EnableNewExperimentButton();
       } else {
         this.experimentNavigator.DisableExperimentTreeView();
+        this.experimentNavigator.DisableNewExperimentButton();
       }
 
       this.experimentNavigator.DisablePlayStopButtons();

@@ -10,6 +10,7 @@ namespace Fuzziverse.Experiments
   public static class ExperimentDao
   {
     private const string getAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
+    private const string createExperimentCommand = "EXEC dbo.CreateExperiment";
     private const string getExperimentDaysQuery = "SELECT [Day], Phase FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC";
 
     public static IEnumerable<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
@@ -20,6 +21,16 @@ namespace Fuzziverse.Experiments
         Id = reader.GetInt64(0),
         Created = reader.GetDateTime(1),
       });
+    }
+
+    public static Experiment CreateExperiment(this SqlConnection sqlConnection)
+    {
+      var sqlCommand = new SqlCommand(createExperimentCommand, sqlConnection);
+
+      return sqlCommand.ReadResults(reader => new Experiment {
+        Id = reader.GetInt64(0),
+        Created = reader.GetDateTime(1),
+      }).SingleOrDefault();
     }
 
     public static Dictionary<int, List<int>>  GetExperimentPhases(this SqlConnection sqlConnection, long experimentId)

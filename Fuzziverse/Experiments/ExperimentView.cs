@@ -77,6 +77,21 @@ namespace Fuzziverse.Experiments
       this.experimentsTreeView.AfterSelect += handler;
     }
 
+    public void DisableNewExperimentButton()
+    {
+      this.newExperimentButton.Enabled = false;
+    }
+
+    public void EnableNewExperimentButton()
+    {
+      this.newExperimentButton.Enabled = true;
+    }
+
+    public void AddNewExperimentButtonClickedHandler(EventHandler handler)
+    {
+      this.newExperimentButton.Click += handler;
+    }
+
     public void DisablePhasesTreeView()
     {
       this.phasesTreeView.Enabled = false;

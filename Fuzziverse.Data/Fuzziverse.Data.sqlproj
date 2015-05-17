@@ -69,5 +69,6 @@
     <Build Include="Ping.sql" />
     <Build Include="ExperimentTurn.sql" />
     <Build Include="GetExperimentPhases.sql" />
+    <Build Include="CreateExperiment.sql" />
   </ItemGroup>
 </Project>
