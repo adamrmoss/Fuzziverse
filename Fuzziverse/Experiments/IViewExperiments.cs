@@ -19,10 +19,10 @@ namespace Fuzziverse.Experiments
     void AddExperimentSelectionChangingHandler(TreeViewCancelEventHandler handler);
     void AddExperimentSelectionChangedHandler(TreeViewEventHandler handler);
 
-    void DisablePhaseTreeView();
-    void EnablePhaseTreeView();
-    void FocusPhaseTreeView();
-    void PopulatePhaseTreeView(Dictionary<int, List<int>> daysToPhases);
+    void DisablePhasesTreeView();
+    void EnablePhasesTreeView();
+    void FocusPhasesTreeView();
+    void PopulatePhasesTreeView(Dictionary<int, List<int>> daysToPhases);
     void AddPhaseSelectionChangingHandler(TreeViewCancelEventHandler handler);
     void AddPhaseSelectionChangedHandler(TreeViewEventHandler handler);
 

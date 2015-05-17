@@ -75,22 +75,22 @@ namespace Fuzziverse.Experiments
       this.experimentsTreeView.AfterSelect += handler;
     }
 
-    public void DisablePhaseTreeView()
+    public void DisablePhasesTreeView()
     {
       this.phasesTreeView.Enabled = false;
     }
 
-    public void EnablePhaseTreeView()
+    public void EnablePhasesTreeView()
     {
       this.phasesTreeView.Enabled = true;
     }
 
-    public void FocusPhaseTreeView()
+    public void FocusPhasesTreeView()
     {
       this.phasesTreeView.Focus();
     }
 
-    public void PopulatePhaseTreeView(Dictionary<int, List<int>> daysToPhases)
+    public void PopulatePhasesTreeView(Dictionary<int, List<int>> daysToPhases)
     {
       this.phasesTreeView.BeginUpdate();
       this.phasesTreeView.Nodes.Clear();

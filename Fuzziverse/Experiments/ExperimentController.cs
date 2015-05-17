@@ -61,7 +61,7 @@ namespace Fuzziverse.Experiments
 
         daysToPhases = sqlConnection.GetExperimentPhases(experimentId);
       }
-      this.experimentNavigator.PopulatePhaseTreeView(daysToPhases);
+      this.experimentNavigator.PopulatePhasesTreeView(daysToPhases);
     }
 
     private void EnableOrDisableComponents()
