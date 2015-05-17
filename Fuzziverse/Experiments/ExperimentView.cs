@@ -67,11 +67,6 @@ namespace Fuzziverse.Experiments
       }
     }
 
-    public void AddExperimentSelectionChangingHandler(TreeViewCancelEventHandler handler)
-    {
-      this.experimentsTreeView.BeforeSelect += handler;
-    }
-
     public void AddExperimentSelectionChangedHandler(TreeViewEventHandler handler)
     {
       this.experimentsTreeView.AfterSelect += handler;
@@ -126,11 +121,6 @@ namespace Fuzziverse.Experiments
       this.phasesTreeView.Focus();
     }
 
-    public void AddPhaseSelectionChangingHandler(TreeViewCancelEventHandler handler)
-    {
-      this.phasesTreeView.BeforeSelect += handler;
-    }
-
     public void AddPhaseSelectionChangedHandler(TreeViewEventHandler handler)
     {
       this.phasesTreeView.AfterSelect += handler;
@@ -146,6 +136,16 @@ namespace Fuzziverse.Experiments
     {
       this.playRadioButton.Enabled = true;
       this.stopRadioButton.Enabled = true;
+    }
+
+    public void AddPlayRadioButtonClickedHandler(EventHandler handler)
+    {
+      this.playRadioButton.Click += handler;
+    }
+
+    public void AddStopRadioButtonClickedHandler(EventHandler handler)
+    {
+      this.stopRadioButton.Click += handler;
     }
   }
 }

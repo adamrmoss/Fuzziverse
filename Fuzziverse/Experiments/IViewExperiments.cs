@@ -16,7 +16,6 @@ namespace Fuzziverse.Experiments
     void FocusExperimentTreeView();
     void PopulateExperimentTreeView(IEnumerable<Experiment> experiments);
     long? GetSelectedExperimentId();
-    void AddExperimentSelectionChangingHandler(TreeViewCancelEventHandler handler);
     void AddExperimentSelectionChangedHandler(TreeViewEventHandler handler);
 
     void DisableNewExperimentButton();
@@ -27,10 +26,11 @@ namespace Fuzziverse.Experiments
     void EnablePhasesTreeView();
     void FocusPhasesTreeView();
     void PopulatePhasesTreeView(Dictionary<int, List<int>> daysToPhases);
-    void AddPhaseSelectionChangingHandler(TreeViewCancelEventHandler handler);
     void AddPhaseSelectionChangedHandler(TreeViewEventHandler handler);
 
     void DisablePlayStopButtons();
     void EnablePlayStopButtons();
+    void AddPlayRadioButtonClickedHandler(EventHandler handler);
+    void AddStopRadioButtonClickedHandler(EventHandler handler);
   }
 }

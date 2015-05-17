@@ -14,6 +14,8 @@ namespace Fuzziverse.Experiments
     private readonly IViewExperiments experimentNavigator;
     private readonly DatabaseController databaseController;
 
+    public bool SimulationIsRunning { get; private set; }
+
     public ExperimentController(IViewExperiments experimentNavigator, DatabaseController databaseController)
     {
       this.experimentNavigator = experimentNavigator;
@@ -22,9 +24,10 @@ namespace Fuzziverse.Experiments
 
     public void Initialize()
     {
-      this.experimentNavigator.AddExperimentSelectionChangingHandler(this.OnTreeViewSelectedChanging);
       this.experimentNavigator.AddExperimentSelectionChangedHandler(this.OnTreeViewSelectedChanged);
       this.experimentNavigator.AddNewExperimentButtonClickedHandler(this.OnNewSimulationButtonClicked);
+      this.experimentNavigator.AddPlayRadioButtonClickedHandler(this.OnPlayRadioButtonClicked);
+      this.experimentNavigator.AddStopRadioButtonClickedHandler(this.OnStopRadioButtonClicked);
 
       this.EnableOrDisableComponents();
     }
@@ -49,15 +52,13 @@ namespace Fuzziverse.Experiments
       }
     }
 
-    private void OnTreeViewSelectedChanging(object sender, TreeViewCancelEventArgs treeViewCancelEventArgs)
-    {
-    }
-
     private void OnTreeViewSelectedChanged(object sender, TreeViewEventArgs treeViewEventArgs)
     {
       long experimentId;
-      if (!long.TryParse(treeViewEventArgs.Node.Name, out experimentId))
+      if (!long.TryParse(treeViewEventArgs.Node.Name, out experimentId)) {
+      this.experimentNavigator.DisablePlayStopButtons();
         return;
+      }
 
       var connectionString = this.databaseController.GetConnectionString();
       Dictionary<int, List<int>> daysToPhases;
@@ -67,6 +68,7 @@ namespace Fuzziverse.Experiments
         daysToPhases = sqlConnection.GetExperimentPhases(experimentId);
       }
       this.experimentNavigator.PopulatePhasesTreeView(daysToPhases);
+      this.experimentNavigator.EnablePlayStopButtons();
     }
 
     private void OnNewSimulationButtonClicked(object sender, EventArgs eventArgs)
@@ -78,6 +80,16 @@ namespace Fuzziverse.Experiments
         var experiment = sqlConnection.CreateExperiment();
       }
       this.LoadExperiments();
+    }
+
+    private void OnPlayRadioButtonClicked(object sender, EventArgs eventArgs)
+    {
+      this.SimulationIsRunning = true;
+    }
+
+    private void OnStopRadioButtonClicked(object sender, EventArgs eventArgs)
+    {
+      this.SimulationIsRunning = false;
     }
 
     private void EnableOrDisableComponents()
