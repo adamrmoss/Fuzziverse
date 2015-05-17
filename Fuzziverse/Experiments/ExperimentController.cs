@@ -55,7 +55,9 @@ namespace Fuzziverse.Experiments
 
     private void OnTreeViewSelectedChanged(object sender, TreeViewEventArgs treeViewEventArgs)
     {
-      var experimentId = long.Parse(treeViewEventArgs.Node.Name);
+      long experimentId;
+      if (!long.TryParse(treeViewEventArgs.Node.Name, out experimentId))
+        return;
 
       var connectionString = this.databaseController.GetConnectionString();
       Dictionary<int, List<int>> daysToPhases;
