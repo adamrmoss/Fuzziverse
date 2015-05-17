@@ -48,7 +48,9 @@ namespace Fuzziverse.Experiments
 
       this.experimentsTreeView.EndUpdate();
 
-      this.experimentsTreeView.Nodes[0].Expand();
+      if (this.experimentsTreeView.Nodes.Count > 0) {
+        this.experimentsTreeView.Nodes[0].Expand();
+      }
     }
 
     public long? GetSelectedExperimentId()
