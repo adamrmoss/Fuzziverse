@@ -35,6 +35,7 @@ namespace Fuzziverse.Databases
         throw new InvalidOperationException("Ping Database returned false, somehow");
       }
 
+      this.DatabaseHasBeenPinged = true;
       this.DatabasePinged?.Invoke();
     }
   }
