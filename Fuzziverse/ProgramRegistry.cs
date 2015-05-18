@@ -9,6 +9,9 @@ namespace Fuzziverse
   {
     public ProgramRegistry()
     {
+      this.For<DatabaseConnector>()
+          .Singleton();
+
       this.ConfigureWinForms();
       this.ConfigureControllers();
     }
@@ -23,7 +26,6 @@ namespace Fuzziverse
 
       this.For<IViewExperiments>()
           .Use(ctx => ctx.GetInstance<ProgramView>().ExperimentView);
-        
     }
 
     private void ConfigureControllers()

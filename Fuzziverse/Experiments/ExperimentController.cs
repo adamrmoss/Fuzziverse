@@ -15,19 +15,19 @@ namespace Fuzziverse.Experiments
   {
     private readonly IViewExperiments experimentNavigator;
     private readonly ISimulateExperiments experimentSimulator;
-    private readonly DatabaseController databaseController;
+    private readonly DatabaseConnector databaseConnector;
 
     public bool SimulationIsRunning { get; private set; }
 
-    public ExperimentController(IViewExperiments experimentNavigator, ISimulateExperiments experimentSimulator, DatabaseController databaseController)
+    public ExperimentController(IViewExperiments experimentNavigator, ISimulateExperiments experimentSimulator, DatabaseConnector databaseConnector)
     {
       Claws.NotNull(() => experimentNavigator);
       Claws.NotNull(() => experimentSimulator);
-      Claws.NotNull(() => databaseController);
+      Claws.NotNull(() => databaseConnector);
 
       this.experimentNavigator = experimentNavigator;
       this.experimentSimulator = experimentSimulator;
-      this.databaseController = databaseController;
+      this.databaseConnector = databaseConnector;
     }
 
     public void Initialize()
@@ -52,8 +52,7 @@ namespace Fuzziverse.Experiments
 
     private IEnumerable<Experiment> GetExperimentsFromDatabase()
     {
-      var connectionString = this.databaseController.GetConnectionString();
-      using (var sqlConnection = new SqlConnection(connectionString)) {
+      using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
         sqlConnection.Open();
 
         return sqlConnection.GetAllExperiments();
@@ -68,9 +67,8 @@ namespace Fuzziverse.Experiments
         return;
       }
 
-      var connectionString = this.databaseController.GetConnectionString();
       Dictionary<int, List<int>> daysToPhases;
-      using (var sqlConnection = new SqlConnection(connectionString)) {
+      using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
         sqlConnection.Open();
 
         daysToPhases = sqlConnection.GetExperimentPhases(experimentId);
@@ -81,8 +79,7 @@ namespace Fuzziverse.Experiments
 
     private void OnNewSimulationButtonClicked(object sender, EventArgs eventArgs)
     {
-      var connectionString = this.databaseController.GetConnectionString();
-      using (var sqlConnection = new SqlConnection(connectionString)) {
+      using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
         sqlConnection.Open();
 
         var experiment = sqlConnection.CreateExperiment();
@@ -102,7 +99,7 @@ namespace Fuzziverse.Experiments
 
     private void EnableOrDisableComponents()
     {
-      if (this.databaseController.DatabaseHasBeenPinged) {
+      if (this.databaseConnector.DatabaseHasBeenPinged) {
         this.experimentNavigator.EnableExperimentTreeView();
         this.experimentNavigator.EnableNewExperimentButton();
       } else {

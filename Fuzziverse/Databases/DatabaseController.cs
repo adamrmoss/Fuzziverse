@@ -3,27 +3,24 @@ using System.Data.SqlClient;
 using System.Windows.Forms;
 using Fuzziverse.Core;
 using Fuzziverse.Properties;
+using GuardClaws;
 
 namespace Fuzziverse.Databases
 {
   public class DatabaseController
   {
-    private const string connectionStringPattern = "Data Source={0};Initial Catalog=Fuzziverse;Integrated Security=True";
-
     private readonly IViewDatabases databaseSettingsEditor;
-    public bool DatabaseHasBeenPinged { get; private set; }
+    private readonly DatabaseConnector databaseConnector;
 
-    public event Action DatabasePinged;
+    private bool disableChangesToConnection;
 
-    public DatabaseController(IViewDatabases databaseSettingsEditor)
+    public DatabaseController(IViewDatabases databaseSettingsEditor, DatabaseConnector databaseConnector)
     {
+      Claws.NotNull(() => databaseSettingsEditor);
+      Claws.NotNull(() => databaseConnector);
+
       this.databaseSettingsEditor = databaseSettingsEditor;
-    }
-
-    public string GetConnectionString()
-    {
-      var sqlInstance = this.databaseSettingsEditor.GetSqlInstanceTextBoxValue();
-      return sqlInstance == "" ? null : connectionStringPattern.FormatWith(sqlInstance);
+      this.databaseConnector = databaseConnector;
     }
 
     public void Initialize()
@@ -68,27 +65,21 @@ namespace Fuzziverse.Databases
 
     public void OnConnectSqlButtonClicked(object sender, EventArgs eventArgs)
     {
+      var sqlInstance = this.databaseSettingsEditor.GetSqlInstanceTextBoxValue();
+      this.databaseConnector.SqlInstance = sqlInstance;
       this.PingDatabase();
     }
 
     private void PingDatabase()
     {
-      this.DatabaseHasBeenPinged = true;
+      this.disableChangesToConnection = true;
       this.EnableOrDisableComponents();
 
       try {
-        var connectionString = this.GetConnectionString();
-        using (var sqlConnection = new SqlConnection(connectionString)) {
-          sqlConnection.Open();
-          sqlConnection.Ping();
-        }
-
-        if (this.DatabasePinged != null) {
-          this.DatabasePinged();
-        }
+        this.databaseConnector.Ping();
       } catch (Exception e) {
         MessageBox.Show(e.Message, "Ping SQL Server Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        this.DatabaseHasBeenPinged = false;
+        this.disableChangesToConnection = false;
         this.EnableOrDisableComponents();
       }
     }
@@ -101,9 +92,8 @@ namespace Fuzziverse.Databases
 
     private void EnableOrDisableComponents()
     {
-      if (this.DatabaseHasBeenPinged) {
+      if (this.disableChangesToConnection) {
         this.databaseSettingsEditor.DisableSqlInstanceTextBox();
-        this.databaseSettingsEditor.DisableSaveSqlInstanceButton();
         this.databaseSettingsEditor.DisableConnectSqlButton();
         return;
       }

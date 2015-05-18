@@ -67,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Databases\DatabaseConnector.cs" />
     <Compile Include="Databases\DatabaseDao.cs" />
     <Compile Include="Databases\DatabaseView.cs">
       <SubType>UserControl</SubType>

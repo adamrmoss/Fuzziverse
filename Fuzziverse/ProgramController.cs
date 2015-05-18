@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Fuzziverse.Databases;
 using Fuzziverse.Experiments;
 using Fuzziverse.Simulations;
+using GuardClaws;
 using StructureMap;
 
 namespace Fuzziverse
@@ -10,16 +11,25 @@ namespace Fuzziverse
   public class ProgramController
   {
     private readonly ProgramView programView;
+    private readonly DatabaseConnector databaseConnector;
     private readonly DatabaseController databaseController;
     private readonly ExperimentController experimentController;
     private readonly SimulationController simulationController;
 
     public ProgramController(ProgramView programView,
+                             DatabaseConnector databaseConnector,
                              DatabaseController databaseController,
                              ExperimentController experimentController,
                              SimulationController simulationController)
     {
+      Claws.NotNull(() => programView);
+      Claws.NotNull(() => databaseConnector);
+      Claws.NotNull(() => databaseController);
+      Claws.NotNull(() => experimentController);
+      Claws.NotNull(() => simulationController);
+
       this.programView = programView;
+      this.databaseConnector = databaseConnector;
       this.databaseController = databaseController;
       this.experimentController = experimentController;
       this.simulationController = simulationController;
@@ -33,7 +43,7 @@ namespace Fuzziverse
 
     public void Initialize()
     {
-      this.databaseController.DatabasePinged += this.OnDatabasePing;
+      this.databaseConnector.DatabasePinged += this.OnDatabasePing;
       this.databaseController.Initialize();
       this.experimentController.Initialize();
       this.simulationController.Initialize();
