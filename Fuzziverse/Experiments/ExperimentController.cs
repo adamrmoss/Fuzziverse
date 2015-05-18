@@ -53,8 +53,6 @@ namespace Fuzziverse.Experiments
     private IEnumerable<Experiment> GetExperimentsFromDatabase()
     {
       using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
-        sqlConnection.Open();
-
         return sqlConnection.GetAllExperiments();
       }
     }
@@ -69,8 +67,6 @@ namespace Fuzziverse.Experiments
 
       Dictionary<int, List<int>> daysToPhases;
       using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
-        sqlConnection.Open();
-
         daysToPhases = sqlConnection.GetExperimentPhases(experimentId);
       }
       this.experimentNavigator.PopulatePhasesTreeView(daysToPhases);
@@ -80,8 +76,6 @@ namespace Fuzziverse.Experiments
     private void OnNewSimulationButtonClicked(object sender, EventArgs eventArgs)
     {
       using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
-        sqlConnection.Open();
-
         var experiment = sqlConnection.CreateExperiment();
       }
       this.LoadExperiments();

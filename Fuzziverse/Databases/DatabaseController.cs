@@ -44,6 +44,9 @@ namespace Fuzziverse.Databases
     private void LoadSettings()
     {
       this.databaseSettingsEditor.SetSqlInstanceTextBoxValue(Settings.Default.SqlInstance);
+      if (!string.IsNullOrEmpty(Settings.Default.SqlInstance))
+        this.databaseConnector.SqlInstance = Settings.Default.SqlInstance;
+
       if (Settings.Default.Autoconnect) {
         this.databaseSettingsEditor.SetAutoconnectCheckBox();
       } else {

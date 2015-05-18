@@ -12,6 +12,10 @@ namespace Fuzziverse
       this.For<DatabaseConnector>()
           .Singleton();
 
+      this.For<ISimulateExperiments>()
+          .Use<ExperimentSimulator>()
+          .Singleton();
+
       this.ConfigureWinForms();
       this.ConfigureControllers();
     }
