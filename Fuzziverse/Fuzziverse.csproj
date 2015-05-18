@@ -95,6 +95,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Databases\IViewDatabases.cs" />
     <Compile Include="Databases\DatabaseController.cs" />
+    <Compile Include="Simulations\ExperimentSimulator.cs" />
+    <Compile Include="Simulations\ISimulateExperiments.cs" />
     <Compile Include="Simulations\SimulationController.cs" />
     <EmbeddedResource Include="Databases\DatabaseView.resx">
       <DependentUpon>DatabaseView.cs</DependentUpon>

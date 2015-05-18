@@ -29,11 +29,11 @@
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ExperimentView));
       this.experimentsGroupBox = new System.Windows.Forms.GroupBox();
+      this.newExperimentButton = new System.Windows.Forms.Button();
+      this.phasesTreeView = new System.Windows.Forms.TreeView();
       this.stopRadioButton = new System.Windows.Forms.RadioButton();
       this.playRadioButton = new System.Windows.Forms.RadioButton();
       this.experimentsTreeView = new System.Windows.Forms.TreeView();
-      this.phasesTreeView = new System.Windows.Forms.TreeView();
-      this.newExperimentButton = new System.Windows.Forms.Button();
       this.experimentsGroupBox.SuspendLayout();
       this.SuspendLayout();
       // 
@@ -50,6 +50,25 @@
       this.experimentsGroupBox.TabIndex = 0;
       this.experimentsGroupBox.TabStop = false;
       this.experimentsGroupBox.Text = "Experiments";
+      // 
+      // newExperimentButton
+      // 
+      this.newExperimentButton.Location = new System.Drawing.Point(328, 489);
+      this.newExperimentButton.Name = "newExperimentButton";
+      this.newExperimentButton.Size = new System.Drawing.Size(96, 24);
+      this.newExperimentButton.TabIndex = 2;
+      this.newExperimentButton.Text = "New Experiment";
+      this.newExperimentButton.UseVisualStyleBackColor = true;
+      // 
+      // phasesTreeView
+      // 
+      this.phasesTreeView.FullRowSelect = true;
+      this.phasesTreeView.HideSelection = false;
+      this.phasesTreeView.Location = new System.Drawing.Point(608, 24);
+      this.phasesTreeView.Name = "phasesTreeView";
+      this.phasesTreeView.ShowPlusMinus = false;
+      this.phasesTreeView.Size = new System.Drawing.Size(408, 488);
+      this.phasesTreeView.TabIndex = 5;
       // 
       // stopRadioButton
       // 
@@ -79,27 +98,12 @@
       // 
       // experimentsTreeView
       // 
+      this.experimentsTreeView.FullRowSelect = true;
+      this.experimentsTreeView.HideSelection = false;
       this.experimentsTreeView.Location = new System.Drawing.Point(16, 24);
       this.experimentsTreeView.Name = "experimentsTreeView";
       this.experimentsTreeView.Size = new System.Drawing.Size(408, 456);
       this.experimentsTreeView.TabIndex = 1;
-      // 
-      // phasesTreeView
-      // 
-      this.phasesTreeView.Location = new System.Drawing.Point(608, 24);
-      this.phasesTreeView.Name = "phasesTreeView";
-      this.phasesTreeView.ShowPlusMinus = false;
-      this.phasesTreeView.Size = new System.Drawing.Size(408, 488);
-      this.phasesTreeView.TabIndex = 5;
-      // 
-      // newExperimentButton
-      // 
-      this.newExperimentButton.Location = new System.Drawing.Point(328, 489);
-      this.newExperimentButton.Name = "newExperimentButton";
-      this.newExperimentButton.Size = new System.Drawing.Size(96, 24);
-      this.newExperimentButton.TabIndex = 2;
-      this.newExperimentButton.Text = "New Experiment";
-      this.newExperimentButton.UseVisualStyleBackColor = true;
       // 
       // ExperimentView
       // 

@@ -6,19 +6,27 @@ using System.Linq;
 using System.Windows.Forms;
 using Fuzziverse.Core.Experiments;
 using Fuzziverse.Databases;
+using Fuzziverse.Simulations;
+using GuardClaws;
 
 namespace Fuzziverse.Experiments
 {
   public class ExperimentController
   {
     private readonly IViewExperiments experimentNavigator;
+    private readonly ISimulateExperiments experimentSimulator;
     private readonly DatabaseController databaseController;
 
     public bool SimulationIsRunning { get; private set; }
 
-    public ExperimentController(IViewExperiments experimentNavigator, DatabaseController databaseController)
+    public ExperimentController(IViewExperiments experimentNavigator, ISimulateExperiments experimentSimulator, DatabaseController databaseController)
     {
+      Claws.NotNull(() => experimentNavigator);
+      Claws.NotNull(() => experimentSimulator);
+      Claws.NotNull(() => databaseController);
+
       this.experimentNavigator = experimentNavigator;
+      this.experimentSimulator = experimentSimulator;
       this.databaseController = databaseController;
     }
 
