@@ -1,8 +1,9 @@
 ﻿CREATE FUNCTION dbo.GetExperimentStatus(@ExperimentId BIGINT)
-  RETURNS @ReturnTable TABLE(LatestExperimentTurnId BIGINT, LatestSimulationTime BIGINT, LatestSunX INT, LatestSunY INT, LatestSunRadius INT) AS
+  RETURNS @ReturnTable TABLE(LatestExperimentTurnId BIGINT, LatestSimulationTime INT, LatestRandomSeed INT, LatestSunX INT, LatestSunY INT, LatestSunRadius INT) AS
 BEGIN
   DECLARE @LatestExperimentTurnId BIGINT
-  DECLARE @LatestSimulationTime BIGINT
+  DECLARE @LatestSimulationTime INT
+  DECLARE @LatestRandomSeed INT
   DECLARE @LatestSunX INT
   DECLARE @LatestSunY INT
   DECLARE @LatestSunRadius INT
@@ -12,6 +13,7 @@ BEGIN
   WHERE et.ExperimentId = @ExperimentId
 
   SELECT @LatestExperimentTurnId = et.Id,
+         @LatestRandomSeed = et.RandomSeed,
          @LatestSunX = et.SunX,
          @LatestSunY = et.SunY,
          @LatestSunRadius = et.SunRadius
@@ -19,7 +21,7 @@ BEGIN
   WHERE et.SimulationTime = @LatestSimulationTime
 
   INSERT @ReturnTable
-  VALUES(@LatestExperimentTurnId, @LatestSimulationTime, @LatestSunX, @LatestSunY, @LatestSunRadius)
+  VALUES(@LatestExperimentTurnId, @LatestSimulationTime, @LatestRandomSeed, @LatestSunX, @LatestSunY, @LatestSunRadius)
 
   RETURN
 END

@@ -69,6 +69,7 @@
     <Compile Include="Framework\DateTimeExtensions.cs" />
     <Compile Include="Experiments\Experiment.cs" />
     <Compile Include="Framework\MoreMath.cs" />
+    <Compile Include="Framework\SqlDataReaderExtensions.cs" />
     <Compile Include="Organisms\Brain.cs" />
     <Compile Include="Experiments\ExperimentTurn.cs" />
     <Compile Include="Framework\JetBrains.Annotations.cs" />

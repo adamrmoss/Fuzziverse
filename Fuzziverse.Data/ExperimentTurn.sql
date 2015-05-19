@@ -1,9 +1,10 @@
 ﻿CREATE TABLE dbo.ExperimentTurn (
   Id BIGINT NOT NULL PRIMARY KEY IDENTITY,
   ExperimentId BIGINT NOT NULL,
-  SimulationTime BIGINT NOT NULL,
+  SimulationTime INT NOT NULL,
   [Day] INT NOT NULL,
   Phase INT NOT NULL,
+  RandomSeed  INT NOT NULL,
   SunX INT NOT NULL,
   SunY INT NOT NULL,
   SunRadius INT NOT NULL,

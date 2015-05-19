@@ -20,20 +20,22 @@ namespace Fuzziverse.Experiments
     {
       var sqlCommand = new SqlCommand(createExperimentCommand, sqlConnection);
 
-      return sqlCommand.ReadResults(reader => new Experiment {
-        Id = reader.GetInt64(0),
-        Created = reader.GetDateTime(1),
-      }).SingleOrDefault();
+      return sqlCommand.ReadResults(ReadExperimentRow).SingleOrDefault();
     }
 
     public static IEnumerable<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
     {
       var sqlCommand = new SqlCommand(getAllExperimentsQuery, sqlConnection);
 
-      return sqlCommand.ReadResults(reader => new Experiment {
+      return sqlCommand.ReadResults(ReadExperimentRow);
+    }
+
+    private static Experiment ReadExperimentRow(SqlDataReader reader)
+    {
+      return new Experiment {
         Id = reader.GetInt64(0),
         Created = reader.GetDateTime(1),
-      });
+      };
     }
 
     public static Dictionary<int, List<int>> GetExperimentPhases(this SqlConnection sqlConnection, long experimentId)
@@ -58,15 +60,15 @@ namespace Fuzziverse.Experiments
 
     private static ExperimentStatus ReadExperimentStatus(SqlDataReader reader, long experimentId)
     {
-      var experimentStatus = new ExperimentStatus {
+      return new ExperimentStatus {
         ExperimentId = experimentId,
+        LatestExperimentTurnId = reader.GetNullableInt64(0),
+        LatestSimulationTime = reader.IsDBNull(1) ? (AlienDateTime?) null : new AlienDateTime(reader.GetInt32(1)),
+        LatestRandomSeed = reader.GetNullableInt32(2),
+        LatestSunX = reader.GetNullableInt32(3),
+        LatestSunY = reader.GetNullableInt32(4),
+        LatestSunRadius = reader.GetNullableInt32(5),
       };
-      if (!reader.IsDBNull(0))
-        experimentStatus.LatestExperimentTurnId = reader.GetInt64(0);
-      if (!reader.IsDBNull(1))
-        experimentStatus.LatestSimulationTime = new AlienDateTime(reader.GetInt32(1));
-
-      return experimentStatus;
     }
   }
 }

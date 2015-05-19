@@ -1,5 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Data.SqlClient;
+using System.Threading.Tasks;
+using Fuzziverse.Core.AlienSpaceTime;
 using Fuzziverse.Databases;
+using Fuzziverse.Experiments;
 using GuardClaws;
 
 namespace Fuzziverse.Simulations
@@ -22,6 +26,14 @@ namespace Fuzziverse.Simulations
 
     private void SimulateSingleTurn(long experimentId)
     {
+      if (!this.databaseConnector.DatabaseHasBeenPinged)
+        throw new InvalidOperationException("Cannot run simulation without having pinged the database.");
+
+      using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
+        var experimentStatus = sqlConnection.GetExperimentStatus(experimentId);
+
+        var newSimulationTime = experimentStatus.LatestSimulationTime + 1.Turn() ?? new AlienDateTime(0);
+      }
     }
   }
 }

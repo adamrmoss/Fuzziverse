@@ -40,7 +40,7 @@
 
     public static AlienTimeSpan operator -(AlienDateTime alienDateTime1, AlienDateTime alienDateTime2)
     {
-      return new AlienTimeSpan {Turns = alienDateTime1.TotalTurns - alienDateTime2.TotalTurns};
+      return new AlienTimeSpan(alienDateTime1.TotalTurns - alienDateTime2.TotalTurns);
     }
   }
 }
