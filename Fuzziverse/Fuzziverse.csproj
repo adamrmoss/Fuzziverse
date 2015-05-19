@@ -98,7 +98,7 @@
     <Compile Include="Databases\DatabaseController.cs" />
     <Compile Include="Simulations\ExperimentSimulator.cs" />
     <Compile Include="Simulations\ISimulateExperiments.cs" />
-    <Compile Include="Simulations\SimulationController.cs" />
+    <Compile Include="PhaseVisualization\PhaseVisualizationController.cs" />
     <EmbeddedResource Include="Databases\DatabaseView.resx">
       <DependentUpon>DatabaseView.cs</DependentUpon>
     </EmbeddedResource>
@@ -141,6 +141,7 @@
     <Content Include="Play.png" />
     <Content Include="Stop.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

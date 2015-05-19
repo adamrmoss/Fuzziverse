@@ -12,7 +12,7 @@ namespace Fuzziverse
       InitializeComponent();
     }
 
-    public DatabaseView DatabaseView { get { return this.databaseView; } }
-    public ExperimentView ExperimentView { get { return this.experimentView; } }
+    public DatabaseView DatabaseView => this.databaseView;
+    public ExperimentView ExperimentView => this.experimentView;
   }
 }

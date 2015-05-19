@@ -1,5 +1,6 @@
 ﻿using Fuzziverse.Databases;
 using Fuzziverse.Experiments;
+using Fuzziverse.PhaseVisualization;
 using Fuzziverse.Simulations;
 using StructureMap.Configuration.DSL;
 
@@ -40,7 +41,7 @@ namespace Fuzziverse
       this.For<DatabaseController>()
           .Singleton();
 
-      this.For<SimulationController>()
+      this.For<PhaseVisualizationController>()
           .Singleton();
     }
   }

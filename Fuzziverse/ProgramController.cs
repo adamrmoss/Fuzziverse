@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Fuzziverse.Databases;
 using Fuzziverse.Experiments;
+using Fuzziverse.PhaseVisualization;
 using Fuzziverse.Simulations;
 using GuardClaws;
 using StructureMap;
@@ -14,25 +15,25 @@ namespace Fuzziverse
     private readonly DatabaseConnector databaseConnector;
     private readonly DatabaseController databaseController;
     private readonly ExperimentController experimentController;
-    private readonly SimulationController simulationController;
+    private readonly PhaseVisualizationController phaseVisualizationController;
 
     public ProgramController(ProgramView programView,
                              DatabaseConnector databaseConnector,
                              DatabaseController databaseController,
                              ExperimentController experimentController,
-                             SimulationController simulationController)
+                             PhaseVisualizationController phaseVisualizationController)
     {
       Claws.NotNull(() => programView);
       Claws.NotNull(() => databaseConnector);
       Claws.NotNull(() => databaseController);
       Claws.NotNull(() => experimentController);
-      Claws.NotNull(() => simulationController);
+      Claws.NotNull(() => phaseVisualizationController);
 
       this.programView = programView;
       this.databaseConnector = databaseConnector;
       this.databaseController = databaseController;
       this.experimentController = experimentController;
-      this.simulationController = simulationController;
+      this.phaseVisualizationController = phaseVisualizationController;
     }
 
     public void StartApplication()
@@ -46,7 +47,7 @@ namespace Fuzziverse
       this.databaseConnector.DatabasePinged += this.OnDatabasePing;
       this.databaseController.Initialize();
       this.experimentController.Initialize();
-      this.simulationController.Initialize();
+      this.phaseVisualizationController.Initialize();
     }
 
     private void OnDatabasePing()
