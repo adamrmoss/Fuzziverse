@@ -13,8 +13,7 @@ namespace Fuzziverse.Core.Experiments
     public long? LatestExperimentTurnId { get; set; }
     public AlienDateTime? LatestSimulationTime { get; set; }
     public int? LatestRandomSeed { get; set; }
-    public int? LatestSunX { get; set; }
-    public int? LatestSunY { get; set; }
+    public AlienSpaceVector? LatestSunPosition { get; set; }
     public int? LatestSunRadius { get; set; }
   }
 }

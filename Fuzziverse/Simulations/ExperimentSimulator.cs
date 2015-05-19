@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Threading.Tasks;
 using Fuzziverse.Core.AlienSpaceTime;
+using Fuzziverse.Core.Experiments;
 using Fuzziverse.Databases;
 using Fuzziverse.Experiments;
 using GuardClaws;
@@ -32,8 +33,31 @@ namespace Fuzziverse.Simulations
       using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
         var experimentStatus = sqlConnection.GetExperimentStatus(experimentId);
 
-        var newSimulationTime = experimentStatus.LatestSimulationTime + 1.Turn() ?? new AlienDateTime(0);
+        var newExperimentTurn = BuildNextExperimentTurn(experimentStatus);
       }
+    }
+
+    private static ExperimentTurn BuildNextExperimentTurn(ExperimentStatus experimentStatus)
+    {
+      var newSimulationTime = experimentStatus.LatestSimulationTime + 1.Turn() ?? new AlienDateTime(0);
+
+      var random = experimentStatus.LatestRandomSeed == null ? new Random() : new Random(experimentStatus.LatestRandomSeed.Value);
+      var moveUp = random.Next(4) == 0;
+
+      var newSunPosition = experimentStatus.LatestSunPosition == null ?
+                             new AlienSpaceVector(0, 0) :
+                             experimentStatus.LatestSunPosition.Value + new AlienSpaceVector(1, moveUp ? -1 : 0);
+
+      var newSunRadius = experimentStatus.LatestSunRadius ?? 4;
+
+      var newExperimentTurn = new ExperimentTurn {
+        ExperimentId = experimentStatus.ExperimentId,
+        SimulationTime = newSimulationTime,
+        RandomSeed = random.Next(),
+        SunPosition = newSunPosition,
+        SunRadius = newSunRadius,
+      };
+      return newExperimentTurn;
     }
   }
 }

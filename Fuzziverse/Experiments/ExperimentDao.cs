@@ -13,8 +13,9 @@ namespace Fuzziverse.Experiments
   {
     private const string getAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
     private const string createExperimentCommand = "EXEC dbo.CreateExperiment";
-    private const string getExperimentDaysQuery = "SELECT [Day], Phase FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC";
-    private const string getExperimentStatusQuery = "SELECT LatestExperimentTurnId, LatestSimulationTime, LatestSunX, LatestSunY, LatestSunRadius FROM dbo.GetExperimentStatus(@ExperimentId)";
+    private const string getExperimentDaysQuery = "SELECT * FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC";
+    private const string getExperimentStatusQuery = "SELECT * FROM dbo.GetExperimentStatus(@ExperimentId)";
+    private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @RandomSeed, @SunX, @SunY, @SunRadius";
 
     public static Experiment CreateExperiment(this SqlConnection sqlConnection)
     {
@@ -65,10 +66,32 @@ namespace Fuzziverse.Experiments
         LatestExperimentTurnId = reader.GetNullableInt64(0),
         LatestSimulationTime = reader.IsDBNull(1) ? (AlienDateTime?) null : new AlienDateTime(reader.GetInt32(1)),
         LatestRandomSeed = reader.GetNullableInt32(2),
-        LatestSunX = reader.GetNullableInt32(3),
-        LatestSunY = reader.GetNullableInt32(4),
+        LatestSunPosition = reader.IsDBNull(1) ? (AlienSpaceVector?) null : new AlienSpaceVector(reader.GetInt32(3), reader.GetInt32(4)),
         LatestSunRadius = reader.GetNullableInt32(5),
       };
+    }
+
+    public static void SaveExperimentTurn(this SqlConnection sqlConnection, ExperimentTurn experimentTurn)
+    {
+      var sqlCommand = new SqlCommand(createExperimentTurnCommand, sqlConnection);
+      var experimentIdParameter = sqlCommand.Parameters.Add("@ExperimentId", SqlDbType.BigInt);
+      experimentIdParameter.SqlValue = experimentTurn.ExperimentId;
+      var simulationTimeParameter = sqlCommand.Parameters.Add("@SimulationTime", SqlDbType.Int);
+      simulationTimeParameter.SqlValue = experimentTurn.SimulationTime.TotalTurns;
+      var dayParameter = sqlCommand.Parameters.Add("@Day", SqlDbType.Int);
+      dayParameter.SqlValue = experimentTurn.SimulationTime.Day;
+      var phaseParameter = sqlCommand.Parameters.Add("@Phase", SqlDbType.Int);
+      phaseParameter.SqlValue = experimentTurn.SimulationTime.Phase;
+      var randomSeedParameter = sqlCommand.Parameters.Add("@RandomSeed", SqlDbType.Int);
+      randomSeedParameter.SqlValue = experimentTurn.RandomSeed;
+      var sunXParameter = sqlCommand.Parameters.Add("@SunX", SqlDbType.Int);
+      sunXParameter.SqlValue = experimentTurn.SunPosition.X;
+      var sunYParameter = sqlCommand.Parameters.Add("@SunY", SqlDbType.Int);
+      sunYParameter.SqlValue = experimentTurn.SunPosition.Y;
+      var sunRadiusParameter = sqlCommand.Parameters.Add("@SunRadius", SqlDbType.Int);
+      sunRadiusParameter.SqlValue = experimentTurn.SunRadius;
+
+      experimentTurn.Id = sqlCommand.ReadResults(reader => reader.GetInt64(0)).Single();
     }
   }
 }
