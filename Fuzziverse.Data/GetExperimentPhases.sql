@@ -1,5 +1,5 @@
 ﻿CREATE FUNCTION dbo.GetExperimentPhases(@ExperimentId BIGINT)
-  RETURNS @ReturnTable TABLE([Day] INT, Phase INT) AS
+  RETURNS @ReturnTable TABLE([Day] INT NOT NULL, Phase INT NOT NULL) AS
 BEGIN
   INSERT @ReturnTable
   SELECT et.[Day], et.Phase

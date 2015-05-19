@@ -2,6 +2,8 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using Fuzziverse.Core.AlienSpaceTime;
 using Fuzziverse.Core.Experiments;
 using Fuzziverse.Databases;
 
@@ -12,16 +14,7 @@ namespace Fuzziverse.Experiments
     private const string getAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
     private const string createExperimentCommand = "EXEC dbo.CreateExperiment";
     private const string getExperimentDaysQuery = "SELECT [Day], Phase FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC";
-
-    public static IEnumerable<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
-    {
-      var sqlCommand = new SqlCommand(getAllExperimentsQuery, sqlConnection);
-
-      return sqlCommand.ReadResults(reader => new Experiment {
-        Id = reader.GetInt64(0),
-        Created = reader.GetDateTime(1),
-      });
-    }
+    private const string getExperimentStatusQuery = "SELECT LatestExperimentTurnId, LatestSimulationTime, LatestSunX, LatestSunY, LatestSunRadius FROM dbo.GetExperimentStatus(@ExperimentId)";
 
     public static Experiment CreateExperiment(this SqlConnection sqlConnection)
     {
@@ -33,7 +26,17 @@ namespace Fuzziverse.Experiments
       }).SingleOrDefault();
     }
 
-    public static Dictionary<int, List<int>>  GetExperimentPhases(this SqlConnection sqlConnection, long experimentId)
+    public static IEnumerable<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
+    {
+      var sqlCommand = new SqlCommand(getAllExperimentsQuery, sqlConnection);
+
+      return sqlCommand.ReadResults(reader => new Experiment {
+        Id = reader.GetInt64(0),
+        Created = reader.GetDateTime(1),
+      });
+    }
+
+    public static Dictionary<int, List<int>> GetExperimentPhases(this SqlConnection sqlConnection, long experimentId)
     {
       var sqlCommand = new SqlCommand(getExperimentDaysQuery, sqlConnection);
       var sqlParameter = sqlCommand.Parameters.Add("@ExperimentId", SqlDbType.BigInt);
@@ -42,6 +45,28 @@ namespace Fuzziverse.Experiments
       var results = sqlCommand.ReadResults(reader => new { Day = reader.GetInt32(0), Phase = reader.GetInt32(1)});
       return results.GroupBy(result => result.Day)
         .ToDictionary(g => g.Key, g => g.Select(result => result.Phase).ToList());
+    }
+
+    public static ExperimentStatus GetExperimentStatus(this SqlConnection sqlConnection, long experimentId)
+    {
+      var sqlCommand = new SqlCommand(getExperimentStatusQuery, sqlConnection);
+      var sqlParameter = sqlCommand.Parameters.Add("@ExperimentId", SqlDbType.BigInt);
+      sqlParameter.SqlValue = experimentId;
+
+      return sqlCommand.ReadResults(reader => ReadExperimentStatus(reader, experimentId)).Single();
+    }
+
+    private static ExperimentStatus ReadExperimentStatus(SqlDataReader reader, long experimentId)
+    {
+      var experimentStatus = new ExperimentStatus {
+        ExperimentId = experimentId,
+      };
+      if (!reader.IsDBNull(0))
+        experimentStatus.LatestExperimentTurnId = reader.GetInt64(0);
+      if (!reader.IsDBNull(1))
+        experimentStatus.LatestSimulationTime = new AlienDateTime(reader.GetInt32(1));
+
+      return experimentStatus;
     }
   }
 }

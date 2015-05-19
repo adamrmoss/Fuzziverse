@@ -1,5 +1,5 @@
 ﻿using System;
-using Fuzziverse.Core.AlienTime;
+using Fuzziverse.Core.AlienSpaceTime;
 
 namespace Fuzziverse.Core.Experiments
 {

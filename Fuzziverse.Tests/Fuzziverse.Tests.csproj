@@ -65,7 +65,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlienTime\WhenICompareAlienTimes.cs" />
+    <Compile Include="AlienSpaceTime\WhenICompareAlienTimes.cs" />
+    <Compile Include="AlienSpaceTime\WhenINormalizeAlienVectors.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

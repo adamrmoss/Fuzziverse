@@ -1,4 +1,4 @@
-﻿namespace Fuzziverse.Core.AlienTime
+﻿namespace Fuzziverse.Core.AlienSpaceTime
 {
   public struct AlienTimeSpan
   {

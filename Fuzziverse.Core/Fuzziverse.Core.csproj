@@ -62,10 +62,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlienTime\AlienDateTime.cs" />
-    <Compile Include="AlienTime\AlienTimeSpan.cs" />
+    <Compile Include="AlienSpaceTime\AlienDateTime.cs" />
+    <Compile Include="AlienSpaceTime\AlienSpaceVector.cs" />
+    <Compile Include="AlienSpaceTime\AlienTimeSpan.cs" />
+    <Compile Include="Experiments\ExperimentStatus.cs" />
     <Compile Include="Framework\DateTimeExtensions.cs" />
     <Compile Include="Experiments\Experiment.cs" />
+    <Compile Include="Framework\MoreMath.cs" />
     <Compile Include="Organisms\Brain.cs" />
     <Compile Include="Experiments\ExperimentTurn.cs" />
     <Compile Include="Framework\JetBrains.Annotations.cs" />
