@@ -147,5 +147,10 @@ namespace Fuzziverse.Experiments
     {
       this.stopRadioButton.Click += handler;
     }
+
+    public void ClickStopRadioButton()
+    {
+      this.stopRadioButton.PerformClick();
+    }
   }
 }

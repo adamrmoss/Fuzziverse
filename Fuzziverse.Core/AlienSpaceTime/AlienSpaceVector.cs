@@ -34,5 +34,7 @@ namespace Fuzziverse.Core.AlienSpaceTime
     {
       return new AlienSpaceVector(vector1.X - vector2.X, vector1.Y - vector2.Y);
     }
+
+    public override string ToString() => "<{0}, {1}>".FormatWith(this.X, this.Y);
   }
 }

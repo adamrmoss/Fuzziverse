@@ -1,4 +1,6 @@
-﻿namespace Fuzziverse.Core.AlienSpaceTime
+﻿using System;
+
+namespace Fuzziverse.Core.AlienSpaceTime
 {
   public struct AlienTimeSpan
   {
@@ -18,6 +20,8 @@
     {
       return new AlienTimeSpan(alienTimeSpan1.Turns - alienTimeSpan2.Turns);
     }
+
+    public override string ToString() => "{0} Turns".FormatWith(this.Turns);
   }
 
   public static class IntegerExtensionsForAlienTimeSpan

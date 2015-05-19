@@ -34,6 +34,7 @@ namespace Fuzziverse.Simulations
         var experimentStatus = sqlConnection.GetExperimentStatus(experimentId);
 
         var newExperimentTurn = BuildNextExperimentTurn(experimentStatus);
+        sqlConnection.SaveExperimentTurn(newExperimentTurn);
       }
     }
 
@@ -44,9 +45,9 @@ namespace Fuzziverse.Simulations
       var random = experimentStatus.LatestRandomSeed == null ? new Random() : new Random(experimentStatus.LatestRandomSeed.Value);
       var moveUp = random.Next(4) == 0;
 
-      var newSunPosition = experimentStatus.LatestSunPosition == null ?
-                             new AlienSpaceVector(0, 0) :
-                             experimentStatus.LatestSunPosition.Value + new AlienSpaceVector(1, moveUp ? -1 : 0);
+      var newSunPosition = (experimentStatus.LatestSunPosition == null ?
+                             new AlienSpaceVector(32, 18) :
+                             experimentStatus.LatestSunPosition.Value + new AlienSpaceVector(1, moveUp ? -1 : 0)).ToNonNegativeCoordinates();
 
       var newSunRadius = experimentStatus.LatestSunRadius ?? 4;
 

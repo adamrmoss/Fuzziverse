@@ -6,36 +6,32 @@ using System.Linq;
 using System.Windows.Forms;
 using Fuzziverse.Core.Experiments;
 using Fuzziverse.Databases;
-using Fuzziverse.Simulations;
 using GuardClaws;
 
 namespace Fuzziverse.Experiments
 {
   public class ExperimentController
   {
-    private readonly IViewExperiments experimentNavigator;
-    private readonly ISimulateExperiments experimentSimulator;
+    private readonly IViewExperiments experimentView;
     private readonly DatabaseConnector databaseConnector;
 
     public bool SimulationIsRunning { get; private set; }
 
-    public ExperimentController(IViewExperiments experimentNavigator, ISimulateExperiments experimentSimulator, DatabaseConnector databaseConnector)
+    public ExperimentController(IViewExperiments experimentView, DatabaseConnector databaseConnector)
     {
-      Claws.NotNull(() => experimentNavigator);
-      Claws.NotNull(() => experimentSimulator);
+      Claws.NotNull(() => experimentView);
       Claws.NotNull(() => databaseConnector);
 
-      this.experimentNavigator = experimentNavigator;
-      this.experimentSimulator = experimentSimulator;
+      this.experimentView = experimentView;
       this.databaseConnector = databaseConnector;
     }
 
     public void Initialize()
     {
-      this.experimentNavigator.AddExperimentSelectionChangedHandler(this.OnTreeViewSelectedChanged);
-      this.experimentNavigator.AddNewExperimentButtonClickedHandler(this.OnNewSimulationButtonClicked);
-      this.experimentNavigator.AddPlayRadioButtonClickedHandler(this.OnPlayRadioButtonClicked);
-      this.experimentNavigator.AddStopRadioButtonClickedHandler(this.OnStopRadioButtonClicked);
+      this.experimentView.AddExperimentSelectionChangedHandler(this.OnTreeViewSelectedChanged);
+      this.experimentView.AddNewExperimentButtonClickedHandler(this.OnNewSimulationButtonClicked);
+      this.experimentView.AddPlayRadioButtonClickedHandler(this.OnPlayRadioButtonClicked);
+      this.experimentView.AddStopRadioButtonClickedHandler(this.OnStopRadioButtonClicked);
 
       this.EnableOrDisableComponents();
     }
@@ -45,9 +41,9 @@ namespace Fuzziverse.Experiments
       this.EnableOrDisableComponents();
 
       var allExperiments = this.GetExperimentsFromDatabase();
-      this.experimentNavigator.PopulateExperimentTreeView(allExperiments);
+      this.experimentView.PopulateExperimentTreeView(allExperiments);
 
-      this.experimentNavigator.FocusExperimentTreeView();
+      this.experimentView.FocusExperimentTreeView();
     }
 
     private IEnumerable<Experiment> GetExperimentsFromDatabase()
@@ -61,7 +57,7 @@ namespace Fuzziverse.Experiments
     {
       long experimentId;
       if (!long.TryParse(treeViewEventArgs.Node.Name, out experimentId)) {
-      this.experimentNavigator.DisablePlayStopButtons();
+      this.experimentView.DisablePlayStopButtons();
         return;
       }
 
@@ -69,8 +65,8 @@ namespace Fuzziverse.Experiments
       using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
         daysToPhases = sqlConnection.GetExperimentPhases(experimentId);
       }
-      this.experimentNavigator.PopulatePhasesTreeView(daysToPhases);
-      this.experimentNavigator.EnablePlayStopButtons();
+      this.experimentView.PopulatePhasesTreeView(daysToPhases);
+      this.experimentView.EnablePlayStopButtons();
     }
 
     private void OnNewSimulationButtonClicked(object sender, EventArgs eventArgs)
@@ -94,14 +90,14 @@ namespace Fuzziverse.Experiments
     private void EnableOrDisableComponents()
     {
       if (this.databaseConnector.DatabaseHasBeenPinged) {
-        this.experimentNavigator.EnableExperimentTreeView();
-        this.experimentNavigator.EnableNewExperimentButton();
+        this.experimentView.EnableExperimentTreeView();
+        this.experimentView.EnableNewExperimentButton();
       } else {
-        this.experimentNavigator.DisableExperimentTreeView();
-        this.experimentNavigator.DisableNewExperimentButton();
+        this.experimentView.DisableExperimentTreeView();
+        this.experimentView.DisableNewExperimentButton();
       }
 
-      this.experimentNavigator.DisablePlayStopButtons();
+      this.experimentView.DisablePlayStopButtons();
     }
   }
 }

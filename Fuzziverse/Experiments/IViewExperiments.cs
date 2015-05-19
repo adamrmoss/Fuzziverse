@@ -32,5 +32,6 @@ namespace Fuzziverse.Experiments
     void EnablePlayStopButtons();
     void AddPlayRadioButtonClickedHandler(EventHandler handler);
     void AddStopRadioButtonClickedHandler(EventHandler handler);
+    void ClickStopRadioButton();
   }
 }

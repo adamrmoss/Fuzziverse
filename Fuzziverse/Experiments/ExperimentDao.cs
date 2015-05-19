@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Fuzziverse.Experiments
     private const string createExperimentCommand = "EXEC dbo.CreateExperiment";
     private const string getExperimentDaysQuery = "SELECT * FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC";
     private const string getExperimentStatusQuery = "SELECT * FROM dbo.GetExperimentStatus(@ExperimentId)";
-    private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @RandomSeed, @SunX, @SunY, @SunRadius";
+    private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @Phase, @RandomSeed, @SunX, @SunY, @SunRadius";
 
     public static Experiment CreateExperiment(this SqlConnection sqlConnection)
     {

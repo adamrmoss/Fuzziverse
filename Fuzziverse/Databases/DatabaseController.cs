@@ -9,17 +9,17 @@ namespace Fuzziverse.Databases
 {
   public class DatabaseController
   {
-    private readonly IViewDatabases databaseSettingsEditor;
+    private readonly IViewDatabases databaseView;
     private readonly DatabaseConnector databaseConnector;
 
     private bool disableChangesToConnection;
 
-    public DatabaseController(IViewDatabases databaseSettingsEditor, DatabaseConnector databaseConnector)
+    public DatabaseController(IViewDatabases databaseView, DatabaseConnector databaseConnector)
     {
-      Claws.NotNull(() => databaseSettingsEditor);
+      Claws.NotNull(() => databaseView);
       Claws.NotNull(() => databaseConnector);
 
-      this.databaseSettingsEditor = databaseSettingsEditor;
+      this.databaseView = databaseView;
       this.databaseConnector = databaseConnector;
     }
 
@@ -27,7 +27,7 @@ namespace Fuzziverse.Databases
     {
       this.SubscribeToUserInput();
       this.LoadSettings();
-      var autoconnect = this.databaseSettingsEditor.GetAutoconnectCheckBoxValue();
+      var autoconnect = this.databaseView.GetAutoconnectCheckBoxValue();
       if (autoconnect) {
         this.PingDatabase();
       }
@@ -35,22 +35,22 @@ namespace Fuzziverse.Databases
 
     private void SubscribeToUserInput()
     {
-      this.databaseSettingsEditor.AddSqlInstanceTextBoxChangedHandler(this.OnSqlInstanceTextBoxValueChanged);
-      this.databaseSettingsEditor.AddSaveSqlInstanceClickedHandler(this.OnSaveSqlInstanceButtonClicked);
-      this.databaseSettingsEditor.AddConnectSqlClickedHandler(this.OnConnectSqlButtonClicked);
-      this.databaseSettingsEditor.AddAutoconnectCheckBoxCheckedChangedHandler(this.OnAutoconnectCheckBoxCheckedChanged);
+      this.databaseView.AddSqlInstanceTextBoxChangedHandler(this.OnSqlInstanceTextBoxValueChanged);
+      this.databaseView.AddSaveSqlInstanceClickedHandler(this.OnSaveSqlInstanceButtonClicked);
+      this.databaseView.AddConnectSqlClickedHandler(this.OnConnectSqlButtonClicked);
+      this.databaseView.AddAutoconnectCheckBoxCheckedChangedHandler(this.OnAutoconnectCheckBoxCheckedChanged);
     }
 
     private void LoadSettings()
     {
-      this.databaseSettingsEditor.SetSqlInstanceTextBoxValue(Settings.Default.SqlInstance);
+      this.databaseView.SetSqlInstanceTextBoxValue(Settings.Default.SqlInstance);
       if (!string.IsNullOrEmpty(Settings.Default.SqlInstance))
         this.databaseConnector.SqlInstance = Settings.Default.SqlInstance;
 
       if (Settings.Default.Autoconnect) {
-        this.databaseSettingsEditor.SetAutoconnectCheckBox();
+        this.databaseView.SetAutoconnectCheckBox();
       } else {
-        this.databaseSettingsEditor.ClearAutoconnectCheckBox();
+        this.databaseView.ClearAutoconnectCheckBox();
       }
     }
 
@@ -61,14 +61,14 @@ namespace Fuzziverse.Databases
 
     public void OnSaveSqlInstanceButtonClicked(object sender, EventArgs eventArgs)
     {
-      Settings.Default.SqlInstance = this.databaseSettingsEditor.GetSqlInstanceTextBoxValue();
+      Settings.Default.SqlInstance = this.databaseView.GetSqlInstanceTextBoxValue();
       Settings.Default.Save();
       this.EnableOrDisableComponents();
     }
 
     public void OnConnectSqlButtonClicked(object sender, EventArgs eventArgs)
     {
-      var sqlInstance = this.databaseSettingsEditor.GetSqlInstanceTextBoxValue();
+      var sqlInstance = this.databaseView.GetSqlInstanceTextBoxValue();
       this.databaseConnector.SqlInstance = sqlInstance;
       this.PingDatabase();
     }
@@ -89,29 +89,29 @@ namespace Fuzziverse.Databases
 
     public void OnAutoconnectCheckBoxCheckedChanged(object sender, EventArgs eventArgs)
     {
-      Settings.Default.Autoconnect = this.databaseSettingsEditor.GetAutoconnectCheckBoxValue();
+      Settings.Default.Autoconnect = this.databaseView.GetAutoconnectCheckBoxValue();
       Settings.Default.Save();
     }
 
     private void EnableOrDisableComponents()
     {
       if (this.disableChangesToConnection) {
-        this.databaseSettingsEditor.DisableSqlInstanceTextBox();
-        this.databaseSettingsEditor.DisableConnectSqlButton();
+        this.databaseView.DisableSqlInstanceTextBox();
+        this.databaseView.DisableConnectSqlButton();
         return;
       }
 
-      this.databaseSettingsEditor.EnableSqlInstanceTextBox();
-      if (this.databaseSettingsEditor.GetSqlInstanceTextBoxValue() != Settings.Default.SqlInstance) {
-        this.databaseSettingsEditor.EnableSaveSqlInstanceButton();
+      this.databaseView.EnableSqlInstanceTextBox();
+      if (this.databaseView.GetSqlInstanceTextBoxValue() != Settings.Default.SqlInstance) {
+        this.databaseView.EnableSaveSqlInstanceButton();
       } else {
-        this.databaseSettingsEditor.DisableSaveSqlInstanceButton();
+        this.databaseView.DisableSaveSqlInstanceButton();
       }
 
-      if (this.databaseSettingsEditor.GetSqlInstanceTextBoxValue() != "") {
-        this.databaseSettingsEditor.EnableConnectSqlButton();
+      if (this.databaseView.GetSqlInstanceTextBoxValue() != "") {
+        this.databaseView.EnableConnectSqlButton();
       } else {
-        this.databaseSettingsEditor.DisableConnectSqlButton();
+        this.databaseView.DisableConnectSqlButton();
       }
     }
   }

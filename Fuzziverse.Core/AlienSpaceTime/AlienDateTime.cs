@@ -1,4 +1,6 @@
-﻿namespace Fuzziverse.Core.AlienSpaceTime
+﻿using System;
+
+namespace Fuzziverse.Core.AlienSpaceTime
 {
   public struct AlienDateTime
   {
@@ -42,5 +44,7 @@
     {
       return new AlienTimeSpan(alienDateTime1.TotalTurns - alienDateTime2.TotalTurns);
     }
+
+    public override string ToString() => "{0}:{1}:{2}".FormatWith(this.Day, this.Phase, this.Turn);
   }
 }
