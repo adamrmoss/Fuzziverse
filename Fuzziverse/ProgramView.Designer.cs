@@ -28,19 +28,19 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProgramView));
       this.tabControl = new System.Windows.Forms.TabControl();
       this.serverTabPage = new System.Windows.Forms.TabPage();
-      this.phaseTabPage = new System.Windows.Forms.TabPage();
+      this.phaseVisualizationTabPage = new System.Windows.Forms.TabPage();
       this.experimentView = new Fuzziverse.Experiments.ExperimentView();
       this.databaseView = new Fuzziverse.Databases.DatabaseView();
       this.phaseVisualizationView = new Fuzziverse.PhaseVisualization.PhaseVisualizationView();
       this.tabControl.SuspendLayout();
       this.serverTabPage.SuspendLayout();
-      this.phaseTabPage.SuspendLayout();
+      this.phaseVisualizationTabPage.SuspendLayout();
       this.SuspendLayout();
       // 
       // tabControl
       // 
       this.tabControl.Controls.Add(this.serverTabPage);
-      this.tabControl.Controls.Add(this.phaseTabPage);
+      this.tabControl.Controls.Add(this.phaseVisualizationTabPage);
       this.tabControl.Location = new System.Drawing.Point(12, 12);
       this.tabControl.Name = "tabControl";
       this.tabControl.SelectedIndex = 0;
@@ -59,16 +59,16 @@
       this.serverTabPage.Text = "Server";
       this.serverTabPage.UseVisualStyleBackColor = true;
       // 
-      // phaseTabPage
+      // phaseVisualizationTabPage
       // 
-      this.phaseTabPage.Controls.Add(this.phaseVisualizationView);
-      this.phaseTabPage.Location = new System.Drawing.Point(4, 22);
-      this.phaseTabPage.Name = "phaseTabPage";
-      this.phaseTabPage.Padding = new System.Windows.Forms.Padding(3);
-      this.phaseTabPage.Size = new System.Drawing.Size(1060, 610);
-      this.phaseTabPage.TabIndex = 1;
-      this.phaseTabPage.Text = "Phase Visualization";
-      this.phaseTabPage.UseVisualStyleBackColor = true;
+      this.phaseVisualizationTabPage.Controls.Add(this.phaseVisualizationView);
+      this.phaseVisualizationTabPage.Location = new System.Drawing.Point(4, 22);
+      this.phaseVisualizationTabPage.Name = "phaseVisualizationTabPage";
+      this.phaseVisualizationTabPage.Padding = new System.Windows.Forms.Padding(3);
+      this.phaseVisualizationTabPage.Size = new System.Drawing.Size(1060, 610);
+      this.phaseVisualizationTabPage.TabIndex = 1;
+      this.phaseVisualizationTabPage.Text = "Phase Visualization";
+      this.phaseVisualizationTabPage.UseVisualStyleBackColor = true;
       // 
       // experimentView
       // 
@@ -102,7 +102,7 @@
       this.Text = "Fuzziverse";
       this.tabControl.ResumeLayout(false);
       this.serverTabPage.ResumeLayout(false);
-      this.phaseTabPage.ResumeLayout(false);
+      this.phaseVisualizationTabPage.ResumeLayout(false);
       this.ResumeLayout(false);
 
     }
@@ -111,7 +111,7 @@
 
     private System.Windows.Forms.TabControl tabControl;
     private System.Windows.Forms.TabPage serverTabPage;
-    private System.Windows.Forms.TabPage phaseTabPage;
+    private System.Windows.Forms.TabPage phaseVisualizationTabPage;
     private Databases.DatabaseView databaseView;
     private Experiments.ExperimentView experimentView;
     private PhaseVisualization.PhaseVisualizationView phaseVisualizationView;

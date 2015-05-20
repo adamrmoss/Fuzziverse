@@ -22,6 +22,7 @@ namespace Fuzziverse.Experiments
     private long? selectedExperimentId;
 
     public bool SimulationIsRunning { get; private set; }
+    public event Action<long, int> PhaseSelected;
 
     public ExperimentController(IViewExperiments experimentView, DatabaseConnector databaseConnector, ISimulateExperiments experimentSimulator)
     {
@@ -112,7 +113,11 @@ namespace Fuzziverse.Experiments
 
     public void OnPhaseSelectionChanged(object sender, TreeViewEventArgs treeViewEventArgs)
     {
+      int selectedPhase;
+      if (this.selectedExperimentId == null || !int.TryParse(treeViewEventArgs.Node.Name, out selectedPhase))
+        return;
 
+      this.PhaseSelected?.Invoke(this.selectedExperimentId.Value, selectedPhase);
     }
 
     private void EnableOrDisableComponents()

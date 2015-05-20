@@ -37,15 +37,10 @@ namespace Fuzziverse
       this.phaseVisualizationController = phaseVisualizationController;
     }
 
-    public void StartApplication()
-    {
-      this.Initialize();
-      Application.Run(this.programView);
-    }
-
     public void Initialize()
     {
       this.databaseConnector.DatabasePinged += this.OnDatabasePing;
+      this.experimentController.PhaseSelected += this.OnPhaseSelected;
 
       this.databaseController.Initialize();
       this.experimentController.Initialize();
@@ -57,6 +52,11 @@ namespace Fuzziverse
       this.experimentController.LoadExperiments();
     }
 
+    private void OnPhaseSelected(long experimentId, int phase)
+    {
+      this.programView.SelectPhaseVisualizationTab();
+    }
+
     [STAThread]
     internal static void Main()
     {
@@ -64,8 +64,9 @@ namespace Fuzziverse
 
       var container = new Container(cfg => cfg.AddRegistry<ProgramRegistry>());
       var programController = container.GetInstance<ProgramController>();
+      programController.Initialize();
 
-      programController.StartApplication();
+      Application.Run(programController.programView);
     }
 
     private static void InitializeWinForms()

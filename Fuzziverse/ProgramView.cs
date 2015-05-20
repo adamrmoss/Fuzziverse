@@ -16,5 +16,10 @@ namespace Fuzziverse
     public DatabaseView DatabaseView => this.databaseView;
     public ExperimentView ExperimentView => this.experimentView;
     public PhaseVisualizationView PhaseVisualizationView => this.phaseVisualizationView;
+
+    public void SelectPhaseVisualizationTab()
+    {
+      this.tabControl.SelectTab("phaseVisualizationTabPage");
+    }
   }
 }
