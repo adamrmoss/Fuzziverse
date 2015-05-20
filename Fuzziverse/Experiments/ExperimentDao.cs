@@ -14,7 +14,7 @@ namespace Fuzziverse.Experiments
   {
     private const string getAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
     private const string createExperimentCommand = "EXEC dbo.CreateExperiment";
-    private const string getExperimentDaysQuery = "SELECT * FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC";
+    private const string getExperimentPhasesQuery = "SELECT * FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC, Phase DESC";
     private const string getExperimentStatusQuery = "SELECT * FROM dbo.GetExperimentStatus(@ExperimentId)";
     private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @Phase, @RandomSeed, @SunX, @SunY";
 
@@ -42,7 +42,7 @@ namespace Fuzziverse.Experiments
 
     public static Dictionary<int, List<int>> GetExperimentPhases(this SqlConnection sqlConnection, long experimentId)
     {
-      var sqlCommand = new SqlCommand(getExperimentDaysQuery, sqlConnection);
+      var sqlCommand = new SqlCommand(getExperimentPhasesQuery, sqlConnection);
       var sqlParameter = sqlCommand.Parameters.Add("@ExperimentId", SqlDbType.BigInt);
       sqlParameter.SqlValue = experimentId;
 

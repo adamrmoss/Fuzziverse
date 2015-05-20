@@ -30,7 +30,6 @@ namespace Fuzziverse.Simulations
 
         var newExperimentTurn = BuildNextExperimentTurn(experimentStatus);
         sqlConnection.SaveExperimentTurn(newExperimentTurn);
-        sqlConnection.Close();
       }
     }
 

@@ -36,7 +36,7 @@ namespace Fuzziverse.Experiments
 
     public void Initialize()
     {
-      this.experimentView.AddExperimentSelectionChangedHandler(this.OnTreeViewSelectedChanged);
+      this.experimentView.AddExperimentSelectionChangedHandler(this.OnExperimentSelectionChanged);
       this.experimentView.AddNewExperimentButtonClickedHandler(this.OnNewSimulationButtonClicked);
       this.experimentView.AddPlayRadioButtonClickedHandler(this.OnPlayRadioButtonClicked);
       this.experimentView.AddStopRadioButtonClickedHandler(this.OnStopRadioButtonClicked);
@@ -50,7 +50,6 @@ namespace Fuzziverse.Experiments
 
       var allExperiments = this.GetExperimentsFromDatabase();
       this.experimentView.PopulateExperimentTreeView(allExperiments);
-
       this.experimentView.FocusExperimentTreeView();
     }
 
@@ -61,8 +60,10 @@ namespace Fuzziverse.Experiments
       }
     }
 
-    private void OnTreeViewSelectedChanged(object sender, TreeViewEventArgs treeViewEventArgs)
+    private void OnExperimentSelectionChanged(object sender, TreeViewEventArgs treeViewEventArgs)
     {
+      this.experimentView.ClickStopRadioButton();
+
       long selectedExperimentId;
       if (!long.TryParse(treeViewEventArgs.Node.Name, out selectedExperimentId)) {
         this.selectedExperimentId = null;

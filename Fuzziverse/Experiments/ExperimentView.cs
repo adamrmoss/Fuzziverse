@@ -45,7 +45,6 @@ namespace Fuzziverse.Experiments
           var experimentNode = dateNode.Nodes.Add(key, "Experiment #{0}".FormatWith(key));
         }
       }
-
       this.experimentsTreeView.EndUpdate();
 
       if (this.experimentsTreeView.Nodes.Count > 0) {
