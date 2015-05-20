@@ -56,7 +56,7 @@ namespace Fuzziverse.Experiments
       return new ExperimentPhase {
         ExperimentId = experimentId,
         Day = reader.GetInt32(0),
-        PhaseOfTheDay = reader.GetInt32(1),
+        PhaseOfDay = reader.GetInt32(1),
         Phase = reader.GetInt32(2),
       };
     }

@@ -96,7 +96,7 @@ namespace Fuzziverse.Experiments
         var dayNode = this.phasesTreeView.Nodes.Add("Day #{0}".FormatWith(kvp.Key));
 
         foreach (var phase in kvp.Value) {
-          var phaseNode = dayNode.Nodes.Add(phase.Phase.ToString(), "Phase #{0}".FormatWith(phase.PhaseOfTheDay));
+          var phaseNode = dayNode.Nodes.Add(phase.Phase.ToString(), "Phase #{0}".FormatWith(phase.PhaseOfDay));
         }
       }
 
