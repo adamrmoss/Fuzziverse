@@ -29,13 +29,12 @@
       this.tabControl = new System.Windows.Forms.TabControl();
       this.serverTabPage = new System.Windows.Forms.TabPage();
       this.phaseTabPage = new System.Windows.Forms.TabPage();
-      this.visualizationPictureBox = new System.Windows.Forms.PictureBox();
       this.experimentView = new Fuzziverse.Experiments.ExperimentView();
       this.databaseView = new Fuzziverse.Databases.DatabaseView();
+      this.phaseVisualizationView = new Fuzziverse.PhaseVisualization.PhaseVisualizationView();
       this.tabControl.SuspendLayout();
       this.serverTabPage.SuspendLayout();
       this.phaseTabPage.SuspendLayout();
-      ((System.ComponentModel.ISupportInitialize)(this.visualizationPictureBox)).BeginInit();
       this.SuspendLayout();
       // 
       // tabControl
@@ -62,23 +61,14 @@
       // 
       // phaseTabPage
       // 
-      this.phaseTabPage.Controls.Add(this.visualizationPictureBox);
+      this.phaseTabPage.Controls.Add(this.phaseVisualizationView);
       this.phaseTabPage.Location = new System.Drawing.Point(4, 22);
       this.phaseTabPage.Name = "phaseTabPage";
       this.phaseTabPage.Padding = new System.Windows.Forms.Padding(3);
       this.phaseTabPage.Size = new System.Drawing.Size(1060, 610);
       this.phaseTabPage.TabIndex = 1;
-      this.phaseTabPage.Text = "Phase";
+      this.phaseTabPage.Text = "Phase Visualization";
       this.phaseTabPage.UseVisualStyleBackColor = true;
-      // 
-      // visualizationPictureBox
-      // 
-      this.visualizationPictureBox.BackColor = System.Drawing.Color.DarkGray;
-      this.visualizationPictureBox.Location = new System.Drawing.Point(16, 16);
-      this.visualizationPictureBox.Name = "visualizationPictureBox";
-      this.visualizationPictureBox.Size = new System.Drawing.Size(1024, 576);
-      this.visualizationPictureBox.TabIndex = 0;
-      this.visualizationPictureBox.TabStop = false;
       // 
       // experimentView
       // 
@@ -94,6 +84,13 @@
       this.databaseView.Size = new System.Drawing.Size(1048, 68);
       this.databaseView.TabIndex = 0;
       // 
+      // phaseVisualizationView
+      // 
+      this.phaseVisualizationView.Location = new System.Drawing.Point(8, 8);
+      this.phaseVisualizationView.Name = "phaseVisualizationView";
+      this.phaseVisualizationView.Size = new System.Drawing.Size(1040, 593);
+      this.phaseVisualizationView.TabIndex = 0;
+      // 
       // ProgramView
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -106,7 +103,6 @@
       this.tabControl.ResumeLayout(false);
       this.serverTabPage.ResumeLayout(false);
       this.phaseTabPage.ResumeLayout(false);
-      ((System.ComponentModel.ISupportInitialize)(this.visualizationPictureBox)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -116,9 +112,9 @@
     private System.Windows.Forms.TabControl tabControl;
     private System.Windows.Forms.TabPage serverTabPage;
     private System.Windows.Forms.TabPage phaseTabPage;
-    private System.Windows.Forms.PictureBox visualizationPictureBox;
     private Databases.DatabaseView databaseView;
     private Experiments.ExperimentView experimentView;
+    private PhaseVisualization.PhaseVisualizationView phaseVisualizationView;
   }
 }
 

@@ -31,6 +31,9 @@ namespace Fuzziverse
 
       this.For<IViewExperiments>()
           .Use(ctx => ctx.GetInstance<ProgramView>().ExperimentView);
+
+      this.For<IViewPhaseVisualizations>()
+          .Use(ctx => ctx.GetInstance<ProgramView>().PhaseVisualizationView);
     }
 
     private void ConfigureControllers()

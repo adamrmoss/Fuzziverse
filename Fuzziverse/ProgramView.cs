@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Fuzziverse.Databases;
 using Fuzziverse.Experiments;
+using Fuzziverse.PhaseVisualization;
 
 namespace Fuzziverse
 {
@@ -14,5 +15,6 @@ namespace Fuzziverse
 
     public DatabaseView DatabaseView => this.databaseView;
     public ExperimentView ExperimentView => this.experimentView;
+    public PhaseVisualizationView PhaseVisualizationView => this.phaseVisualizationView;
   }
 }
