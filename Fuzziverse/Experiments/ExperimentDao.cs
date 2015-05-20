@@ -16,7 +16,7 @@ namespace Fuzziverse.Experiments
     private const string createExperimentCommand = "EXEC dbo.CreateExperiment";
     private const string getExperimentDaysQuery = "SELECT * FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC";
     private const string getExperimentStatusQuery = "SELECT * FROM dbo.GetExperimentStatus(@ExperimentId)";
-    private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @Phase, @RandomSeed, @SunX, @SunY, @SunRadius";
+    private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @Phase, @RandomSeed, @SunX, @SunY";
 
     public static Experiment CreateExperiment(this SqlConnection sqlConnection)
     {
@@ -68,7 +68,6 @@ namespace Fuzziverse.Experiments
         LatestSimulationTime = reader.IsDBNull(1) ? (AlienDateTime?) null : new AlienDateTime(reader.GetInt32(1)),
         LatestRandomSeed = reader.GetNullableInt32(2),
         LatestSunPosition = reader.IsDBNull(1) ? (AlienSpaceVector?) null : new AlienSpaceVector(reader.GetInt32(3), reader.GetInt32(4)),
-        LatestSunRadius = reader.GetNullableInt32(5),
       };
     }
 
@@ -89,10 +88,8 @@ namespace Fuzziverse.Experiments
       sunXParameter.SqlValue = experimentTurn.SunPosition.X;
       var sunYParameter = sqlCommand.Parameters.Add("@SunY", SqlDbType.Int);
       sunYParameter.SqlValue = experimentTurn.SunPosition.Y;
-      var sunRadiusParameter = sqlCommand.Parameters.Add("@SunRadius", SqlDbType.Int);
-      sunRadiusParameter.SqlValue = experimentTurn.SunRadius;
 
-      experimentTurn.Id = sqlCommand.ReadResults(reader => reader.GetInt64(0)).ToArray().Single();
+      experimentTurn.Id = sqlCommand.ReadResults(reader => reader.GetInt64(0)).Single();
     }
   }
 }

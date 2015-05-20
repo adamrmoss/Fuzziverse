@@ -14,6 +14,5 @@ namespace Fuzziverse.Core.Experiments
     public AlienDateTime? LatestSimulationTime { get; set; }
     public int? LatestRandomSeed { get; set; }
     public AlienSpaceVector? LatestSunPosition { get; set; }
-    public int? LatestSunRadius { get; set; }
   }
 }

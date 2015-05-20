@@ -45,14 +45,11 @@ namespace Fuzziverse.Simulations
                              new AlienSpaceVector(32, 18) :
                              experimentStatus.LatestSunPosition.Value + new AlienSpaceVector(1, moveUp ? -1 : 0)).ToNonNegativeCoordinates();
 
-      var newSunRadius = experimentStatus.LatestSunRadius ?? 4;
-
       var newExperimentTurn = new ExperimentTurn {
         ExperimentId = experimentStatus.ExperimentId,
         SimulationTime = newSimulationTime,
         RandomSeed = random.Next(),
         SunPosition = newSunPosition,
-        SunRadius = newSunRadius,
       };
       return newExperimentTurn;
     }

@@ -7,7 +7,6 @@
   RandomSeed  INT NOT NULL,
   SunX INT NOT NULL,
   SunY INT NOT NULL,
-  SunRadius INT NOT NULL,
 
   CONSTRAINT UN_ExperimentTurn_ExperimentId_SimulationTime UNIQUE NONCLUSTERED (
     ExperimentId ASC,
