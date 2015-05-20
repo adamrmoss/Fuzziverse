@@ -40,6 +40,7 @@ namespace Fuzziverse.Experiments
       this.experimentView.AddNewExperimentButtonClickedHandler(this.OnNewSimulationButtonClicked);
       this.experimentView.AddPlayRadioButtonClickedHandler(this.OnPlayRadioButtonClicked);
       this.experimentView.AddStopRadioButtonClickedHandler(this.OnStopRadioButtonClicked);
+      this.experimentView.AddPhaseSelectionChangedHandler(this.OnPhaseSelectionChanged);
 
       this.EnableOrDisableComponents();
     }
@@ -72,7 +73,7 @@ namespace Fuzziverse.Experiments
       }
 
       this.selectedExperimentId = selectedExperimentId;
-      Dictionary<int, List<int>> daysToPhases;
+      Dictionary<int, List<ExperimentPhase>> daysToPhases;
       using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
         daysToPhases = sqlConnection.GetExperimentPhases(this.selectedExperimentId.Value);
       }
@@ -107,6 +108,11 @@ namespace Fuzziverse.Experiments
 
         this.experimentSimulator.SimulateSingleTurn(this.selectedExperimentId.Value);
       }
+    }
+
+    public void OnPhaseSelectionChanged(object sender, TreeViewEventArgs treeViewEventArgs)
+    {
+
     }
 
     private void EnableOrDisableComponents()

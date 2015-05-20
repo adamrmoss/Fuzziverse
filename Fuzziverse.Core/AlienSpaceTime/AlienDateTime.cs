@@ -10,7 +10,8 @@ namespace Fuzziverse.Core.AlienSpaceTime
     public int TotalTurns { get; set; }
 
     public int Turn => this.TotalTurns % TurnsPerPhase;
-    public int Phase => (this.TotalTurns / TurnsPerPhase) % PhasesPerDay;
+    public int Phase => this.TotalTurns / TurnsPerPhase;
+    public int PhaseOfDay => (this.TotalTurns / TurnsPerPhase) % PhasesPerDay;
     public int Day => (this.TotalTurns / TurnsPerPhase / PhasesPerDay);
 
     public AlienDateTime(int day, int phase, int turn)
@@ -45,6 +46,6 @@ namespace Fuzziverse.Core.AlienSpaceTime
       return new AlienTimeSpan(alienDateTime1.TotalTurns - alienDateTime2.TotalTurns);
     }
 
-    public override string ToString() => "{0}:{1}:{2}".FormatWith(this.Day, this.Phase, this.Turn);
+    public override string ToString() => "{0}:{1}:{2}".FormatWith(this.Day, this.PhaseOfDay, this.Turn);
   }
 }

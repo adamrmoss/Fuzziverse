@@ -14,9 +14,9 @@ namespace Fuzziverse.Experiments
   {
     private const string getAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
     private const string createExperimentCommand = "EXEC dbo.CreateExperiment";
-    private const string getExperimentPhasesQuery = "SELECT * FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC, Phase DESC";
+    private const string getExperimentPhasesQuery = "SELECT * FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC, PhaseOfDay DESC, Phase DESC";
     private const string getExperimentStatusQuery = "SELECT * FROM dbo.GetExperimentStatus(@ExperimentId)";
-    private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @Phase, @RandomSeed, @SunX, @SunY";
+    private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @PhaseOfDay, @Phase, @RandomSeed, @SunX, @SunY";
 
     public static Experiment CreateExperiment(this SqlConnection sqlConnection)
     {
@@ -40,15 +40,25 @@ namespace Fuzziverse.Experiments
       };
     }
 
-    public static Dictionary<int, List<int>> GetExperimentPhases(this SqlConnection sqlConnection, long experimentId)
+    public static Dictionary<int, List<ExperimentPhase>> GetExperimentPhases(this SqlConnection sqlConnection, long experimentId)
     {
       var sqlCommand = new SqlCommand(getExperimentPhasesQuery, sqlConnection);
       var sqlParameter = sqlCommand.Parameters.Add("@ExperimentId", SqlDbType.BigInt);
       sqlParameter.SqlValue = experimentId;
 
-      var results = sqlCommand.ReadResults(reader => new { Day = reader.GetInt32(0), Phase = reader.GetInt32(1)});
+      var results = sqlCommand.ReadResults(reader => ReadExperimentPhase(reader, experimentId));
       return results.GroupBy(result => result.Day)
-        .ToDictionary(g => g.Key, g => g.Select(result => result.Phase).ToList());
+        .ToDictionary(g => g.Key, g => g.ToList());
+    }
+
+    private static ExperimentPhase ReadExperimentPhase(SqlDataReader reader, long experimentId)
+    {
+      return new ExperimentPhase {
+        ExperimentId = experimentId,
+        Day = reader.GetInt32(0),
+        PhaseOfTheDay = reader.GetInt32(1),
+        Phase = reader.GetInt32(2),
+      };
     }
 
     public static ExperimentStatus GetExperimentStatus(this SqlConnection sqlConnection, long experimentId)
@@ -80,6 +90,8 @@ namespace Fuzziverse.Experiments
       simulationTimeParameter.SqlValue = experimentTurn.SimulationTime.TotalTurns;
       var dayParameter = sqlCommand.Parameters.Add("@Day", SqlDbType.Int);
       dayParameter.SqlValue = experimentTurn.SimulationTime.Day;
+      var phaseOfDayParameter = sqlCommand.Parameters.Add("@PhaseOfDay", SqlDbType.Int);
+      phaseOfDayParameter.SqlValue = experimentTurn.SimulationTime.PhaseOfDay;
       var phaseParameter = sqlCommand.Parameters.Add("@Phase", SqlDbType.Int);
       phaseParameter.SqlValue = experimentTurn.SimulationTime.Phase;
       var randomSeedParameter = sqlCommand.Parameters.Add("@RandomSeed", SqlDbType.Int);

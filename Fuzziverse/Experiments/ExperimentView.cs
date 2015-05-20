@@ -87,17 +87,16 @@ namespace Fuzziverse.Experiments
       this.phasesTreeView.Focus();
     }
 
-    public void PopulatePhasesTreeView(Dictionary<int, List<int>> daysToPhases)
+    public void PopulatePhasesTreeView(Dictionary<int, List<ExperimentPhase>> daysToPhases)
     {
       this.phasesTreeView.BeginUpdate();
       this.phasesTreeView.Nodes.Clear();
 
       foreach (var kvp in daysToPhases.OrderByDescending(kvp => kvp.Key)) {
-        var day = kvp.Key.ToString(CultureInfo.InvariantCulture);
-        var dayNode = this.phasesTreeView.Nodes.Add(day, "Day #{0}".FormatWith(day));
+        var dayNode = this.phasesTreeView.Nodes.Add("Day #{0}".FormatWith(kvp.Key));
 
-        foreach (var phase in kvp.Value.Select(phase => phase.ToString(CultureInfo.InvariantCulture))) {
-          var phaseNode = dayNode.Nodes.Add(phase, "Phase #{0}".FormatWith(phase));
+        foreach (var phase in kvp.Value) {
+          var phaseNode = dayNode.Nodes.Add(phase.Phase.ToString(), "Phase #{0}".FormatWith(phase.PhaseOfTheDay));
         }
       }
 

@@ -3,6 +3,7 @@
   ExperimentId BIGINT NOT NULL,
   SimulationTime INT NOT NULL,
   [Day] INT NOT NULL,
+  PhaseOfDay INT NOT NULL,
   Phase INT NOT NULL,
   RandomSeed  INT NOT NULL,
   SunX INT NOT NULL,

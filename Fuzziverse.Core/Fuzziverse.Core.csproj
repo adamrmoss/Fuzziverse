@@ -65,6 +65,7 @@
     <Compile Include="AlienSpaceTime\AlienDateTime.cs" />
     <Compile Include="AlienSpaceTime\AlienSpaceVector.cs" />
     <Compile Include="AlienSpaceTime\AlienTimeSpan.cs" />
+    <Compile Include="Experiments\ExperimentPhase.cs" />
     <Compile Include="Experiments\ExperimentStatus.cs" />
     <Compile Include="Framework\DateTimeExtensions.cs" />
     <Compile Include="Experiments\Experiment.cs" />

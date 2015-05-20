@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Fuzziverse.Core;
 using Fuzziverse.Core.Experiments;
 
 namespace Fuzziverse.Experiments
@@ -24,7 +20,7 @@ namespace Fuzziverse.Experiments
     void DisablePhasesTreeView();
     void EnablePhasesTreeView();
     void FocusPhasesTreeView();
-    void PopulatePhasesTreeView(Dictionary<int, List<int>> daysToPhases);
+    void PopulatePhasesTreeView(Dictionary<int, List<ExperimentPhase>> daysToPhases);
     void AddPhaseSelectionChangedHandler(TreeViewEventHandler handler);
 
     void DisablePlayStopButtons();
