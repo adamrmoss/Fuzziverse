@@ -73,5 +73,6 @@
     <Build Include="GetExperimentStatus.sql" />
     <Build Include="CreateExperimentTurn.sql" />
     <Build Include="GetAllExperiments.sql" />
+    <Build Include="GetExperimentPhaseTurns.sql" />
   </ItemGroup>
 </Project>

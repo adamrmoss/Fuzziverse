@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using Fuzziverse.Core.AlienSpaceTime;
 using Fuzziverse.Core.Experiments;
 using Fuzziverse.Databases;
@@ -17,6 +15,7 @@ namespace Fuzziverse.Experiments
     private const string getExperimentPhasesQuery = "EXEC dbo.GetExperimentPhases @ExperimentId";
     private const string getExperimentStatusQuery = "EXEC dbo.GetExperimentStatus @ExperimentId";
     private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @PhaseOfDay, @Phase, @RandomSeed, @SunX, @SunY";
+    private const string getExperimentPhaseTurnsQuery = "EXEC dbo.GetExperimentPhaseTurns @ExperimentId, @Phase";
 
     public static Experiment CreateExperiment(this SqlConnection sqlConnection)
     {
@@ -25,11 +24,11 @@ namespace Fuzziverse.Experiments
       return sqlCommand.ReadResults(ReadExperimentRow).SingleOrDefault();
     }
 
-    public static IEnumerable<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
+    public static IList<Experiment> GetAllExperiments(this SqlConnection sqlConnection)
     {
       var sqlCommand = new SqlCommand(getAllExperimentsQuery, sqlConnection);
 
-      return sqlCommand.ReadResults(ReadExperimentRow);
+      return sqlCommand.ReadResults(ReadExperimentRow).ToArray();
     }
 
     private static Experiment ReadExperimentRow(SqlDataReader reader)
@@ -102,6 +101,23 @@ namespace Fuzziverse.Experiments
       sunYParameter.SqlValue = experimentTurn.SunPosition.Y;
 
       experimentTurn.Id = sqlCommand.ReadResults(reader => reader.GetInt64(0)).Single();
+    }
+
+    public static IList<ExperimentTurn> GetExperimentPhaseTurns(this SqlConnection sqlConnection, long experimentId, int phase)
+    {
+      var sqlCommand = new SqlCommand(getExperimentPhaseTurnsQuery, sqlConnection);
+      var experimentIdParameter = sqlCommand.Parameters.Add("@ExperimentId", SqlDbType.BigInt);
+      experimentIdParameter.SqlValue = experimentId;
+      var phaseParameter = sqlCommand.Parameters.Add("@Phase", SqlDbType.Int);
+      phaseParameter.SqlValue = phase;
+
+      return sqlCommand.ReadResults(reader => new ExperimentTurn {
+        Id = reader.GetInt64(0),
+        ExperimentId = experimentId,
+        SimulationTime = new AlienDateTime(reader.GetInt32(1)),
+        RandomSeed = reader.GetInt32(2),
+        SunPosition = new AlienSpaceVector(reader.GetInt32(3), reader.GetInt32(4)),
+      }).ToArray();
     }
   }
 }

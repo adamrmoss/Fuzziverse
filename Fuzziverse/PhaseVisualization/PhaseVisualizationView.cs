@@ -16,5 +16,15 @@ namespace Fuzziverse.PhaseVisualization
     {
       InitializeComponent();
     }
+
+    public void DisablePictureBox()
+    {
+      this.visualizationPictureBox.Enabled = false;
+    }
+
+    public void SetVisualizationImage(Image image)
+    {
+      this.visualizationPictureBox.Image = image;
+    }
   }
 }
