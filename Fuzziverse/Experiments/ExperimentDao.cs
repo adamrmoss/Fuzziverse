@@ -12,10 +12,10 @@ namespace Fuzziverse.Experiments
 {
   public static class ExperimentDao
   {
-    private const string getAllExperimentsQuery = "SELECT Id, Created FROM dbo.Experiment ORDER BY Created DESC";
+    private const string getAllExperimentsQuery = "EXEC dbo.GetAllExperiments";
     private const string createExperimentCommand = "EXEC dbo.CreateExperiment";
-    private const string getExperimentPhasesQuery = "SELECT * FROM dbo.GetExperimentPhases(@ExperimentId) ORDER BY [Day] DESC, PhaseOfDay DESC, Phase DESC";
-    private const string getExperimentStatusQuery = "SELECT * FROM dbo.GetExperimentStatus(@ExperimentId)";
+    private const string getExperimentPhasesQuery = "EXEC dbo.GetExperimentPhases @ExperimentId";
+    private const string getExperimentStatusQuery = "EXEC dbo.GetExperimentStatus @ExperimentId";
     private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @PhaseOfDay, @Phase, @RandomSeed, @SunX, @SunY";
 
     public static Experiment CreateExperiment(this SqlConnection sqlConnection)

@@ -1,5 +1,6 @@
-﻿CREATE FUNCTION dbo.GetExperimentStatus(@ExperimentId BIGINT)
-  RETURNS @ReturnTable TABLE(LatestExperimentTurnId BIGINT, LatestSimulationTime INT, LatestRandomSeed INT, LatestSunX INT, LatestSunY INT) AS
+﻿CREATE PROCEDURE dbo.GetExperimentStatus
+  @ExperimentId BIGINT
+AS
 BEGIN
   DECLARE @LatestExperimentTurnId BIGINT
   DECLARE @LatestSimulationTime INT
@@ -18,8 +19,8 @@ BEGIN
   FROM dbo.ExperimentTurn AS et
   WHERE et.SimulationTime = @LatestSimulationTime
 
-  INSERT @ReturnTable
-  VALUES(@LatestExperimentTurnId, @LatestSimulationTime, @LatestRandomSeed, @LatestSunX, @LatestSunY)
+  SELECT @LatestExperimentTurnId AS LatestExperimentTurnId, @LatestSimulationTime AS LatestSimulationTime,
+         @LatestRandomSeed AS LatestRandomSeed, @LatestSunX AS LatestSunX, @LatestSunY AS LatestSunY
 
   RETURN
 END
