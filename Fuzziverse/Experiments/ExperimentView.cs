@@ -53,20 +53,6 @@ namespace Fuzziverse.Experiments
       }
     }
 
-    public long? GetSelectedExperimentId()
-    {
-      var selectedNode = this.experimentsTreeView.SelectedNode;
-      if (selectedNode == null)
-        return null;
-
-      long experimentId;
-      if (long.TryParse(selectedNode.Name, out experimentId)) {
-        return experimentId;
-      } else {
-        return null;
-      }
-    }
-
     public void AddExperimentSelectionChangedHandler(TreeViewEventHandler handler)
     {
       this.experimentsTreeView.AfterSelect += handler;

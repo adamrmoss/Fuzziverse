@@ -20,12 +20,7 @@ namespace Fuzziverse.Simulations
       this.databaseConnector = databaseConnector;
     }
 
-    public Task GetTaskToSimulateSingleTurn(long experimentId)
-    {
-      return new Task(() => this.SimulateSingleTurn(experimentId));
-    }
-
-    private void SimulateSingleTurn(long experimentId)
+    public void SimulateSingleTurn(long experimentId)
     {
       if (!this.databaseConnector.DatabaseHasBeenPinged)
         throw new InvalidOperationException("Cannot run simulation without having pinged the database.");
@@ -35,6 +30,7 @@ namespace Fuzziverse.Simulations
 
         var newExperimentTurn = BuildNextExperimentTurn(experimentStatus);
         sqlConnection.SaveExperimentTurn(newExperimentTurn);
+        sqlConnection.Close();
       }
     }
 

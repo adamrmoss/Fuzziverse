@@ -4,6 +4,6 @@ namespace Fuzziverse.Simulations
 {
   public interface ISimulateExperiments
   {
-    Task GetTaskToSimulateSingleTurn(long experimentId);
+    void SimulateSingleTurn(long experimentId);
   }
 }

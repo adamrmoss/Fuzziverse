@@ -92,7 +92,7 @@ namespace Fuzziverse.Experiments
       var sunRadiusParameter = sqlCommand.Parameters.Add("@SunRadius", SqlDbType.Int);
       sunRadiusParameter.SqlValue = experimentTurn.SunRadius;
 
-      experimentTurn.Id = sqlCommand.ReadResults(reader => reader.GetInt64(0)).Single();
+      experimentTurn.Id = sqlCommand.ReadResults(reader => reader.GetInt64(0)).ToArray().Single();
     }
   }
 }

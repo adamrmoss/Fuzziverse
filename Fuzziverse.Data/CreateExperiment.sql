@@ -8,6 +8,7 @@ BEGIN
   VALUES (@Created)
 
   SET @ExperimentId = SCOPE_IDENTITY()
+  SELECT @ExperimentId AS ExperimentId, @Created AS Created
 
-  RETURN SELECT @ExperimentId, @Created
+  RETURN
 END

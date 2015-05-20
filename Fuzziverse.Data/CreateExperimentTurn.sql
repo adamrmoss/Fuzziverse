@@ -15,6 +15,7 @@ BEGIN
   VALUES (@ExperimentId, @SimulationTime, @Day, @Phase, @RandomSeed, @SunX, @SunY, @SunRadius)
 
   SET @ExperimentTurnId = SCOPE_IDENTITY()
+  SELECT @ExperimentTurnId AS ExperimentTurnId
 
-  RETURN SELECT @ExperimentTurnId
+  RETURN
 END

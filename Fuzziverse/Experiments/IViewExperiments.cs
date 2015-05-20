@@ -15,7 +15,6 @@ namespace Fuzziverse.Experiments
     void EnableExperimentTreeView();
     void FocusExperimentTreeView();
     void PopulateExperimentTreeView(IEnumerable<Experiment> experiments);
-    long? GetSelectedExperimentId();
     void AddExperimentSelectionChangedHandler(TreeViewEventHandler handler);
 
     void DisableNewExperimentButton();
