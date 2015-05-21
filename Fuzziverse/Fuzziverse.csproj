@@ -106,6 +106,7 @@
     <Compile Include="Simulations\ExperimentSimulator.cs" />
     <Compile Include="Simulations\ISimulateExperiments.cs" />
     <Compile Include="PhaseVisualization\PhaseVisualizationController.cs" />
+    <Compile Include="Simulations\SimulationDao.cs" />
     <EmbeddedResource Include="Databases\DatabaseView.resx">
       <DependentUpon>DatabaseView.cs</DependentUpon>
     </EmbeddedResource>
