@@ -14,7 +14,7 @@ namespace Fuzziverse.Experiments
     private const string createExperimentCommand = "EXEC dbo.CreateExperiment";
     private const string getExperimentPhasesQuery = "EXEC dbo.GetExperimentPhases @ExperimentId";
     private const string getExperimentStatusQuery = "EXEC dbo.GetExperimentStatus @ExperimentId";
-    private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @PhaseOfDay, @Phase, @RandomSeed, @SunX, @SunY";
+    private const string createExperimentTurnCommand = "EXEC dbo.CreateExperimentTurn @ExperimentId, @SimulationTime, @Day, @PhaseOfDay, @Phase, @RandomSeed, @SunX, @SunY, @ExtraEnergy";
     private const string getExperimentPhaseTurnsQuery = "EXEC dbo.GetExperimentPhaseTurns @ExperimentId, @Phase";
 
     public static Experiment CreateExperiment(this SqlConnection sqlConnection)
@@ -77,6 +77,7 @@ namespace Fuzziverse.Experiments
         LatestSimulationTime = reader.IsDBNull(1) ? (AlienDateTime?) null : new AlienDateTime(reader.GetInt32(1)),
         LatestRandomSeed = reader.GetNullableInt32(2),
         LatestSunPosition = reader.IsDBNull(1) ? (AlienSpaceVector?) null : new AlienSpaceVector(reader.GetInt32(3), reader.GetInt32(4)),
+        LatestExtraEnergy = reader.GetNullableDecimal(5),
       };
     }
 
@@ -99,6 +100,8 @@ namespace Fuzziverse.Experiments
       sunXParameter.SqlValue = experimentTurn.SunPosition.X;
       var sunYParameter = sqlCommand.Parameters.Add("@SunY", SqlDbType.Int);
       sunYParameter.SqlValue = experimentTurn.SunPosition.Y;
+      var extraEnergyParameter = sqlCommand.Parameters.Add("@ExtraEnergy", SqlDbType.Decimal);
+      extraEnergyParameter.SqlValue = experimentTurn.ExtraEnergy;
 
       experimentTurn.Id = sqlCommand.ReadResults(reader => reader.GetInt64(0)).Single();
     }
@@ -117,6 +120,7 @@ namespace Fuzziverse.Experiments
         SimulationTime = new AlienDateTime(reader.GetInt32(1)),
         RandomSeed = reader.GetInt32(2),
         SunPosition = new AlienSpaceVector(reader.GetInt32(3), reader.GetInt32(4)),
+        ExtraEnergy = reader.GetDecimal(5),
       }).ToArray();
     }
   }

@@ -21,6 +21,7 @@ namespace Fuzziverse.PhaseVisualization
     public long? ExperimentId { get; set; }
     public int? PhaseId { get; set; }
 
+    private ExperimentTurn[] experimentTurns;
     private Image[] frames;
 
     public PhaseVisualizationController(DatabaseConnector databaseConnector, IViewPhaseVisualizations phaseVisualizationView)
@@ -43,8 +44,8 @@ namespace Fuzziverse.PhaseVisualization
     {
       if (this.ExperimentId != null && this.PhaseId != null) {
         var sqlConnection = this.databaseConnector.OpenSqlConnection();
-        var experimentTurns = sqlConnection.GetExperimentPhaseTurns(this.ExperimentId.Value, this.PhaseId.Value);
-        this.frames = experimentTurns.Select(RenderTurn).ToArray();
+        this.experimentTurns = sqlConnection.GetExperimentPhaseTurns(this.ExperimentId.Value, this.PhaseId.Value).ToArray();
+        this.frames = this.experimentTurns.Select(RenderTurn).ToArray();
         this.phaseVisualizationView.EnablePictureBox();
         this.phaseVisualizationView.EnableTurnTrackBar();
       } else {

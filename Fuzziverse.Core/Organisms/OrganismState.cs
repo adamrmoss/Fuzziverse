@@ -10,19 +10,5 @@
     public int Y { get; set; }
 
     public decimal Health { get; set; }
-    public decimal Damage { get; set; }
-
-    public decimal Metabolism { get; set; }
-    public decimal Aggressiveness { get; set; }
-
-    public decimal MoveEast { get; set; }
-    public decimal MoveWest { get; set; }
-    public decimal MoveNorth { get; set; }
-    public decimal MoveSouth { get; set; }
-
-    public decimal Variable1 { get; set; }
-    public decimal Variable2 { get; set; }
-    public decimal Variable3 { get; set; }
-    public decimal Variable4 { get; set; }
   }
 }

@@ -18,5 +18,10 @@ namespace System.Data.SqlClient
     {
       return reader.IsDBNull(i) ? (long?) null : reader.GetInt64(i);
     }
+
+    public static decimal? GetNullableDecimal(this SqlDataReader reader, int i)
+    {
+      return reader.IsDBNull(i) ? (decimal?) null : reader.GetDecimal(i);
+    }
   }
 }

@@ -10,5 +10,6 @@ namespace Fuzziverse.Core.Experiments
     public AlienDateTime SimulationTime { get; set; }
     public int RandomSeed { get; set; }
     public AlienSpaceVector SunPosition { get; set; }
+    public decimal ExtraEnergy { get; set; }
   }
 }

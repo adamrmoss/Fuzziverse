@@ -41,14 +41,17 @@ namespace Fuzziverse.Simulations
       var moveUp = random.Next(4) == 0;
 
       var newSunPosition = (experimentStatus.LatestSunPosition == null ?
-                             new AlienSpaceVector(32, 18) :
-                             experimentStatus.LatestSunPosition.Value + new AlienSpaceVector(1, moveUp ? -1 : 0)).ToCoordinates();
+                            new AlienSpaceVector(32, 18) :
+                            experimentStatus.LatestSunPosition.Value + new AlienSpaceVector(1, moveUp ? -1 : 0)).ToCoordinates();
+
+      var newExtraEnergy = experimentStatus.LatestExtraEnergy ?? AlienSpaceVector.WorldWidth * AlienSpaceVector.WorldHeight * Experiment.Richness;
 
       var newExperimentTurn = new ExperimentTurn {
         ExperimentId = experimentStatus.ExperimentId,
         SimulationTime = newSimulationTime,
         RandomSeed = random.Next(),
         SunPosition = newSunPosition,
+        ExtraEnergy = newExtraEnergy,
       };
       return newExperimentTurn;
     }

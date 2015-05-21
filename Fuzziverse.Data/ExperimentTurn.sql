@@ -8,6 +8,7 @@
   RandomSeed  INT NOT NULL,
   SunX INT NOT NULL,
   SunY INT NOT NULL,
+  ExtraEnergy DECIMAL(6, 2) NOT NULL,
 
   CONSTRAINT UN_ExperimentTurn_ExperimentId_SimulationTime UNIQUE NONCLUSTERED (
     ExperimentId ASC,
