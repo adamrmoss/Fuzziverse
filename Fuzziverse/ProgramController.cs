@@ -54,10 +54,12 @@ namespace Fuzziverse
 
     private void OnPhaseSelected(long experimentId, int phase)
     {
-      this.programView.SelectPhaseVisualizationTab();
       this.phaseVisualizationController.ExperimentId = experimentId;
       this.phaseVisualizationController.PhaseId = phase;
-      this.phaseVisualizationController.Initialize();
+
+      this.programView.SelectPhaseVisualizationTab();
+
+      this.phaseVisualizationController.ShowPhaseIfAny();
     }
 
     [STAThread]

@@ -28,7 +28,9 @@
     private void InitializeComponent()
     {
       this.visualizationPictureBox = new System.Windows.Forms.PictureBox();
+      this.turnTrackBar = new System.Windows.Forms.TrackBar();
       ((System.ComponentModel.ISupportInitialize)(this.visualizationPictureBox)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.turnTrackBar)).BeginInit();
       this.SuspendLayout();
       // 
       // visualizationPictureBox
@@ -40,20 +42,35 @@
       this.visualizationPictureBox.TabIndex = 1;
       this.visualizationPictureBox.TabStop = false;
       // 
+      // turnTrackBar
+      // 
+      this.turnTrackBar.LargeChange = 8;
+      this.turnTrackBar.Location = new System.Drawing.Point(8, 592);
+      this.turnTrackBar.Maximum = 127;
+      this.turnTrackBar.Name = "turnTrackBar";
+      this.turnTrackBar.Size = new System.Drawing.Size(1024, 45);
+      this.turnTrackBar.TabIndex = 2;
+      this.turnTrackBar.TickFrequency = 8;
+      this.turnTrackBar.TickStyle = System.Windows.Forms.TickStyle.TopLeft;
+      // 
       // PhaseVisualizationView
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+      this.Controls.Add(this.turnTrackBar);
       this.Controls.Add(this.visualizationPictureBox);
       this.Name = "PhaseVisualizationView";
-      this.Size = new System.Drawing.Size(1040, 593);
+      this.Size = new System.Drawing.Size(1042, 642);
       ((System.ComponentModel.ISupportInitialize)(this.visualizationPictureBox)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.turnTrackBar)).EndInit();
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 
     #endregion
 
     private System.Windows.Forms.PictureBox visualizationPictureBox;
+    private System.Windows.Forms.TrackBar turnTrackBar;
   }
 }

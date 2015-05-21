@@ -10,6 +10,12 @@ namespace Fuzziverse.PhaseVisualization
   public interface IViewPhaseVisualizations
   {
     void DisablePictureBox();
+    void EnablePictureBox();
     void SetVisualizationImage(Image image);
+
+    void DisableTurnTrackBar();
+    void EnableTurnTrackBar();
+    void AddTurnTrackBarValueChangedHandler(EventHandler handler);
+    int GetTurnTrackBarValue();
   }
 }

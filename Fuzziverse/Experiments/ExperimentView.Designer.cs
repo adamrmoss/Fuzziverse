@@ -46,14 +46,14 @@
       this.experimentsGroupBox.Controls.Add(this.experimentsTreeView);
       this.experimentsGroupBox.Location = new System.Drawing.Point(10, 9);
       this.experimentsGroupBox.Name = "experimentsGroupBox";
-      this.experimentsGroupBox.Size = new System.Drawing.Size(1028, 527);
+      this.experimentsGroupBox.Size = new System.Drawing.Size(1028, 567);
       this.experimentsGroupBox.TabIndex = 0;
       this.experimentsGroupBox.TabStop = false;
       this.experimentsGroupBox.Text = "Experiments";
       // 
       // newExperimentButton
       // 
-      this.newExperimentButton.Location = new System.Drawing.Point(328, 489);
+      this.newExperimentButton.Location = new System.Drawing.Point(328, 528);
       this.newExperimentButton.Name = "newExperimentButton";
       this.newExperimentButton.Size = new System.Drawing.Size(96, 24);
       this.newExperimentButton.TabIndex = 2;
@@ -67,7 +67,7 @@
       this.phasesTreeView.Location = new System.Drawing.Point(608, 24);
       this.phasesTreeView.Name = "phasesTreeView";
       this.phasesTreeView.ShowPlusMinus = false;
-      this.phasesTreeView.Size = new System.Drawing.Size(408, 488);
+      this.phasesTreeView.Size = new System.Drawing.Size(408, 528);
       this.phasesTreeView.TabIndex = 5;
       // 
       // stopRadioButton
@@ -102,7 +102,7 @@
       this.experimentsTreeView.HideSelection = false;
       this.experimentsTreeView.Location = new System.Drawing.Point(16, 24);
       this.experimentsTreeView.Name = "experimentsTreeView";
-      this.experimentsTreeView.Size = new System.Drawing.Size(408, 456);
+      this.experimentsTreeView.Size = new System.Drawing.Size(408, 496);
       this.experimentsTreeView.TabIndex = 1;
       // 
       // ExperimentView
@@ -111,7 +111,7 @@
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.Controls.Add(this.experimentsGroupBox);
       this.Name = "ExperimentView";
-      this.Size = new System.Drawing.Size(1048, 548);
+      this.Size = new System.Drawing.Size(1048, 586);
       this.experimentsGroupBox.ResumeLayout(false);
       this.experimentsGroupBox.PerformLayout();
       this.ResumeLayout(false);
