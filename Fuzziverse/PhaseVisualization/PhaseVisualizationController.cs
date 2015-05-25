@@ -5,8 +5,10 @@ using System.Drawing;
 using System.Linq;
 using Fuzziverse.Core.AlienSpaceTime;
 using Fuzziverse.Core.Experiments;
+using Fuzziverse.Core.Organisms;
 using Fuzziverse.Databases;
 using Fuzziverse.Experiments;
+using Fuzziverse.Simulations;
 using GuardClaws;
 
 namespace Fuzziverse.PhaseVisualization
@@ -45,7 +47,7 @@ namespace Fuzziverse.PhaseVisualization
       if (this.ExperimentId != null && this.PhaseId != null) {
         var sqlConnection = this.databaseConnector.OpenSqlConnection();
         this.experimentTurns = sqlConnection.GetExperimentPhaseTurns(this.ExperimentId.Value, this.PhaseId.Value).ToArray();
-        this.frames = this.experimentTurns.Select(RenderTurn).ToArray();
+        this.frames = this.experimentTurns.Select(this.RenderTurn).ToArray();
         this.phaseVisualizationView.EnablePictureBox();
         this.phaseVisualizationView.EnableTurnTrackBar();
       } else {
@@ -54,18 +56,28 @@ namespace Fuzziverse.PhaseVisualization
       }
     }
 
-    private static Image RenderTurn(ExperimentTurn turn)
+    private Image RenderTurn(ExperimentTurn turn)
     {
+      var sqlConnection = this.databaseConnector.OpenSqlConnection();
+      var turnOrganismStates = sqlConnection.GetTurnOrganismStates(turn.Id).ToDictionary(state => state.Position);
+
       var bitmap = new Bitmap(AlienSpaceVector.WorldWidth * CellSize, AlienSpaceVector.WorldHeight * CellSize);
+      var graphics = Graphics.FromImage(bitmap);
+      var sunBrush = new SolidBrush(Color.Yellow);
 
       for (var x = 0; x < AlienSpaceVector.WorldWidth; x++) {
         for (var y = 0; y < AlienSpaceVector.WorldHeight; y++) {
-          var distanceFromSun = AlienSpaceVector.GetCoordinateDelta(new AlienSpaceVector(x, y), turn.SunPosition).Abs();
-          var color = distanceFromSun < Experiment.SunRadius ? Color.Yellow : Color.Transparent;
-          var brush = new SolidBrush(color);
+          var position = new AlienSpaceVector(x, y);
 
-          var graphics = Graphics.FromImage(bitmap);
-          graphics.FillRectangle(brush, x * CellSize, y * CellSize, CellSize, CellSize);
+          var distanceFromSun = AlienSpaceVector.GetCoordinateDelta(position, turn.SunPosition).Abs();
+          if (distanceFromSun < Experiment.SunRadius)
+            graphics.FillRectangle(sunBrush, x * CellSize, y * CellSize, CellSize, CellSize);
+
+          if (turnOrganismStates.ContainsKey(position)) {
+            var state = turnOrganismStates[position];
+            var organismBrush = new SolidBrush(Color.ForestGreen);
+            graphics.FillEllipse(organismBrush, x * CellSize, y * CellSize, CellSize, CellSize);
+          }
         }
       }
       return bitmap;

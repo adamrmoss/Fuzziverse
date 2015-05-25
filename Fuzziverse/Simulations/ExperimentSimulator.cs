@@ -15,7 +15,7 @@ namespace Fuzziverse.Simulations
 {
   public class ExperimentSimulator : ISimulateExperiments
   {
-    private static IEnumerable<AlienSpaceVector> allPoints;
+    private static readonly IEnumerable<AlienSpaceVector> allPoints;
 
     static ExperimentSimulator()
     {
@@ -38,6 +38,7 @@ namespace Fuzziverse.Simulations
       if (!this.databaseConnector.DatabaseHasBeenPinged)
         throw new InvalidOperationException("Cannot run simulation without having pinged the database.");
 
+      //try {
       using (var sqlConnection = this.databaseConnector.OpenSqlConnection()) {
         var experimentStatus = sqlConnection.GetExperimentStatus(experimentId);
 
@@ -78,11 +79,11 @@ namespace Fuzziverse.Simulations
             Green = 1,
             Blue = 0,
           };
+
           sqlConnection.SaveOrganism(newOrganism);
 
           newOrganismStates[newOrganism.Id] = new OrganismState {
             OrganismId = newOrganism.Id,
-            ExperimentTurnId = newExperimentTurn.Id,
             Position = newPosition,
             Health = 1,
           };
@@ -94,6 +95,8 @@ namespace Fuzziverse.Simulations
           sqlConnection.SaveOrganismState(organismState);
         }
       }
+      //} catch (Exception e) {
+      //}
     }
 
     private static ExperimentTurn BuildNextExperimentTurn(ExperimentStatus experimentStatus)
@@ -123,7 +126,7 @@ namespace Fuzziverse.Simulations
     {
       Claws.AtLeast(() => delta, 0);
 
-      delta = Math.Min(delta, experimentTurn.ExtraEnergy);
+      delta = Math.Min(delta, Math.Min(experimentTurn.ExtraEnergy, 1 - organismState.Health));
 
       experimentTurn.ExtraEnergy -= delta;
       organismState.Health += delta;

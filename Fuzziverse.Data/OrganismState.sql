@@ -6,6 +6,10 @@
   Y INT NOT NULL, 
   Health DECIMAL(3, 2) NOT NULL,
 
+  CONSTRAINT UN_OrganismState_OrganismId_ExperimentTurnId UNIQUE NONCLUSTERED (
+    OrganismId ASC,
+    ExperimentTurnId ASC
+  ),
   CONSTRAINT FK_OrganismState_Organism FOREIGN KEY(OrganismId) REFERENCES dbo.Organism (Id),
   CONSTRAINT FK_OrganismState_ExperimentTurn FOREIGN KEY(ExperimentTurnId) REFERENCES dbo.ExperimentTurn (Id)
 )

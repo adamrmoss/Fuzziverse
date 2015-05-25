@@ -13,9 +13,9 @@ namespace Fuzziverse.Simulations
 {
   public static class SimulationDao
   {
-    private const string createOrganismCommand = "EXEC dbo.CreateOrganism";
-    private const string getTurnOrganismStatesQuery = "EXEC dbo.GetTurnOrganismStates";
-    private const string createOrganismStateCommand = "EXEC dbo.CreateOrganismState";
+    private const string createOrganismCommand = "EXEC dbo.CreateOrganism @Red, @Green, @Blue";
+    private const string getTurnOrganismStatesQuery = "EXEC dbo.GetTurnOrganismStates @ExperimentTurnId";
+    private const string createOrganismStateCommand = "EXEC dbo.CreateOrganismState @OrganismId, @ExperimentTurnId, @X, @Y, @Health";
 
     public static void SaveOrganism(this SqlConnection sqlConnection, Organism organism)
     {
@@ -49,14 +49,14 @@ namespace Fuzziverse.Simulations
     {
       var sqlCommand = new SqlCommand(createOrganismStateCommand, sqlConnection);
       var organismIdParameter = sqlCommand.Parameters.Add("@OrganismId", SqlDbType.BigInt);
-      organismIdParameter.SqlValue = organismState.ExperimentTurnId;
+      organismIdParameter.SqlValue = organismState.OrganismId;
       var experimentTurnIdParameter = sqlCommand.Parameters.Add("@ExperimentTurnId", SqlDbType.BigInt);
       experimentTurnIdParameter.SqlValue = organismState.ExperimentTurnId;
       var xParameter = sqlCommand.Parameters.Add("@X", SqlDbType.Int);
       xParameter.SqlValue = organismState.Position.X;
       var yParameter = sqlCommand.Parameters.Add("@Y", SqlDbType.Int);
       yParameter.SqlValue = organismState.Position.Y;
-      var healthParameter = sqlCommand.Parameters.Add("@Health", SqlDbType.Int);
+      var healthParameter = sqlCommand.Parameters.Add("@Health", SqlDbType.Decimal);
       healthParameter.SqlValue = organismState.Health;
 
       organismState.Id = sqlCommand.ReadResults(reader => reader.GetInt64(0)).Single();
