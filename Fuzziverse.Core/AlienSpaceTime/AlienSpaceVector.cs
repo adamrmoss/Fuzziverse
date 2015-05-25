@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Fuzziverse.Core.AlienSpaceTime
 {
-  public struct AlienSpaceVector
+  public struct AlienSpaceVector : IEquatable<AlienSpaceVector>
   {
     public const int WorldWidth = 64;
     public const int WorldHeight = 36;
@@ -51,6 +51,23 @@ namespace Fuzziverse.Core.AlienSpaceTime
     public static AlienSpaceVector operator -(AlienSpaceVector vector1, AlienSpaceVector vector2)
     {
       return new AlienSpaceVector(vector1.X - vector2.X, vector1.Y - vector2.Y);
+    }
+
+    public bool Equals(AlienSpaceVector other) => this.X == other.X && this.Y == other.Y;
+
+    public override bool Equals(object obj)
+    {
+      if (ReferenceEquals(null, obj))
+        return false;
+
+      return obj is AlienSpaceVector && this.Equals((AlienSpaceVector) obj);
+    }
+
+    public override int GetHashCode()
+    {
+      unchecked {
+        return (this.X * 397) ^ this.Y;
+      }
     }
 
     public override string ToString() => "<{0}, {1}>".FormatWith(this.X, this.Y);

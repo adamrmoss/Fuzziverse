@@ -79,6 +79,8 @@
     <Compile Include="Organisms\OrganismState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Framework\StringExtensions.cs" />
+    <Compile Include="Statistical\DictionaryExtensions.cs" />
+    <Compile Include="Statistical\EnumerableExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

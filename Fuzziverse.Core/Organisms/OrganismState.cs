@@ -1,4 +1,6 @@
-﻿namespace Fuzziverse.Core.Organisms
+﻿using Fuzziverse.Core.AlienSpaceTime;
+
+namespace Fuzziverse.Core.Organisms
 {
   public class OrganismState
   {
@@ -6,8 +8,7 @@
     public long OrganismId { get; set; }
     public long ExperimentTurnId { get; set; }
 
-    public int X { get; set; }
-    public int Y { get; set; }
+    public AlienSpaceVector Position { get; set; }
 
     public decimal Health { get; set; }
   }
