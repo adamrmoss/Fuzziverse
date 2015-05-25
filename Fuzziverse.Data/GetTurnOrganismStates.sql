@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE dbo.GetTurnOrganismStates
-  @ExperimentTurnId BIGINT NOT NULL
+  @ExperimentTurnId BIGINT
 AS
 BEGIN
   SELECT os.Id, os.OrganismId, os.X, os.Y, os.Health

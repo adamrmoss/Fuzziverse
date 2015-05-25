@@ -1,13 +1,13 @@
 ﻿CREATE PROCEDURE dbo.CreateExperimentTurn
-  @ExperimentId BIGINT NOT NULL,
-  @SimulationTime INT NOT NULL,
-  @Day INT NOT NULL,
-  @PhaseOfDay INT NOT NULL,
-  @Phase INT NOT NULL,
-  @RandomSeed INT NOT NULL,
-  @SunX INT NOT NULL,
-  @SunY INT NOT NULL,
-  @ExtraEnergy DECIMAL(6, 2) NOT NULL
+  @ExperimentId BIGINT,
+  @SimulationTime INT,
+  @Day INT,
+  @PhaseOfDay INT,
+  @Phase INT,
+  @RandomSeed INT,
+  @SunX INT,
+  @SunY INT,
+  @ExtraEnergy DECIMAL(6, 2)
 AS
 BEGIN
   DECLARE @ExperimentTurnId BIGINT

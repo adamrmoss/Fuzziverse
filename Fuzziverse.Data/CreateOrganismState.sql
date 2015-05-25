@@ -1,12 +1,12 @@
 ﻿CREATE PROCEDURE dbo.CreateOrganismState
-  @OrganismId BIGINT NOT NULL,
-  @ExperimentTurnId BIGINT NOT NULL,
-  @X INT NOT NULL,
-  @Y INT NOT NULL, 
-  @Health DECIMAL(3, 2) NOT NULL
+  @OrganismId BIGINT,
+  @ExperimentTurnId BIGINT,
+  @X INT,
+  @Y INT, 
+  @Health DECIMAL(3, 2)
 AS
 BEGIN
-  DECLARE @OrganismStateId BIGINT NOT NULL
+  DECLARE @OrganismStateId BIGINT
 
   INSERT INTO dbo.OrganismState (OrganismId, ExperimentTurnId, X, Y, Health)
   VALUES (@OrganismId, @ExperimentTurnId, @X, @Y, @Health)

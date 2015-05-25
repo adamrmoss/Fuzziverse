@@ -49,7 +49,6 @@ namespace Fuzziverse.Simulations
         var newOrganismStates = existingOrganismStates
           .ToDictionary(organismState => organismState.OrganismId,
                         existingOrganismState => new OrganismState {
-                          ExperimentTurnId = newExperimentTurn.Id,
                           OrganismId = existingOrganismState.OrganismId,
                           Position = existingOrganismState.Position,
                           Health = existingOrganismState.Health,
@@ -81,16 +80,19 @@ namespace Fuzziverse.Simulations
           };
           sqlConnection.SaveOrganism(newOrganism);
 
-          var newOrganismState = new OrganismState {
+          newOrganismStates[newOrganism.Id] = new OrganismState {
             OrganismId = newOrganism.Id,
             ExperimentTurnId = newExperimentTurn.Id,
             Position = newPosition,
             Health = 1,
           };
-          sqlConnection.SaveOrganismState(newOrganismState);
         }
 
         sqlConnection.SaveExperimentTurn(newExperimentTurn);
+        foreach (var organismState in newOrganismStates.Values) {
+          organismState.ExperimentTurnId = newExperimentTurn.Id;
+          sqlConnection.SaveOrganismState(organismState);
+        }
       }
     }
 

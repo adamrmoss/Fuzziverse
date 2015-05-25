@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE dbo.CreateExperiment AS
 BEGIN
-  DECLARE @ExperimentId BIGINT NOT NULL
-  DECLARE @Created DATETIME NOT NULL
+  DECLARE @ExperimentId BIGINT
+  DECLARE @Created DATETIME
   SET @Created = GETUTCDATE()
 
   INSERT INTO dbo.Experiment (Created)
