@@ -75,12 +75,17 @@ namespace Fuzziverse.PhaseVisualization
 
           if (turnOrganismStates.ContainsKey(position)) {
             var state = turnOrganismStates[position];
-            var organismBrush = new SolidBrush(Color.ForestGreen);
+            var organismBrush = new SolidBrush(Color.FromArgb(ScaleColorComponent(state.Red), ScaleColorComponent(state.Green), ScaleColorComponent(state.Blue)));
             graphics.FillEllipse(organismBrush, x * CellSize, y * CellSize, CellSize, CellSize);
           }
         }
       }
       return bitmap;
+    }
+
+    private static int ScaleColorComponent(decimal component)
+    {
+      return (int) (component * 0xff);
     }
 
     private void OnTurnTrackBarValueChanged(object sender, EventArgs eventArgs)

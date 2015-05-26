@@ -40,8 +40,11 @@ namespace Fuzziverse.Simulations
         Id = reader.GetInt64(0),
         OrganismId = reader.GetInt64(1),
         ExperimentTurnId = experimentTurnId,
-        Position = new AlienSpaceVector(reader.GetInt32(2),  reader.GetInt32(3)),
-        Health = reader.GetDecimal(4),
+        Red = reader.GetDecimal(2),
+        Green = reader.GetDecimal(3),
+        Blue = reader.GetDecimal(4),
+        Position = new AlienSpaceVector(reader.GetInt32(5),  reader.GetInt32(6)),
+        Health = reader.GetDecimal(7),
       }).ToArray();
     }
 
